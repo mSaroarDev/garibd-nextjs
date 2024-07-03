@@ -1,33 +1,75 @@
+@import url("https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+/* google fonts */
+.hind-siliguri-light {
+  font-family: "Hind Siliguri", sans-serif;
+  font-weight: 300;
+  font-style: normal;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+.hind-siliguri-regular {
+  font-family: "Hind Siliguri", sans-serif;
+  font-weight: 400;
+  font-style: normal;
 }
 
+.hind-siliguri-medium {
+  font-family: "Hind Siliguri", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.hind-siliguri-semibold {
+  font-family: "Hind Siliguri", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.hind-siliguri-bold {
+  font-family: "Hind Siliguri", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+/* body */
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  @apply hind-siliguri-regular text-[14px];
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+
+main {
+  @apply w-full max-w-6xl mx-auto;
+}
+
+input,
+textarea,
+select {
+  @apply px-4 py-2 border-[1px] border-borderColor rounded-md focus:outline-0 focus:shadow-md !important;
+}
+.search-input {
+  @apply rounded-full !important
+}
+
+/* custom designs */
+.navbar-scrolled {
+  background-color: #fff;
+  transition: 0.4s all;
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+}
+
+.button-main {
+  @apply bg-brandColor text-white px-4 py-2 rounded-md;
+}
+
+.user-sidebar-link {
+  @apply w-full px-3 md:px-6 py-3  hover:bg-lightBg flex items-center gap-3 font-medium text-[15px] border-0 md:border-l-[3px] md:border-white border-b md:border-b-0 border-borderColor;
+}
+
+.user-sidebar-link-active {
+  @apply md:border-l-[3px] md:border-redColor text-redColor
 }
