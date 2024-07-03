@@ -1,3 +1,4 @@
+import SignInForm from "@components/SignInForm";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 
@@ -8,34 +9,7 @@ export default function LoginPage() {
         <div className="bg-lightBg w-full max-w-[400px] border-[1px] border-borderColor rounded-xl p-7">
           <h2 className="font-bold text-[22px] text-center">সাইন ইন করুন</h2>
           <div className="login__box mt-5">
-            <form className="w-full flex flex-col gap-3">
-              <input type="text" placeholder="Mobile No / Email" />
-              <input type="text" placeholder="Password" />
-              <button className="button-main" type="submit">
-                সাইন ইন
-              </button>
-              <p className="text-right my-2">
-                <Link href="/">পাসওয়ার্ড ভুলে গেছেন?</Link>
-              </p>
-              <p className="my-2 text-center">সোসিয়াল লগিন</p>
-              <div className="flex items-center justify-between gap-5">
-                <button
-                  type="button"
-                  className="bg-blue-800 text-white flex items-center justify-center gap-4 w-full p-2 rounded-sm shadow-sm"
-                >
-                  <img src="/facebook.png" alt="" className="w-2" />
-                  <span>ফেইসবুক</span>
-                </button>
-
-                <button
-                  type="button"
-                  className="bg-white text-black flex items-center justify-center gap-4 w-full p-2 rounded-sm shadow-sm"
-                >
-                  <img src="/google.svg" className="w-5" />
-                  <span>গুগল</span>
-                </button>
-              </div>
-            </form>
+            <SignInForm />
           </div>
           <div className="mt-10 text-center">
             কোন অ্যাকাউন্ট নেই?{" "}

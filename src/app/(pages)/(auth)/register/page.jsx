@@ -1,4 +1,4 @@
-import SignInForm from "@components/SignInForm";
+import SignUpForm from "@components/SignUpForm";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 
@@ -11,7 +11,7 @@ export default function RegisterPage() {
             নতুন অ্যাকাউন্ট খুলুন
           </h2>
           <div className="login__box mt-5">
-            <SignInForm />
+            <SignUpForm />
           </div>
           <div className="mt-7 text-center">
             পুরাতন অ্যাকাউন্ট আছে?{" "}

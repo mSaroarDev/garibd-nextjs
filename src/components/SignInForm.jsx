@@ -1,130 +1,70 @@
 "use client";
-import { register } from "@libs/api/users";
-import { showError, showSuccess } from "@utils/showToast";
-import { useFormik } from "formik";
+import Link from "next/link";
 import { useState } from "react";
-import ButtonLoader from "./loaders/button-loader/Loader";
+import { signIn } from "next-auth/react";
+import { showError, showSuccess } from "@utils/showToast";
 import LoadingButton from "./LoadingButton";
+import { useRouter } from "next/navigation";
 
 export default function SignInForm() {
   // utils
   const [loading, setLoading] = useState(false);
+  const router = useRouter()
 
-  // auto login
-  const autoLogin = () => {
-    alert("Logged in");
+  // data
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const formData = { email, password };
+
+  // signin
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    try {
+      setLoading(true);
+      const res = await signIn("credentials", {
+        ...formData,
+        redirect: false,
+      });
+
+      setLoading(false);
+      if (res.ok) {
+        showSuccess("Loggin Success");
+        router.push("/user/profile")
+      } else {
+        showError("Invalid Credentials");
+      }
+    } catch (error) {
+      showError("Internal Server Error");
+    }
   };
-
-  // formik
-  const formik = useFormik({
-    initialValues: {
-      nickname: "",
-      mobile: "",
-      email: "",
-      password1: "",
-      password2: "",
-    },
-    onSubmit: async (values) => {
-      const { nickname, mobile, email, password1, password2 } = values;
-      if (!nickname || !mobile || !email || !password1 || !password2) {
-        return showError("Please input all fields.");
-      }
-
-      if (password1 !== password2) {
-        return showError("Password didn't match.");
-      }
-
-      if (password1.length < 6) {
-        return showError("Password must be more than 6 character");
-      }
-
-      try {
-        setLoading(true);
-        const res = await register(values);
-
-        setLoading(false);
-        const data = await res.json();
-        if (data?.msg === "duplicate") {
-          return showError("User Already Exist");
-        }
-
-        if (res.ok) {
-          showSuccess("Registration Success");
-
-          // after succesfully registration
-          autoLogin();
-        } else {
-          showError("Registration Failed");
-        }
-      } catch (error) {
-        showError("Internal Server Error");
-      } finally {
-        setLoading(false);
-      }
-    },
-  });
 
   return (
     <>
-      <form
-        onSubmit={formik.handleSubmit}
-        className="w-full flex flex-col gap-3"
-      >
+      <form onSubmit={handleLogin} className="w-full flex flex-col gap-3">
         <input
           type="text"
-          id="nickname"
-          name="nickname"
-          value={formik.values.nickname}
-          onChange={formik.handleChange}
-          placeholder="Nickname"
-        />
-        <input
-          type="text"
-          id="mobile"
-          name="mobile"
-          value={formik.values.mobile}
-          onChange={formik.handleChange}
-          placeholder="Mobile No"
-        />
-        <input
-          type="text"
-          id="email"
-          name="email"
-          value={formik.values.email}
-          onChange={formik.handleChange}
-          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="Mobile No / Email"
         />
         <input
           type="password"
-          id="password1"
-          name="password1"
-          value={formik.values.password1}
-          onChange={formik.handleChange}
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
           placeholder="Password"
         />
-        <input
-          type="password"
-          id="password2"
-          name="password2"
-          value={formik.values.password2}
-          onChange={formik.handleChange}
-          placeholder="Retype Password"
-        />
         {loading ? (
-          <LoadingButton
-            text="অ্যাকাউন্ট খুলুন"
-            extraClassnames="button-main flex items-center justify-center gap-5"
-          />
+          <LoadingButton extraClassnames="button-main" text="সাইন ইন" />
         ) : (
-          <button
-            className="button-main flex items-center justify-center gap-5"
-            type="submit"
-          >
-            {loading && <ButtonLoader />}
-            অ্যাকাউন্ট খুলুন
+          <button className="button-main" type="submit">
+            সাইন ইন
           </button>
         )}
-        <p className="my-2 text-center">সোসিয়াল অ্যাকাউন্ট খুলুন</p>
+        <p className="text-right my-2">
+          <Link href="/">পাসওয়ার্ড ভুলে গেছেন?</Link>
+        </p>
+        <p className="my-2 text-center">সোসিয়াল লগিন</p>
         <div className="flex items-center justify-between gap-5">
           <button
             type="button"
