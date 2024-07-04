@@ -1,4 +1,4 @@
-import EdiProfileForm from "@components/EdiProfileForm";
+import ChangePasswordForm from "@components/ChangePasswordForm";
 import PageHeader from "@components/PageHeader";
 import { getProfile } from "@libs/api/profile";
 import { authOptions } from "@libs/authOptions";
@@ -6,7 +6,7 @@ import { CircleUserRound, Key, PenBox, User } from "lucide-react";
 import { getServerSession } from "next-auth";
 import Link from "next/link";
 
-const EditMyProfile = async () => {
+const ChangePasswordPage = async () => {
   const session = await getServerSession(authOptions);
   const profile = await getProfile(session?.user?.id);
 
@@ -58,7 +58,7 @@ const EditMyProfile = async () => {
           </div>
           <div className="col-span-12 md:col-span-9">
             <h2 className="text-[18px] font-semibold mb-5">প্রোফাইল তথ্য</h2>
-            <EdiProfileForm data={profile} />
+            <ChangePasswordForm data={profile} />
           </div>
         </div>
       </div>
@@ -66,4 +66,4 @@ const EditMyProfile = async () => {
   );
 };
 
-export default EditMyProfile;
+export default ChangePasswordPage;
