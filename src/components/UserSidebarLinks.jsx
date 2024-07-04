@@ -1,3 +1,4 @@
+"use client"
 import {
   ClipboardList,
   ContactRound,
@@ -10,15 +11,17 @@ import {
   Store,
   Wallet,
 } from "lucide-react";
-import { Link, useLocation } from "react-router-dom";
+import { signOut } from "next-auth/react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function UserSidebarLinks() {
-  const { pathname} = useLocation();
+  const pathname = usePathname()
 
   return (
     <>
       <Link
-        to="/user/dashboard"
+        href="/user/dashboard"
         className={`user-sidebar-link mt-7 ${
           pathname.startsWith("/user/dashboard") && "user-sidebar-link-active"
         }`}
@@ -27,16 +30,16 @@ export default function UserSidebarLinks() {
         <span>ওভারভিউ</span>
       </Link>
       <Link
-        to="/user/messages"
+        href="/user/chats"
         className={`user-sidebar-link ${
-          pathname.startsWith("/user/messages") && "user-sidebar-link-active"
+          pathname.startsWith("/user/chats") && "user-sidebar-link-active"
         }`}
       >
         <MessagesSquare className="w-5 h-5 text-redColor" />
         <span>চ্যাট</span>
       </Link>
       <Link
-        to="/user/my-ads?page=1"
+        href="/user/my-ads?page=1"
         className={`user-sidebar-link ${
           pathname.startsWith("/user/my-ads") && "user-sidebar-link-active"
         }`}
@@ -45,7 +48,7 @@ export default function UserSidebarLinks() {
         <span>আমার বিজ্ঞাপনসমূহ</span>
       </Link>
       <Link
-        to="/user/membership"
+        href="/user/membership"
         className={`user-sidebar-link ${
           pathname.startsWith("/user/membership") && "user-sidebar-link-active"
         }`}
@@ -54,7 +57,7 @@ export default function UserSidebarLinks() {
         <span>মেমবারশিপ</span>
       </Link>
       <Link
-        to="/user/my-store"
+        href="/user/my-store"
         className={`user-sidebar-link ${
           pathname.startsWith("/user/my-store") && "user-sidebar-link-active"
         }`}
@@ -63,16 +66,16 @@ export default function UserSidebarLinks() {
         <span>স্টোর ইনফো</span>
       </Link>
       <Link
-        to="/user/my-profile"
+        href="/user/profile"
         className={`user-sidebar-link ${
-          pathname.startsWith("/user/my-profile") && "user-sidebar-link-active"
+          pathname.startsWith("/user/profile") && "user-sidebar-link-active"
         }`}
       >
         <ContactRound className="w-5 h-5 text-redColor" />
         <span>আমার প্রোফাইল</span>
       </Link>
       <Link
-        to="/user/payments"
+        href="/user/payments"
         className={`user-sidebar-link ${
           pathname.startsWith("/user/payments") && "user-sidebar-link-active"
         }`}
@@ -81,7 +84,7 @@ export default function UserSidebarLinks() {
         <span>পেমেন্ট সমূহ</span>
       </Link>
       <Link
-        to="/user/documents"
+        href="/user/documents"
         className={`user-sidebar-link ${
           pathname.startsWith("/user/documents") && "user-sidebar-link-active"
         }`}
@@ -90,7 +93,7 @@ export default function UserSidebarLinks() {
         <span>ভেরিফাই</span>
       </Link>
       {/* <Link
-        to="/user/settings"
+        href="/user/settings"
         className={`user-sidebar-link ${
           pathname.startsWith("/user/settings") && "user-sidebar-link-active"
         }`}
@@ -98,15 +101,13 @@ export default function UserSidebarLinks() {
         <Settings className="w-5 h-5 text-redColor" />
         <span>সেটিংস</span>
       </Link> */}
-      <Link
-        to="/"
-        className={`user-sidebar-link ${
-          pathname.startsWith("/user/settings") && "user-sidebar-link-active"
-        }`}
+      <button
+        onClick={()=> signOut({callbackUrl: "/sign-in"})}
+        className={`user-sidebar-link`}
       >
         <LogOut className="w-5 h-5 text-redColor" />
         <span>লগ আউট</span>
-      </Link>
+      </button>
     </>
   );
 }

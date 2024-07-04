@@ -1,45 +1,49 @@
 import mongoose from "mongoose";
 
-const profileSchema = mongoose.Schema(
+const profileSchema = new mongoose.Schema(
   {
     name_en: {
       type: String,
-      required: true,
+      required: false,
     },
     name_bn: {
       type: String,
-      required: true,
+      required: false,
     },
     father_name: {
       type: String,
-      required: true,
+      required: false,
     },
     mother_name: {
       type: String,
-      required: true,
+      required: false,
     },
     gender: {
       type: String,
-      required: true,
+      required: false,
     },
     dob: {
       type: String,
-      required: true,
+      required: false,
     },
     address: {
       type: String,
-      required: true,
+      required: false,
     },
     nid_no: {
       type: String,
-      required: true,
+      required: false,
     },
     profile_image: {
       type: String,
-      required: true,
+      required: false,
     },
     nid_card_image: {
       type: String,
+      required: false,
+    },
+    user: {
+      type: mongoose.Types.ObjectId,
       required: true,
     },
   },
@@ -48,5 +52,6 @@ const profileSchema = mongoose.Schema(
   }
 );
 
-const profileModel = new mongoose.model("Profile", profileSchema);
+const profileModel =
+  mongoose.models.Profile || mongoose.model("Profile", profileSchema);
 export default profileModel;

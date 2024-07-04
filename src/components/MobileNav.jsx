@@ -1,12 +1,13 @@
-import { Link } from "react-router-dom";
+"use client"
 import { CircleUserRound, MessageSquareText, Plus, Search } from "lucide-react";
+import Link from "next/link";
 
 export default function MobileNav() {
   return (
     <>
       <div className="w-full fixed bottom-0 block md:hidden bg-brandColor px-10 py-3">
         <div className="w-full flex items-center justify-between text-white">
-          <Link className="text-white">
+          <Link href="/" className="text-white">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -22,16 +23,16 @@ export default function MobileNav() {
               />
             </svg>
           </Link>
-          <Link>
+          <Link href="/">
             <Search className="w-6 h-6" />
           </Link>
-          <Link className="bg-blue-600 text-white p-3 rounded-full flex items-center justify-center -mt-5">
+          <Link href="/" className="bg-blue-600 text-white p-3 rounded-full flex items-center justify-center -mt-5">
             <Plus className="w-6 h-6" />
           </Link>
-          <Link>
+          <Link href="/">
             <MessageSquareText className="w-6 h-6" />
           </Link>
-          <Link to='/user/account'>
+          <Link href="/sign-in">
             <CircleUserRound className="w-6 h-6" />
           </Link>
         </div>

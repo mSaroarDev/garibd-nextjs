@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import UserSidebarLinks from "./UserSidebarLinks";
 
 export default function UserSidebar() {
@@ -8,7 +8,7 @@ export default function UserSidebar() {
         <div className="w-full h-full border-r border-borderColor">
           <div className="flex flex-col">
             <div className="p-5 mt-5">
-              <Link to="/">
+              <Link href="/">
                 <img src="/logo.svg" className="w-[120px]" />
               </Link>
             </div>

@@ -1,7 +1,7 @@
-import { connectDB } from "@app/db/connectDB";
 import { NextResponse } from "next/server";
-import userModel from "@app/db/models/users";
 import bcrypt from "bcrypt";
+import userModel from "@db/models/users";
+import { connectDB } from "@db/connectDB";
 
 export async function POST(req) {
   const formData = await req.json();

@@ -152,7 +152,7 @@ export default function Home() {
                 <img src="/earn.png" alt="" className="w-[120px]" />
                 <div>
                   <h1 className="font-bold text-[18px] mb-2">
-                    গাড়িবিডি থেকে ে <br /> And make you happy
+                    গাড়িবিডি থেকে <br /> And make you happy
                   </h1>
                   <p>
                     You can earn money from GariBD. Just join our affiliate

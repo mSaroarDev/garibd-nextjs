@@ -41,7 +41,7 @@ body {
 
 
 main {
-  @apply w-full max-w-6xl mx-auto;
+  @apply w-full max-w-6xl mx-auto px-5;
 }
 
 input,
@@ -51,6 +51,10 @@ select {
 }
 .search-input {
   @apply rounded-full !important
+}
+
+label {
+  @apply font-bold
 }
 
 /* custom designs */

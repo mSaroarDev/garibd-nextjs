@@ -30,7 +30,7 @@ export default function SignInForm() {
       setLoading(false);
       if (res.ok) {
         showSuccess("Loggin Success");
-        router.push("/user/profile")
+        router.push("/user/dashboard")
       } else {
         showError("Invalid Credentials");
       }
@@ -76,6 +76,7 @@ export default function SignInForm() {
 
           <button
             type="button"
+            onClick={() => signIn("google", { callbackUrl: "/user/dashboard" })}
             className="bg-white text-black flex items-center justify-center gap-4 w-full p-2 rounded-sm shadow-sm"
           >
             <img src="/google.svg" className="w-5" />

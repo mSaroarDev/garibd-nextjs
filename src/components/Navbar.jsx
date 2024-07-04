@@ -41,8 +41,8 @@ export default function Navbar() {
           <div className="hidden md:block col-span-3">
             <div className="w-full flex items-center justify-end gap-5">
               <Link href='/explore-ads' className="font-semibold underline">সকল বিজ্ঞাপন সমূহ</Link>
-              <Link href='/login' className="hidden lg:block bg-brandColor text-white px-5 py-2 rounded-lg">বিজ্ঞাপন দিন</Link>
-              <Link href='/login' className="block lg:hidden bg-brandColor text-white px-5 py-2 rounded-full">
+              <Link href='/sign-in' className="hidden lg:block bg-brandColor text-white px-5 py-2 rounded-lg">বিজ্ঞাপন দিন</Link>
+              <Link href='/sign-in' className="block lg:hidden bg-brandColor text-white px-5 py-2 rounded-full">
                 <Plus className="w-5 h-5" />
               </Link>
             </div> 
