@@ -1,4 +1,5 @@
 import EdiProfileForm from "@components/EdiProfileForm";
+import ImageChange from "@components/ImageChange";
 import PageHeader from "@components/PageHeader";
 import { getProfile } from "@libs/api/profile";
 import { authOptions } from "@libs/authOptions";
@@ -23,13 +24,7 @@ const EditMyProfile = async () => {
       <div className="mt-10 mb-20 md:mb-0">
         <div className="grid grid-cols-12 gap-5">
           <div className="col-span-12 md:col-span-3 flex flex-col items-center justify-start w-full">
-            <div className="h-[150px] w-[150px] rounded-full ring-2 ring-brandColor object-cover overflow-hidden">
-              <img
-                src="/avatar.jpg"
-                alt=""
-                className="w-full h-full object-cover rounded-full"
-              />
-            </div>
+            <ImageChange prevImage={profile?.image} />
             <div className="w-full mt-5 flex flex-col font-semibold">
               <Link
                 href="/user/profile"

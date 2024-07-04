@@ -48,3 +48,22 @@ export const changePassword = async (values) => {
     console.log(error);
   }
 };
+
+// change picture
+export const changePicture = async (values) => {
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/profile/change-picture`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ picture: values }),
+      }
+    );
+    return res;
+  } catch (error) {
+    console.log(error);
+  }
+};

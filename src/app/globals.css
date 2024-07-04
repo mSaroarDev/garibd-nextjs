@@ -77,3 +77,18 @@ label {
 .user-sidebar-link-active {
   @apply md:border-l-[3px] md:border-redColor text-redColor
 }
+
+.change-picture {
+  position: relative;
+}
+
+.p-picture:hover .change-picture::before {
+  position: absolute;
+  content: "";
+  height: 50px;
+  width: 150px;
+  background: black;
+  opacity: 30%;
+  bottom: 0;
+  z-index: 100;
+}

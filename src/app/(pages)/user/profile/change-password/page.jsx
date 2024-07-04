@@ -25,7 +25,7 @@ const ChangePasswordPage = async () => {
           <div className="col-span-12 md:col-span-3 flex flex-col items-center justify-start w-full">
             <div className="h-[150px] w-[150px] rounded-full ring-2 ring-brandColor object-cover overflow-hidden">
               <img
-                src="/avatar.jpg"
+                src={profile?.image}
                 alt=""
                 className="w-full h-full object-cover rounded-full"
               />

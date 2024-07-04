@@ -4,6 +4,8 @@ import NavCategory from "./NavCategory";
 import { Plus } from "lucide-react";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useSession } from "next-auth/react";
+import { getProfile } from "@libs/api/profile";
 
 export default function Navbar() {
   // fixing menu
@@ -25,6 +27,7 @@ export default function Navbar() {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
 
   return (
     <>

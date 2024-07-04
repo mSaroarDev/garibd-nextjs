@@ -1,8 +1,14 @@
 import UserSidebar from "@components/UserSidebar";
+import { getProfile } from "@libs/api/profile";
+import { authOptions } from "@libs/authOptions";
 import { MessagesSquare } from "lucide-react";
+import { getServerSession } from "next-auth";
 import Link from "next/link";
 
-export default function UserLayout({ children }) {
+export default async function UserLayout({ children }) {
+  const session = await getServerSession(authOptions);
+  const profile = await getProfile(session?.user?.id);
+
   return (
     <>
       <div className="bg-white w-full min-h-screen">
@@ -32,7 +38,7 @@ export default function UserLayout({ children }) {
               <div className="min-w-10 h-10 rounded-full ring ring-primary overflow-hidden">
                 <Link href="/">
                   <img
-                    src="/avatar.jpg"
+                    src={profile?.image}
                     className="w-full h-full object-cover"
                   />
                 </Link>
