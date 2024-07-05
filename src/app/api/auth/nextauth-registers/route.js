@@ -3,6 +3,7 @@ import bcrypt from "bcrypt";
 import userModel from "@db/models/users";
 import { connectDB } from "@db/connectDB";
 import profileModel from "@db/models/profile";
+import documentModel from "@db/models/documets";
 
 export async function POST(req) {
   const formData = await req.json();
@@ -38,8 +39,16 @@ export async function POST(req) {
     newProfile.user = userInfo._id;
     await newProfile.save();
 
+    // document
+    const newDocument = new documentModel();
+    newDocument.user = userInfo._id;
+    await newDocument.save();
+
     // Link the created profile to the user
     userData.profile = newProfile._id;
+    userData.document = newDocument._id;
+
+    //finally save the userdata
     await userData.save();
 
     return NextResponse.json({ msg: "success" }, { status: 201 });

@@ -26,9 +26,19 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: false,
     },
+    member_access_status: {
+      type: String,
+      enum: ["Active", "Banned", "Warned"],
+      default: "Active",
+      required: true,
+    },
     profile: {
       type: mongoose.Types.ObjectId,
       ref: "Profile",
+    },
+    documents: {
+      type: mongoose.Types.ObjectId,
+      ref: "Document",
     },
   },
   {
