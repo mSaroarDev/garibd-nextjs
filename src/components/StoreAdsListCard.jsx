@@ -8,10 +8,10 @@ export default function StoreAdsListCard() {
           <CheckCircle className="w-4 h-4 text-green-500" />
         </td>
         <td className="px-6 py-4">10/05/2024</td>
-        <td className="px-6 py-4">TATA 407 LPT CNG 2020 model NEW CONDITION</td>
-        <td className="px-6 py-4">৳ ৩,৫৬,০০০/- টাকা</td>
-        <td className="px-6 py-4">
-          <span className="bg-green-400/20 px-3 rounded-full text-green-600">
+        <td className="px-6 py-4 whitespace-nowrap">TATA 407 LPT CNG 2020 model NEW CONDITION</td>
+        <td className="px-6 py-4 whitespace-nowrap">৳ ৩,৫৬,০০০/- টাকা</td>
+        <td className="px-6 py-4 whitespace-nowrap">
+          <span className="bg-green-400/20 px-3 rounded-full text-green-600 whitespace-nowrap">
             ✔ বিক্রিত
           </span>
         </td>

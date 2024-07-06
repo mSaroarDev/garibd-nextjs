@@ -87,7 +87,7 @@ export default async function MyProfile() {
               />
               <ProfileInfoField
                 text="জাতীয় পরিচয়পত্র নং"
-                value={profile?.profile?.nid}
+                value={profile?.profile?.nid_no}
               />
             </div>
 
