@@ -1,17 +1,43 @@
-import { getServerSession } from "next-auth";
+"use client";
 import PricingCardParticles from "./PricingCardParticles";
-import { authOptions } from "@libs/authOptions";
-import { getProfile } from "@libs/api/profile";
 import Link from "next/link";
 import { PenBox, Trash2 } from "lucide-react";
+import { deletePackage } from "@libs/api/package";
+import { showError, showSuccess } from "@utils/showToast";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import Spinner from "./spinner/Spinner";
 
-export default async function MembershipCard({ item }) {
-  const session = await getServerSession(authOptions);
-  const profile = await getProfile(session?.user?.id);
-  console.log("profile", profile);
+export default function MembershipCard({ item, profile }) {
+  // utils
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
+
+  // delete the package
+  const handleDelete = async () => {
+    const isConfirmed = window.confirm("Are you sure you want to delete?");
+    if (isConfirmed) {
+      try {
+        setLoading(true);
+        const res = await deletePackage(item?._id);
+
+        if (res.ok) {
+          showSuccess("Deleted successfully");
+          router.refresh();
+        } else {
+          showError("Delete Failed");
+        }
+      } catch (error) {
+        showError("Internal Server Error");
+      } finally {
+        setLoading(false);
+      }
+    }
+  };
 
   return (
     <>
+      {loading && <Spinner />}
       <div className="w-[290px] h-auto rounded-lg bg-[#FAF4EB]/80 shadow-md border border-borderColor/50 flex flex-col items-start justify-between overflow-hidden">
         <div className="w-full text-center">
           <h2 className="text-[17px] font-bold text-black mt-5">
@@ -36,7 +62,11 @@ export default async function MembershipCard({ item }) {
                 <PenBox className="w-4 h-4" />
                 <span>এডিট</span>
               </Link>
-              <button className="w-full bg-red-600 px-4 py-2 rounded-sm text-white font-medium flex items-center justify-center gap-2">
+
+              <button
+                onClick={handleDelete}
+                className="w-full bg-red-600 px-4 py-2 rounded-sm text-white font-medium flex items-center justify-center gap-2"
+              >
                 <Trash2 className="w-4 h-4" />
                 <span className="mt-1">ডিলিট</span>
               </button>

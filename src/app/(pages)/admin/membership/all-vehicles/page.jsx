@@ -1,10 +1,24 @@
 import MembershipCard from "@components/MembershipCard";
+import { getPackages } from "@libs/api/package";
+import { getProfile } from "@libs/api/profile";
+import { authOptions } from "@libs/authOptions";
 import { ArrowLeft } from "lucide-react";
+import { getServerSession } from "next-auth";
 import Link from "next/link";
 
-export default function AdminMembershipPage() {
+export default async function AdminMembershipPage() {
+  // utils
+  const session = await getServerSession(authOptions);
+  const profile = await getProfile(session?.user?.id);
+
+  // get all packages
+  const adsPackages = await getPackages("Ad", "all-vehicles");
+  const monthlyPackages = await getPackages("Monthly", "all-vehicles");
+  const lifetimePackages = await getPackages("Lifetime", "all-vehicles");
+
   return (
     <>
+    
       <div className="flex items-center justify-between mb-5">
         <Link
           href="/admin/membership"
@@ -18,6 +32,7 @@ export default function AdminMembershipPage() {
         </Link>
       </div>
 
+      
       {/* ads packages */}
       <div className="border border-borderColor rounded-lg overflow-hidden">
         <div className="bg-lightBg px-4 py-2 font-bold text-base">
@@ -25,9 +40,7 @@ export default function AdminMembershipPage() {
         </div>
 
         <div className="p-3 md:p-5 flex flex-wrap items-start gap-5">
-          <MembershipCard />
-          <MembershipCard />
-          <MembershipCard />
+          {adsPackages.map((item, i)=> <MembershipCard key={i} item={item} profile={profile} />)}
         </div>
       </div>
 
@@ -38,9 +51,7 @@ export default function AdminMembershipPage() {
         </div>
 
         <div className="p-3 md:p-5 flex flex-wrap items-start gap-5">
-          <MembershipCard />
-          <MembershipCard />
-          <MembershipCard />
+          {monthlyPackages.map((item, i)=> <MembershipCard key={i} item={item} profile={profile} />)}
         </div>
       </div>
 
@@ -51,7 +62,7 @@ export default function AdminMembershipPage() {
         </div>
 
         <div className="p-3 md:p-5 flex flex-wrap items-start gap-5">
-          <MembershipCard />
+          {lifetimePackages.map((item, i)=> <MembershipCard key={i} item={item} profile={profile} />)}
         </div>
       </div>
     </>

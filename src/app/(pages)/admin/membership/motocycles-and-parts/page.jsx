@@ -1,9 +1,16 @@
 import MembershipCard from "@components/MembershipCard";
 import { getPackages } from "@libs/api/package";
+import { getProfile } from "@libs/api/profile";
+import { authOptions } from "@libs/authOptions";
 import { ArrowLeft } from "lucide-react";
+import { getServerSession } from "next-auth";
 import Link from "next/link";
 
 export default async function AdminMembershipPage() {
+  // utils
+  const session = await getServerSession(authOptions);
+  const profile = await getProfile(session?.user?.id);
+
   // get all packages
   const adsPackages = await getPackages("Ad", "parts-and-motorcycle");
   const monthlyPackages = await getPackages("Monthly", "parts-and-motorcycle");
@@ -33,7 +40,7 @@ export default async function AdminMembershipPage() {
         </div>
 
         <div className="p-3 md:p-5 flex flex-wrap items-start gap-5">
-          {adsPackages.map((item, i)=> <MembershipCard key={i} item={item} />)}
+          {adsPackages.map((item, i)=> <MembershipCard key={i} item={item} profile={profile} />)}
         </div>
       </div>
 
@@ -44,7 +51,7 @@ export default async function AdminMembershipPage() {
         </div>
 
         <div className="p-3 md:p-5 flex flex-wrap items-start gap-5">
-          {monthlyPackages.map((item, i)=> <MembershipCard key={i} item={item} />)}
+          {monthlyPackages.map((item, i)=> <MembershipCard key={i} item={item} profile={profile} />)}
         </div>
       </div>
 
@@ -55,7 +62,7 @@ export default async function AdminMembershipPage() {
         </div>
 
         <div className="p-3 md:p-5 flex flex-wrap items-start gap-5">
-          {lifetimePackages.map((item, i)=> <MembershipCard key={i} item={item} />)}
+          {lifetimePackages.map((item, i)=> <MembershipCard key={i} item={item} profile={profile} />)}
         </div>
       </div>
     </>
