@@ -1,8 +1,10 @@
+"use client";
 import CategoryCard from "@components/CategoryCard";
 import Slideshow from "@components/FeaturesSlideres";
 import Footer from "@components/Footer";
 import Navbar from "@components/Navbar";
 import { BookmarkCheck } from "lucide-react";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
 
 export default function Home() {

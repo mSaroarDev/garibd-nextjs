@@ -1,8 +1,24 @@
 // get user profile
+export const getCurrUserInfo = async () => {
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/profile/my-profile`
+    );
+
+    return res;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// get user profile
 export const getProfile = async (id) => {
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/api/profile/${id}`
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/profile/${id}`,
+      {
+        cache: "no-store",
+      }
     );
     const data = await res.json();
     return data?.data;

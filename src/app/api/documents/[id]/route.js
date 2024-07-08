@@ -1,6 +1,4 @@
 import documentModel from "@db/models/documets";
-import { authOptions } from "@libs/authOptions";
-import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
 
 export async function GET(req, { params }) {

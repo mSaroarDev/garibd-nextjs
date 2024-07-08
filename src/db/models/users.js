@@ -26,6 +26,12 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: false,
     },
+    role: {
+      type: String,
+      required: true,
+      enum: ["User", "Admin", "Developer"],
+      default: "User",
+    },
     member_access_status: {
       type: String,
       enum: ["Active", "Banned", "Warned"],
