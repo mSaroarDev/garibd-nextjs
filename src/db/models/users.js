@@ -38,6 +38,11 @@ const userSchema = new mongoose.Schema(
       default: "Active",
       required: true,
     },
+    packages: {
+      type: Array,
+      default: [],
+      required: false,
+    },
     profile: {
       type: mongoose.Types.ObjectId,
       ref: "Profile",

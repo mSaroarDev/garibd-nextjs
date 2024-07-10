@@ -1,7 +1,7 @@
 "use client";
 import PricingCardParticles from "./PricingCardParticles";
 import Link from "next/link";
-import { PenBox, Trash2 } from "lucide-react";
+import { ArrowRight, PenBox, Trash2 } from "lucide-react";
 import { deletePackage } from "@libs/api/package";
 import { showError, showSuccess } from "@utils/showToast";
 import { useState } from "react";
@@ -43,7 +43,7 @@ export default function MembershipCard({ item, profile }) {
           <h2 className="text-[17px] font-bold text-black mt-5">
             {item?.name}
           </h2>
-          <h2 className="text-[40px] font-medium mb-6">
+          <h2 className="text-[40px] mb-6 font-bold">
             <span className="text-[30px]">৳</span> {item?.price}/-{" "}
             <span className="text-[16px]">BDT</span>
           </h2>
@@ -53,7 +53,14 @@ export default function MembershipCard({ item, profile }) {
           </div>
         </div>
         <div className="p-4 w-full">
-          {profile.role === "Admin" ? (
+          {!profile ? <>
+            <button
+              className="bg-brandColor w-full text-white px-4 py-2 rounded-md inline-flex items-center justify-center gap-5"
+            >
+              <span>মুল্য {item?.price}/- টাকা মাত্র</span>
+              <ArrowRight className="w-4 h-4" />
+            </button>
+          </> : profile.role === "Admin" ? (
             <div className="flex items-center justify-between gap-2">
               <Link
                 href={`/admin/membership/motocycles-and-parts/edit/${item._id}`}
@@ -72,9 +79,13 @@ export default function MembershipCard({ item, profile }) {
               </button>
             </div>
           ) : (
-            <button className="bg-brandColor w-full text-white px-4 py-3 rounded-md">
-              কিনুন
-            </button>
+            <Link
+              href={`/user/membership/purchase/${item?._id}`}
+              className="bg-brandColor w-full text-white px-4 py-2 rounded-md inline-flex items-center justify-center gap-5"
+            >
+              <span>কিনুন</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
           )}
         </div>
       </div>

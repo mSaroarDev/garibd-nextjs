@@ -3,12 +3,14 @@ import { useState } from "react";
 import ButtonLoader from "./loaders/button-loader/Loader";
 import { useFormik } from "formik";
 import { showError, showSuccess } from "@utils/showToast";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { createPackage } from "@libs/api/package";
 
 export default function CreatePackageForm() {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const pathname = usePathname();
+  const paths = pathname.split("/")
 
   // formdata
   const formik = useFormik({
@@ -33,7 +35,7 @@ export default function CreatePackageForm() {
         if (res.ok) {
           showSuccess("Package Created");
           // router.push("/admin/membership");
-          router.back();
+          router.push(`/admin/membership/${paths[3]}`);
           router.refresh();
         } else {
           showError("Package create failed");
@@ -42,6 +44,7 @@ export default function CreatePackageForm() {
         showError("Internal Server Error");
       } finally {
         setLoading(false);
+        router.refresh();
       }
     },
   });
@@ -60,7 +63,7 @@ export default function CreatePackageForm() {
 
   return (
     <>
-      <form onSubmit={formik.handleSubmit} className="grid grid-cols-12 gap-5">
+      <form onSubmit={formik.handleSubmit} className="grid grid-cols-12 gap-5 w-full">
         <div className="col-span-12 lg:col-span-6">
           <div className="flex items-center gap-1 mb-2">
             <label className="w-full lg:w-1/4">প্যাকেজ নামঃ </label>

@@ -54,7 +54,7 @@ select {
 }
 
 label {
-  @apply font-bold
+  @apply font-bold whitespace-nowrap
 }
 
 /* custom designs */

@@ -27,10 +27,13 @@ export default async function AdminMembershipPage() {
           <ArrowLeft className="w-4 h-4" />
           <span>ব্যাক করুন</span>
         </Link>
-        <Link href="/admin/membership/create" className="button-main">
+        <Link href="/admin/membership/motocycles-and-parts/create" className="button-main">
           প্যাকেজ তৈরী করুন
         </Link>
       </div>
+
+      {/* heading */}
+      <h2 className="font-bold text-lg mb-2">মোটর সাইকেল এবং অন্যান্য যন্ত্রাংশ</h2>
 
       
       {/* ads packages */}

@@ -51,3 +51,21 @@ export const deletePackage = async (id) => {
     console.log(error);
   }
 };
+
+// get a single package
+export const getSinglePackage = async (id) => {
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/package/single/${id}`,
+      {
+        method: "GET",
+        cache: "no-store",
+      }
+    );
+
+    const data = await res.json();
+    return data.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
