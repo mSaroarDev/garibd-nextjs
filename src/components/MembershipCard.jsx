@@ -38,7 +38,7 @@ export default function MembershipCard({ item, profile }) {
   return (
     <>
       {loading && <Spinner />}
-      <div className="w-[290px] h-auto rounded-lg bg-[#FAF4EB]/80 shadow-md border border-borderColor/50 flex flex-col items-start justify-between overflow-hidden">
+      <div className="min-w-[290px] h-auto rounded-lg bg-[#FAF4EB]/80 shadow-md border border-borderColor/50 flex flex-col items-start justify-between overflow-hidden">
         <div className="w-full text-center">
           <h2 className="text-[17px] font-bold text-black mt-5">
             {item?.name}

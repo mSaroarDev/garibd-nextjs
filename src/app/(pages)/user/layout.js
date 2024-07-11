@@ -4,7 +4,7 @@ import UserSidebar from "@components/UserSidebar";
 export default async function UserLayout({ children }) {
   return (
     <>
-      <div className="bg-white w-full min-h-screen">
+      <div className="bg-white w-full min-h-[90vh]">
         <div className="hidden md:block">
           {/* user sidebar */}
           <UserSidebar />

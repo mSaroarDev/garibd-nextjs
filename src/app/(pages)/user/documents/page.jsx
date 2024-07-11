@@ -8,7 +8,7 @@ export default async function VerifyDocumentPage() {
 
   // get documents
   const documents = await getDocuments(session?.user?.id);
-  const lastDocument = documents[0];
+  const lastDocument = documents && documents[0];
 
   if (lastDocument?.approval_status === "Pending") {
     return (

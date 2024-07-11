@@ -35,3 +35,18 @@ export const getPurchasePackagesByUserID = async (id) => {
     console.log(error);
   }
 };
+
+// cancel a plan
+export const cancelCurrentPlan = async (id) => {
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/purchagePackage/cancel/${id}`,
+      {
+        method: "POST",
+      }
+    );
+    return res;
+  } catch (error) {
+    console.log(error);
+  }
+};

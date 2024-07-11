@@ -12,7 +12,7 @@ const purchasePackageSchema = new mongoose.Schema(
     },
     currStatus: {
       type: String,
-      default: "Pending",
+      default: "pending",
     },
     user: {
       type: mongoose.Types.ObjectId,
