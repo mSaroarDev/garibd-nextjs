@@ -92,3 +92,47 @@ label {
   bottom: 0;
   z-index: 100;
 }
+
+/* button button-loader-2 */
+.button-loader-2 {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #fff;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+    
+
+/* payment css */
+.payment-button {
+  @apply w-full px-4 py-2 rounded-md mt-2
+}
+
+.bKash{
+  @apply bg-[#DA126B] text-white
+}
+
+.Nagad{
+  @apply bg-[#E84721] text-white
+}
+
+.Rocket{
+  @apply bg-[#873290] text-white
+}
+
+.Bank_Transfer{
+  @apply bg-[#00923C] text-white
+}

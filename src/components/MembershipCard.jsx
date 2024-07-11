@@ -49,7 +49,7 @@ export default function MembershipCard({ item, profile }) {
           </h2>
 
           <div className="particles px-7 py-4 mt-4">
-            <PricingCardParticles value={item.value} duration={item.duration} />
+            <PricingCardParticles value={item?.value} duration={item?.duration} />
           </div>
         </div>
         <div className="p-4 w-full">
@@ -60,10 +60,10 @@ export default function MembershipCard({ item, profile }) {
               <span>মুল্য {item?.price}/- টাকা মাত্র</span>
               <ArrowRight className="w-4 h-4" />
             </button>
-          </> : profile.role === "Admin" ? (
+          </> : profile?.role === "Admin" ? (
             <div className="flex items-center justify-between gap-2">
               <Link
-                href={`/admin/membership/motocycles-and-parts/edit/${item._id}`}
+                href={`/admin/membership/motocycles-and-parts/edit/${item?._id}`}
                 className="w-full bg-blue-600 px-4 py-2 rounded-sm text-white font-medium text-center flex items-center justify-center gap-2"
               >
                 <PenBox className="w-4 h-4" />

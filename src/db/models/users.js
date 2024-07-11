@@ -38,11 +38,12 @@ const userSchema = new mongoose.Schema(
       default: "Active",
       required: true,
     },
-    packages: {
-      type: Array,
-      default: [],
-      required: false,
-    },
+    purchased_packages: [
+      {
+        type: mongoose.Types.ObjectId,
+        ref: "PurchasePackage",
+      },
+    ],
     profile: {
       type: mongoose.Types.ObjectId,
       ref: "Profile",

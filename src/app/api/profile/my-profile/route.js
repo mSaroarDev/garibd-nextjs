@@ -10,7 +10,9 @@ export async function GET() {
 
   try {
     await connectDB();
-    const user = await userModel.findOne({ id: session.user.id });
+    const user = await userModel.findOne({ id: session.user.id }).populate({
+      path: "purchased_packages",
+    });
 
     return NextResponse.json({ msg: "success", data: user, session: session });
   } catch (error) {

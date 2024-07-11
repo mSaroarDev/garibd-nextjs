@@ -68,7 +68,6 @@ export default function PaymentForm() {
           showError("Payment Failed");
         }
       }
-      console.log(values);
     },
   });
 
