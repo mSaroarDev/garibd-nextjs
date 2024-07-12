@@ -50,3 +50,38 @@ export const cancelCurrentPlan = async (id) => {
     console.log(error);
   }
 };
+
+// update payment info
+export const updatePayemntInfo = async (id, values) => {
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/purchagePackage/update-payment-info/${id}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(values),
+      }
+    );
+    return res;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// update payment info
+export const getPurchagePackageInfo = async (id) => {
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/purchagePackage/get/single/${id}`,
+      {
+        method: "GET",
+      }
+    );
+    const data = await res.json();
+    return data?.data;
+  } catch (error) {
+    console.log(error);
+  }
+};

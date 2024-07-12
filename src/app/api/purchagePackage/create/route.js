@@ -60,7 +60,8 @@ export async function POST(req) {
         paymentMethod: "",
         paidFrom: "",
         trxId: "",
-        paidAt: convertDateAndTime(paid_time),
+        paidAt: "",
+        status: "pending",
       },
       user: currUser._id,
     });

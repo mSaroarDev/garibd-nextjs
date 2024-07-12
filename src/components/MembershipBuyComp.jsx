@@ -19,8 +19,8 @@ export default function MembershipBuyComp({ packageData }) {
       const res = await createPurchasePackage(packageData);
 
       if (res.ok) {
-        router.push(`/payment/${packageData._id}`);
-        // router.push(`/payment`);
+        const data = await res.json();
+        router.push(`/payment/${data?.data?._id}`);
         router.refresh();
       } else if(res.status === 400){
         showError("এই ক্যাটেগরীতে আপনার একটি প্যাকেজ একটিভ রয়েছে।");

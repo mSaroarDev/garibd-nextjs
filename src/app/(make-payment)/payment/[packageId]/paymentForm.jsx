@@ -1,5 +1,7 @@
 "use client";
 import PaymentSelection from "@components/PaymentSelection";
+import Spinner from "@components/spinner/Spinner";
+import { getSinglePackage } from "@libs/api/package";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -7,6 +9,7 @@ import { useState } from "react";
 
 export default function PaymentForm({ packageId }) {
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
 
   // selected method
   const [selectedMethod, setSelectedMethod] = useState("");
@@ -14,11 +17,8 @@ export default function PaymentForm({ packageId }) {
     setSelectedMethod(value);
   };
 
-  // useEffect(() => {
-  //   console.log(selectedMethod);
-  // }, [selectedMethod]);
 
-  return (
+  return  (
     <>
       <div className="h-screen w-full bg-black/10 flex items-center justify-center p-3 lg:p-5">
         <div className="bg-white w-[400px] h-auto shadow-lg p-5 lg:p-10 rounded-md">
@@ -34,7 +34,11 @@ export default function PaymentForm({ packageId }) {
                 image="/bkash.png"
                 methodName={"bKash"}
                 handleSelect={handleSelect}
-                extraClasses={selectedMethod === "bKash" ? "border-blue-600" : "border-borderColor"}
+                extraClasses={
+                  selectedMethod === "bKash"
+                    ? "border-blue-600"
+                    : "border-borderColor"
+                }
                 selected={selectedMethod === "bKash" ? true : false}
               />
               <PaymentSelection
@@ -42,7 +46,11 @@ export default function PaymentForm({ packageId }) {
                 image="/rocket.png"
                 methodName={"Rocket"}
                 handleSelect={handleSelect}
-                extraClasses={selectedMethod === "Rocket" ? "border-blue-600" : "border-borderColor"}
+                extraClasses={
+                  selectedMethod === "Rocket"
+                    ? "border-blue-600"
+                    : "border-borderColor"
+                }
                 selected={selectedMethod === "Rocket" ? true : false}
               />
               <PaymentSelection
@@ -50,7 +58,11 @@ export default function PaymentForm({ packageId }) {
                 image="/nagad.webp"
                 methodName={"Nagad"}
                 handleSelect={handleSelect}
-                extraClasses={selectedMethod === "Nagad" ? "border-blue-600" : "border-borderColor"}
+                extraClasses={
+                  selectedMethod === "Nagad"
+                    ? "border-blue-600"
+                    : "border-borderColor"
+                }
                 selected={selectedMethod === "Nagad" ? true : false}
               />
               <PaymentSelection
@@ -58,7 +70,11 @@ export default function PaymentForm({ packageId }) {
                 image="/bank.webp"
                 methodName={"Bank_Transfer"}
                 handleSelect={handleSelect}
-                extraClasses={selectedMethod === "Bank_Transfer" ? "border-blue-600" : "border-borderColor"}
+                extraClasses={
+                  selectedMethod === "Bank_Transfer"
+                    ? "border-blue-600"
+                    : "border-borderColor"
+                }
                 selected={selectedMethod === "Bank_Transfer" ? true : false}
               />
             </div>
