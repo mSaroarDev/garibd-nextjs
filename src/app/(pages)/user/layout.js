@@ -1,3 +1,4 @@
+import MobileNav from "@components/MobileNav";
 import UserDashboardNavbar from "@components/UserDashboardNavbar";
 import UserSidebar from "@components/UserSidebar";
 
@@ -15,7 +16,11 @@ export default async function UserLayout({ children }) {
 
         {/* user content area */}
         <div className="md:ml-[280px]">
-          <div className="mt-14 md:mt-14">{children}</div>
+          <div className="mt-14 md:mt-14">
+            {children}
+
+            <MobileNav />
+          </div>
         </div>
       </div>
     </>

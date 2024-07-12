@@ -3,7 +3,7 @@ import convertToBanglaNumber from "@utils/convertNumbertoBangla";
 export default function PaymentsCard({ data }) {
   return (
     <>
-      <tr className="bg-white border-b text-black">
+      <tr className="bg-white border-b text-black whitespace-nowrap">
         <td
           //   scope="row"
           className="px-6 py-4"

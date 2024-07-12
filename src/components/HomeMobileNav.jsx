@@ -1,13 +1,20 @@
-"use client"
-import { CircleEllipsis, CircleUserRound, MessageSquareText, Plus, Search } from "lucide-react";
+"use client";
+import {
+  CircleEllipsis,
+  CircleUserRound,
+  Gift,
+  MessageSquareText,
+  Plus,
+  Search,
+} from "lucide-react";
 import Link from "next/link";
 import MobileDrawer from "./MobileDrawer";
 
-export default function MobileNav() {
+export default function HomeMobileNav() {
   return (
     <>
-      <div className="w-full fixed bottom-0 block md:hidden bg-brandColor px-6 py-3">
-        <div className="w-full flex items-center justify-between text-white">
+      <div className="w-full fixed bottom-0 block md:hidden bg-brandColor px-6 py-3 rounded-t-xl">
+        <div className="w-full flex items-center justify-around text-white gap-10">
           <Link href="/" className="text-white">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -15,7 +22,7 @@ export default function MobileNav() {
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="size-6"
+              className="size-7"
             >
               <path
                 strokeLinecap="round"
@@ -24,18 +31,20 @@ export default function MobileNav() {
               />
             </svg>
           </Link>
-          <Link href="/">
+          {/* <Link href="/">
             <Search className="w-6 h-6" />
+          </Link> */}
+          <Link href="/explore-ads" className="bg-blue-600 text-white p-3 rounded-full flex items-center justify-center -mt-5">
+            <Gift className="w-7 h-7" />
           </Link>
-          <Link href="/" className="bg-blue-600 text-white p-3 rounded-full flex items-center justify-center -mt-5">
-            <Plus className="w-6 h-6" />
+
+          {/* <Link href="/explore-ads">
+            <Gift className="w-7 h-7" />
+          </Link> */}
+
+          <Link href="/sign-in">
+            <CircleUserRound className="w-7 h-7" />
           </Link>
-          
-          <Link href="/">
-            <MessageSquareText className="w-6 h-6" />
-          </Link>
-          
-          <MobileDrawer />
         </div>
       </div>
     </>

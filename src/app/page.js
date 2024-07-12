@@ -2,6 +2,7 @@
 import CategoryCard from "@components/CategoryCard";
 import Slideshow from "@components/FeaturesSlideres";
 import Footer from "@components/Footer";
+import HomeMobileNav from "@components/HomeMobileNav";
 import Navbar from "@components/Navbar";
 import { BookmarkCheck } from "lucide-react";
 import { useSession } from "next-auth/react";
@@ -201,6 +202,8 @@ export default function Home() {
         </main>
       </section>
       {/* total stats end */}
+
+      <HomeMobileNav />
 
       <Footer />
     </>

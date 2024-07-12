@@ -21,10 +21,7 @@ export default function RootLayout({ children }) {
       <body className={Font_Hind_Siliguri.className}>
         <Toploader />
         <Toaster />
-        <AuthProvider>
-          {children}
-          <MobileNav />
-        </AuthProvider>
+        <AuthProvider>{children}</AuthProvider>
       </body>
     </html>
   );
