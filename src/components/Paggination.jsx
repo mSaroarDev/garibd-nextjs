@@ -1,9 +1,11 @@
-import { Link, useSearchParams } from "react-router-dom";
+"use client";
+import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 
 export default function Paggination({count, nextLink}) {
-  // page no
-    const [searchParams] = useSearchParams()
-    const page_no = searchParams.get("page");
+    
+    // page no
+    const page_no = parseInt(useSearchParams().get("page"));
 
     // buttons
     const buttons = [];
@@ -13,7 +15,7 @@ export default function Paggination({count, nextLink}) {
     for (let i = startPage; i <= endPage; i++) {
         buttons.push(
           <Link
-            to={`${nextLink}?page=${i}`}
+            href={`${nextLink}?page=${i}`}
             key={i}
             className={`join-item btn ${page_no === i ? "btn-active" : ""}`}
           >

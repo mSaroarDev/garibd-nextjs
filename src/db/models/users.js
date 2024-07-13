@@ -38,7 +38,11 @@ const userSchema = new mongoose.Schema(
       default: "Active",
       required: true,
     },
-    purchased_packages: [
+    store: {
+      type: mongoose.Types.ObjectId,
+      ref: "Store",
+    },
+    packages: [
       {
         type: mongoose.Types.ObjectId,
         ref: "PurchasePackage",

@@ -1,3 +1,4 @@
+import { connectDB } from "@db/connectDB";
 import profileModel from "@db/models/profile";
 import userModel from "@db/models/users";
 import { NextResponse } from "next/server";
@@ -5,6 +6,9 @@ import { NextResponse } from "next/server";
 export async function POST(req, { params }) {
   const { id } = params;
   const body = await req.json();
+  console.log("body: ", body);
+  console.log("id: ", id);
+
   const {
     name_en,
     name_bn,
@@ -18,6 +22,8 @@ export async function POST(req, { params }) {
   } = body;
 
   try {
+    await connectDB();
+
     const updatedProfile = await profileModel.findOneAndUpdate(
       { user: id },
       {

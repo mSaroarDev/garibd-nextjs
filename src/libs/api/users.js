@@ -17,3 +17,21 @@ export const register = async (values) => {
     console.log(error);
   }
 };
+
+//  get all users
+export const getAllUsers = async (page, limit) => {
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/users/all?page=${page}&limit=${limit}`,
+      {
+        method: "GET",
+        cache: "no-store",
+      }
+    );
+
+    const data = await res.json();
+    return data.data;
+  } catch (error) {
+    console.log(error);
+  }
+};

@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import bcrypt from "bcrypt";
 import userModel from "@db/models/users";
 import { connectDB } from "@db/connectDB";
+import profileModel from "@db/models/profile";
 
 export async function POST(req) {
   const formData = await req.json();
@@ -27,8 +28,20 @@ export async function POST(req) {
       mobile,
       email,
       password: hashedPassword,
+      packages: [],
     });
     const data = await info.save();
+
+    // Automatically create an empty profile for the user
+    const newProfile = new profileModel();
+    newProfile.user = data._id;
+    await newProfile.save();
+
+    // Link the created profile to the user
+    info.profile = newProfile._id;
+
+    //finally save the userdata
+    await info.save();
 
     return NextResponse.json({ msg: "success", data: data });
   } catch (error) {

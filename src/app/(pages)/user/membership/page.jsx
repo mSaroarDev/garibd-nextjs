@@ -4,6 +4,7 @@ import PageHeader from "@components/PageHeader";
 import { getPurchasePackagesByUserID } from "@libs/api/purchagePackage";
 import { authOptions } from "@libs/authOptions";
 import convertToBanglaNumber from "@utils/convertNumbertoBangla";
+import calculateRemainingTime from "@utils/remainingDays";
 import { Crown, Plus } from "lucide-react";
 import { getServerSession } from "next-auth";
 import Link from "next/link";
@@ -81,9 +82,9 @@ export default async function MembershipPage() {
             <div className="bg-lightBg px-4 py-2 text-base font-bold">মোটরসাইকেল ও যন্ত্রাংশ</div>
             <div className="p-3 flex flex-col md:flex-row items-center md:items-start justify-center gap-5">
               <MembershipCard item={motorCylePackage[0]?.package_data}  />
-              <div className="flex flex-col gap-1">
+              <div className="flex flex-col gap-1 w-full">
                 <div className="bg-lightBg rounded-md p-3 shadow-md w-full border-2 border-blue-600">
-                  <h2 className="font-bold text-lg">{motorCylePackage[0]?.package_data?.currValue ? <> অ্যাড বাকী আছেঃ {convertToBanglaNumber(motorCylePackage[0]?.package_data?.currValue)} টি</> : motorCylePackage[0]?.package_data?.duration ? <>মেয়াদ আছেঃ {convertToBanglaNumber(motorCylePackage[0]?.package_data?.duration)} মাস</> : <>মেয়াদ আছেঃ Unlimited</>}</h2>
+                  <h2 className="font-bold text-lg w-full">{motorCylePackage[0]?.package_data?.currValue ? <> অ্যাড বাকী আছেঃ {convertToBanglaNumber(motorCylePackage[0]?.package_data?.currValue)} টি</> : motorCylePackage[0]?.package_data?.duration ? <>মেয়াদ আছেঃ <br /> {calculateRemainingTime(motorCylePackage[0]?.package_data?.startDate, motorCylePackage[0]?.package_data?.endDate)}</> : <>মেয়াদ আছেঃ Unlimited</>}</h2>
                 </div>
 
                 <CancelPlanButton data={motorCylePackage[0]} />
@@ -98,9 +99,9 @@ export default async function MembershipPage() {
             <div className="p-3 flex flex-col md:flex-row items-center md:items-start justify-center gap-5">
               <MembershipCard item={allVehiclesPackage[0]?.package_data}  />
 
-              <div className="flex flex-col gap-1">
+              <div className="flex flex-col gap-1 w-full">
                 <div className="bg-lightBg rounded-md p-3 shadow-md w-full border-2 border-blue-600">
-                  <h2 className="font-bold text-lg">{allVehiclesPackage[0]?.package_data?.currValue ? <> অ্যাড বাকী আছেঃ {convertToBanglaNumber(allVehiclesPackage[0]?.package_data?.currValue)} টি</> : allVehiclesPackage[0]?.package_data?.duration ? <>মেয়াদ আছেঃ {convertToBanglaNumber(allVehiclesPackage[0]?.package_data?.duration)} মাস</> : <>মেয়াদ আছেঃ Unlimited</>}</h2>
+                  <h2 className="font-bold text-lg">{allVehiclesPackage[0]?.package_data?.currValue ? <> অ্যাড বাকী আছেঃ {convertToBanglaNumber(allVehiclesPackage[0]?.package_data?.currValue)} টি</> : allVehiclesPackage[0]?.package_data?.duration ? <>মেয়াদ আছেঃ <br /> {calculateRemainingTime(allVehiclesPackage[0]?.package_data?.startDate, allVehiclesPackage[0]?.package_data?.endDate)}</> : <>মেয়াদ আছেঃ Unlimited</>}</h2>
                 </div>
 
                 <CancelPlanButton data={allVehiclesPackage[0]} />

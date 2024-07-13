@@ -70,7 +70,7 @@ export async function POST(req) {
       { _id: currUser._id },
       {
         $push: {
-          purchased_packages: data?._id,
+          packages: data?._id,
         },
       }
     );

@@ -7,7 +7,7 @@ import documentModel from "@db/models/documets";
 
 export async function POST(req) {
   const formData = await req.json();
-  const { email, image } = formData;
+  const { name, email, image } = formData;
 
   const hashedPassword = await bcrypt.hash("123456", 10);
 
@@ -25,11 +25,12 @@ export async function POST(req) {
     }
 
     const userData = new userModel({
-      nickname: "",
+      nickname: name,
       mobile: "",
       email: email || `${uniqueNumber}.dummymail@gmail.com`,
       image,
       password: hashedPassword,
+      packages: [],
     });
 
     const userInfo = await userData.save();
