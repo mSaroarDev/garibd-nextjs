@@ -1,6 +1,8 @@
 import { connectDB } from "@db/connectDB";
 import userModel from "@db/models/users";
 import { NextResponse } from "next/server";
+import profileModel from "@db/models/profile";
+import storeModel from "@db/models/store";
 
 export async function GET(req) {
   const { searchParams } = new URL(req.url);
@@ -14,7 +16,6 @@ export async function GET(req) {
       .find()
       .limit(limit || 0)
       .skip((page && (page - 1) * limit) || 0)
-      .populate("packages")
       .populate("profile")
       .populate("store")
       .exec();

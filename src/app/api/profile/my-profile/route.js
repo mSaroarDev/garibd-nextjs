@@ -3,6 +3,7 @@ import userModel from "@db/models/users";
 import { authOptions } from "@libs/authOptions";
 import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
+import purchasePackageModel from "@db/models/purchasePackage";
 
 export async function GET() {
   // session

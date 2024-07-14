@@ -1,4 +1,5 @@
 import { Ban, Gift, ScanEye } from "lucide-react";
+import Link from "next/link";
 
 export default function UserListRow({ data }) {
   return (
@@ -26,10 +27,10 @@ export default function UserListRow({ data }) {
         <td className="px-6 py-4">{data?.mobile}</td>
         <td className="px-6 py-4">{data?.mobile}</td>
         <td className="px-6 py-4 flex items-center justify-end gap-2">
-          <button className="px-3 py-2 flex items-center gap-1 bg-lightBg rounded-md text-black">
+          <Link href={`/admin/users/profile/${data?._id}`} className="px-3 py-2 flex items-center gap-1 bg-lightBg rounded-md text-black">
             <ScanEye className="w-4 h-4" />
             <span>প্রোফাইল</span>
-          </button>
+          </Link>
 
           <button className="px-3 py-2 flex items-center gap-1 bg-lightBg rounded-md text-black">
             <Gift className="w-4 h-4" />

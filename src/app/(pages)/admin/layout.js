@@ -4,7 +4,7 @@ import UserDashboardNavbar from "@components/UserDashboardNavbar";
 export default async function AdminLayout({ children }) {
   return (
     <>
-      <div className="bg-white w-full min-h-screen">
+      <div className="bg-white w-full min-h-[90vh]">
         <div className="hidden md:block">
           {/* user sidebar */}
           <AdminSidebar />

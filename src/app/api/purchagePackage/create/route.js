@@ -66,6 +66,7 @@ export async function POST(req) {
       user: currUser._id,
     });
     const data = await newData.save();
+
     await userModel.updateOne(
       { _id: currUser._id },
       {

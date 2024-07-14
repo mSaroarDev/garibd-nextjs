@@ -7,6 +7,7 @@ import {
   ListCollapse,
   LogOut,
   MessagesSquare,
+  Puzzle,
   Settings,
   Store,
   Wallet,
@@ -59,6 +60,15 @@ export default function AdminSidebarLinks() {
           />
         </svg>
         <span>ব্যবহারকারী</span>
+      </Link>
+      <Link
+        href="/admin/category"
+        className={`user-sidebar-link ${
+          pathname.startsWith("/admin/category") && "user-sidebar-link-active"
+        }`}
+      >
+        <Puzzle className="w-5 h-5 text-redColor" />
+        <span>ক্যাটেগরী সমূহ</span>
       </Link>
       <Link
         href="/admin/ads?page=1"
