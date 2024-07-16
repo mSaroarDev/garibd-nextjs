@@ -21,6 +21,9 @@ module.exports = {
         borderColor: "#ddd",
         redColor: "#FF7070",
       },
+      fontSize: {
+        md: "16px",
+      },
     },
   },
   plugins: [require("daisyui")],
