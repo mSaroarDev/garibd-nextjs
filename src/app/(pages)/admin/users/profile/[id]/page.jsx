@@ -1,14 +1,10 @@
+import BackButton from "@components/BackButton";
 import PageHeader from "@components/PageHeader";
 import ProfileInfoField from "@components/ProfileInfoField";
 import { getProfile } from "@libs/api/profile";
 import {
   CircleUserRound,
-  Gift,
-  Key,
-  PenBox,
-  Tags,
-  User,
-  Wallet,
+  Gift, Tags, Wallet
 } from "lucide-react";
 import Link from "next/link";
 
@@ -16,7 +12,8 @@ export default async function MyProfile({ params }) {
   const profile = await getProfile(params.id);
 
   return (
-    <div className="p-5 md:p-10">
+    <div className="">
+      <BackButton />
       <div>
         <PageHeader
           text="ব্যবহারকারীর তথ্য"
@@ -25,7 +22,7 @@ export default async function MyProfile({ params }) {
       </div>
 
       {/* profile contents */}
-      <div className="mt-10 mb-20 md:mb-0">
+      <div className="mt-10 mb-20 md:mb-0 p-5 md:p-10">
         <div className="grid grid-cols-12 gap-5">
           <div className="col-span-12 md:col-span-3 flex flex-col items-center justify-start w-full">
             <div className="h-[150px] w-[150px] rounded-full ring-2 ring-brandColor object-cover overflow-hidden">

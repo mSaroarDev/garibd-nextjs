@@ -6,8 +6,6 @@ import { NextResponse } from "next/server";
 export async function POST(req, { params }) {
   const { id } = params;
   const body = await req.json();
-  console.log("body: ", body);
-  console.log("id: ", id);
 
   const {
     name_en,

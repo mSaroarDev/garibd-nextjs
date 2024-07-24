@@ -32,6 +32,11 @@ const userSchema = new mongoose.Schema(
       enum: ["User", "Admin", "Developer"],
       default: "User",
     },
+    status: {
+      type: String,
+      enum: ["Active", "Pending", "Blocked"],
+      default: "Active",
+    },
     member_access_status: {
       type: String,
       enum: ["Active", "Banned", "Warned"],

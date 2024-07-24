@@ -41,6 +41,7 @@ export default function NewCategoryForm() {
 
         if (res.ok) {
           showSuccess("Category Created");
+          router.refresh();
           router.push("/admin/category");
           router.refresh();
         } else {
@@ -50,6 +51,7 @@ export default function NewCategoryForm() {
         showError("Internal Server Error");
       } finally {
         setLoading(false);
+        router.refresh();
       }
     },
   });

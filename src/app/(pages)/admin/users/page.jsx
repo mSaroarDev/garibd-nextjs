@@ -1,3 +1,4 @@
+import BackButton from "@components/BackButton";
 import PageHeader from "@components/PageHeader";
 import Paggination from "@components/Paggination";
 import UserListRow from "@components/UserListRow";
@@ -11,7 +12,6 @@ export default async function UserListPage({ searchParams }) {
   // users
   const users = await getAllUsers(pageNo, 10);
   const usersCount = await allUsersCount();
-  console.log(usersCount);
 
   return (
     <>
@@ -24,7 +24,7 @@ export default async function UserListPage({ searchParams }) {
         </div>
 
         <div>
-          <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+          <div className="relative overflow-x-auto shadow-md sm:rounded-lg mt-5">
             <table className="w-full text-left rtl:text-right text-gray-500 dark:text-gray-400">
               <thead className="text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>

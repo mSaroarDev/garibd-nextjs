@@ -35,3 +35,23 @@ export const getAllUsers = async (page, limit) => {
     console.log(error);
   }
 };
+
+//  register api
+export const changStatus = async (id, values) => {
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/users/change-status/${id}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(values),
+      }
+    );
+
+    return res;
+  } catch (error) {
+    console.log(error);
+  }
+};

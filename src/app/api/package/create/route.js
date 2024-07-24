@@ -16,7 +16,7 @@ export async function POST(req) {
 
     const newData = new packageModel({
       ...body,
-      user: currUser.id,
+      user: currUser._id,
     });
 
     const data = await newData.save();

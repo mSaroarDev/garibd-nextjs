@@ -8,7 +8,6 @@ export async function POST(req) {
   const currUser = session?.user;
 
   const body = await req.json();
-  console.log(body);
 
   try {
     const newData = new categoryModel({
