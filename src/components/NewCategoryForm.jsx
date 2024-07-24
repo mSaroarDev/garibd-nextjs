@@ -6,8 +6,9 @@ import { useFormik } from "formik";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Spinner from "./spinner/Spinner";
+import { createCompany } from "@libs/api/company";
 
-export default function NewCategoryForm() {
+export default function NewCategoryForm({type}) {
   // utils
   const [loading, setLoading] = useState(false);
   const router = useRouter();
@@ -20,6 +21,7 @@ export default function NewCategoryForm() {
       const image = e.target.files[0];
       const res = await uploadImage(image);
       formik.setFieldValue("categoryIcon", res.res);
+      formik.setFieldValue("companyIcon", res.res);
     } catch (error) {
       console.log(error);
       showError("Failed to change");
@@ -32,20 +34,31 @@ export default function NewCategoryForm() {
   const formik = useFormik({
     initialValues: {
       categoryName: "",
+      companyName: "",
       categoryIcon: "",
+      companyIcon: "",
     },
     onSubmit: async (values) => {
       try {
         setLoading(true);
-        const res = await createCategory(values);
+        const res =
+          type === "category"
+            ? await createCategory(values)
+            : await createCompany(values);
 
         if (res.ok) {
-          showSuccess("Category Created");
+          showSuccess(
+            type === "category" ? "Category Created" : "Company Created"
+          );
           router.refresh();
           router.push("/admin/category");
           router.refresh();
         } else {
-          showError("Category Create Failed");
+          showError(
+            type === "category"
+              ? "Category Create Failed"
+              : "Company Create Failed"
+          );
         }
       } catch (error) {
         showError("Internal Server Error");
@@ -60,20 +73,38 @@ export default function NewCategoryForm() {
     <>
       {loading && <Spinner />}
       <div className="border border-borderColor rounded-lg overflow-hidden">
-        <div className="px-4 py-2 bg-lightBg">নতুন ক্যাটেগরী</div>
+        <div className="px-4 py-2 bg-lightBg">
+          {type === "category" ? `নতুন ক্যাটেগরী` : "নতুন কোম্পানী"}
+        </div>
 
         <form
           onSubmit={formik.handleSubmit}
           className="p-5 flex flex-col gap-2"
         >
-          <label>ক্যাটেগরী নাম</label>
-          <input
-            type="text"
-            id="categoryName"
-            name="categoryName"
-            onChange={formik.handleChange}
-            value={formik.values.categoryName}
-          />
+          {type === "category" ? (
+            <>
+              <label>ক্যাটেগরী নাম</label>
+              <input
+                type="text"
+                id="categoryName"
+                name="categoryName"
+                onChange={formik.handleChange}
+                value={formik.values.categoryName}
+              />
+            </>
+          ) : (
+            <>
+              <label>কোম্পানীর নাম</label>
+              <input
+                type="text"
+                id="companyName"
+                name="companyName"
+                onChange={formik.handleChange}
+                value={formik.values.companyName}
+              />
+            </>
+          )}
+
           <label>ছবি</label>
           <input
             type="file"

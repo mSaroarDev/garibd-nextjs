@@ -11,13 +11,13 @@ export default function CategoryPage() {
 
       <div className="flex items-center justify-between my-5">
         <PageHeader
-          text="নতুন ক্যাটেগরী"
+          text="নতুন কোম্পানী"
           icon={<Puzzle className="w-5 h-5" />}
         />
       </div>
 
       <div>
-        <NewCategoryForm type="category" />
+        <NewCategoryForm type="company" />
       </div>
     </>
   );

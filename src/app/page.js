@@ -1,14 +1,18 @@
-"use client";
 import CategoryCard from "@components/CategoryCard";
 import Slideshow from "@components/FeaturesSlideres";
 import Footer from "@components/Footer";
 import HomeMobileNav from "@components/HomeMobileNav";
 import Navbar from "@components/Navbar";
+import { getAllCategories } from "@libs/api/category";
+import { getAllCompanies } from "@libs/api/company";
 import { BookmarkCheck } from "lucide-react";
-import { useSession } from "next-auth/react";
 import Link from "next/link";
 
-export default function Home() {
+export default async function Home() {
+  //fetch categories
+  const categories = await getAllCategories();
+  const companies = await getAllCompanies();
+
   return (
     <>
       <Navbar />
@@ -44,36 +48,10 @@ export default function Home() {
 
           {/* main content */}
           <div className="grid grid-cols-12 gap-2 md:gap-5">
-            <CategoryCard
-              name="ট্রাক"
-              ads_count="১২৩৪৫৫"
-              image="/dump-truck.png"
-            />
-            <CategoryCard
-              name="পিকাপ"
-              ads_count="৯৭৯"
-              image="/dump-truck.png"
-            />
-            <CategoryCard
-              name="কাভার ভ্যান"
-              ads_count="৩৩৪৪"
-              image="/dump-truck.png"
-            />
-            <CategoryCard
-              name="জ্যাক"
-              ads_count="৪৩২৫৫"
-              image="/dump-truck.png"
-            />
-            <CategoryCard
-              name="ড্রাম ট্রাক"
-              ads_count="৪৩৪৪২"
-              image="/dump-truck.png"
-            />
-            <CategoryCard
-              name="এস্কেভেটর"
-              ads_count="৪৩৫৩"
-              image="/dump-truck.png"
-            />
+            {categories &&
+              categories.map((item) => (
+                <CategoryCard key={item?._id} data={item} />
+              ))}
           </div>
         </main>
       </section>
@@ -91,36 +69,10 @@ export default function Home() {
 
           {/* main content */}
           <div className="grid grid-cols-12 gap-2 md:gap-5">
-            <CategoryCard
-              name="ট্রাক"
-              ads_count="১২৩৪৫৫"
-              image="/dump-truck.png"
-            />
-            <CategoryCard
-              name="পিকাপ"
-              ads_count="৯৭৯"
-              image="/dump-truck.png"
-            />
-            <CategoryCard
-              name="কাভার ভ্যান"
-              ads_count="৩৩৪৪"
-              image="/dump-truck.png"
-            />
-            <CategoryCard
-              name="জ্যাক"
-              ads_count="৪৩২৫৫"
-              image="/dump-truck.png"
-            />
-            <CategoryCard
-              name="ড্রাম ট্রাক"
-              ads_count="৪৩৪৪২"
-              image="/dump-truck.png"
-            />
-            <CategoryCard
-              name="এস্কেভেটর"
-              ads_count="৪৩৫৩"
-              image="/dump-truck.png"
-            />
+            {companies &&
+              companies.map((item) => (
+                <CategoryCard key={item?._id} data={item} />
+              ))}
           </div>
         </main>
       </section>
