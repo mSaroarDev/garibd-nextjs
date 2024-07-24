@@ -89,9 +89,9 @@ export default function AdminSidebarLinks() {
         <span>মেমবারশিপ</span>
       </Link>
       <Link
-        href="/admin/my-store"
+        href="/admin/store?page=1"
         className={`user-sidebar-link ${
-          pathname.startsWith("/admin/my-store") && "user-sidebar-link-active"
+          pathname.startsWith("/admin/store") && "user-sidebar-link-active"
         }`}
       >
         <Store className="w-5 h-5 text-redColor" />
