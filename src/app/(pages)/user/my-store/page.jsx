@@ -26,7 +26,7 @@ export default async function StoreInfoPage() {
                   <div className="col-span-12 md:col-span-3">
                     <img src={storeInfo ? "/store.png" : "/no_store_found.png"} alt="Store" className="w-[200px]" />
                   </div>
-                  <div className="col-span-12 md:col-span-9">
+                  <div className="col-span-12 md:col-span-9 pt-5">
                     <h2 className="font-medium text-[25px]">{storeInfo ? storeInfo?.store_name : "আপনি কোন স্টোর তৈরী করেন নি"}</h2>
                     <p>{storeInfo ? storeInfo?.store_address : ""}</p>
                     {storeInfo && <div>

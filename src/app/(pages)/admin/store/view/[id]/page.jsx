@@ -1,3 +1,4 @@
+import BackButton from "@components/BackButton";
 import PageHeader from "@components/PageHeader";
 import StoreAdsListCard from "@components/StoreAdsListCard";
 import { getStoreInfo } from "@libs/api/store";
@@ -6,14 +7,16 @@ import { ListTree } from "lucide-react";
 import { getServerSession } from "next-auth";
 import Link from "next/link";
 
-export default async function StoreInfoPage() {
+export default async function StoreInfoPage({params}) {
+  const {id} = params;
 
   // get user id
   const session = await getServerSession(authOptions);
-  const storeInfo = await getStoreInfo(session?.user?.id)
+  const storeInfo = await getStoreInfo(id)
 
   return (
     <>
+    <BackButton />
     <div className="p-5 md:p-10">
         <div className="border border-borderColor rounded-md overflow-hidden">
             <div className="__head bg-lightBg px-4 py-2 text-[18px] font-semibold">
@@ -21,7 +24,7 @@ export default async function StoreInfoPage() {
             </div>
 
             {/* main */}
-            <div className="p-5">
+            <div className="">
                 <div className="grid grid-cols-12 gap-5">
                   <div className="col-span-12 md:col-span-3">
                     <img src={storeInfo ? "/store.png" : "/no_store_found.png"} alt="Store" className="w-[200px]" />

@@ -16,16 +16,16 @@ export default function StoreListRow({ data }) {
         <td className="px-6 py-4">{data?.store_ads?.length}</td>
         <td className="px-6 py-4 flex items-center justify-end gap-2">
           <Link
-            href="#"
+            href={`/admin/store/view/${data?.user}`}
             className="bg-slate-100 text-black px-4 py-2 rounded-md "
           >
             Store Info
           </Link>
           <Link
-            href="#"
-            className="bg-slate-100 text-black px-4 py-2 rounded-md"
+            href={`/admin/store/view/${data?.user}`}
+            className="bg-slate-100 text-black px-4 py-2 rounded-md "
           >
-            Ads
+            Store Ads
           </Link>
         </td>
       </tr>

@@ -107,7 +107,7 @@ export default function AdminSidebarLinks() {
         <span>এডমিন প্রোফাইল</span>
       </Link>
       <Link
-        href="/admin/payments"
+        href="/admin/payments?page=1"
         className={`user-sidebar-link ${
           pathname.startsWith("/admin/payments") && "user-sidebar-link-active"
         }`}
@@ -116,7 +116,7 @@ export default function AdminSidebarLinks() {
         <span>পেমেন্ট সমূহ</span>
       </Link>
       <Link
-        href="/admin/documents"
+        href="/admin/documents?page=1"
         className={`user-sidebar-link ${
           pathname.startsWith("/admin/documents") && "user-sidebar-link-active"
         }`}

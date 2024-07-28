@@ -39,7 +39,6 @@ body {
   @apply hind-siliguri-regular text-[14px];
 }
 
-
 main {
   @apply w-full max-w-6xl mx-auto px-5;
 }
@@ -50,11 +49,11 @@ select {
   @apply px-4 py-2 border-[1px] border-borderColor rounded-md focus:outline-0 focus:shadow-md !important;
 }
 .search-input {
-  @apply rounded-full !important
+  @apply rounded-full !important;
 }
 
 label {
-  @apply font-bold whitespace-nowrap
+  @apply font-bold whitespace-nowrap;
 }
 
 /* custom designs */
@@ -75,7 +74,7 @@ label {
 }
 
 .user-sidebar-link-active {
-  @apply md:border-l-[3px] md:border-redColor text-redColor
+  @apply md:border-l-[3px] md:border-redColor text-redColor;
 }
 
 .change-picture {
@@ -114,25 +113,41 @@ label {
   }
 }
 
-    
-
 /* payment css */
 .payment-button {
-  @apply w-full px-4 py-2 rounded-md mt-2
+  @apply w-full px-4 py-2 rounded-md mt-2;
 }
 
-.bKash{
-  @apply bg-[#DA126B] text-white
+.bKash {
+  @apply bg-[#DA126B] text-white;
 }
 
-.Nagad{
-  @apply bg-[#E84721] text-white
+.Nagad {
+  @apply bg-[#E84721] text-white;
 }
 
-.Rocket{
-  @apply bg-[#873290] text-white
+.Rocket {
+  @apply bg-[#873290] text-white;
 }
 
-.Bank_Transfer{
-  @apply bg-[#00923C] text-white
+.Bank_Transfer {
+  @apply bg-[#00923C] text-white;
+}
+
+/* image lightbox */
+#lightbox {
+  z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  /*optional bg color*/
+  background-color: rgba(0, 0, 0, 0.5);
+  /*the following isn't necessary but will help center everything once we add buttons*/
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
