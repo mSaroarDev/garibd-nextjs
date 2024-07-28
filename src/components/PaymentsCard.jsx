@@ -1,6 +1,7 @@
 import convertToBanglaNumber from "@utils/convertNumbertoBangla";
 
 export default function PaymentsCard({ data }) {
+  
   return (
     <>
       <tr className="bg-white border-b text-black whitespace-nowrap">
@@ -8,7 +9,7 @@ export default function PaymentsCard({ data }) {
           //   scope="row"
           className="px-6 py-4"
         >
-          {data?._id}
+          {data?.package_data?.name}, {data?.package_data?.category}, {data?.package_data?.type}
         </td>
         <td className="px-6 py-4">
           {convertToBanglaNumber(data?.package_data?.price)}/- টাকা
@@ -25,12 +26,17 @@ export default function PaymentsCard({ data }) {
           )}
         </td>
         <td className="px-6 py-4">
-          {data?.payment_info?.status === "accepted" ? (
+          {data?.payment_info?.status === "Accepted" ? (
             <div className="flex items-center gap-2">
               <img src="/check-mark.png" className="w-5 h-5" alt="Accepted" />
               <span>Accepted</span>
             </div>
-          ) : (
+          ) : data?.payment_info?.status === "Rejected" ? (
+            <div className="flex items-center gap-2">
+              <img src="/not-accepted.png" className="w-5 h-5" alt="Rejected" />
+              <span>Rejected</span>
+            </div>
+          ) :  (
             <div className="flex items-center gap-2">
               <img
                 src="/time-management.png"
@@ -42,6 +48,8 @@ export default function PaymentsCard({ data }) {
           )}
         </td>
       </tr>
+
+      
     </>
   );
 }

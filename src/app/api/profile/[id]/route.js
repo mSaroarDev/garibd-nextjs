@@ -8,6 +8,7 @@ export async function GET(req, { params }) {
 
   try {
     await connectDB();
+    
     const user = await userModel.findOne({ _id: id }).populate("profile");
 
     return NextResponse.json({ msg: "success", data: user });

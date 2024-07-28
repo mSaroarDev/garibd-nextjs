@@ -1,3 +1,4 @@
+import { connectDB } from "@db/connectDB";
 import documentModel from "@db/models/documets";
 import { authOptions } from "@libs/authOptions";
 import { getServerSession } from "next-auth";
@@ -6,7 +7,7 @@ import { NextResponse } from "next/server";
 export async function POST(req) {
   // current user
   const session = await getServerSession(authOptions);
-  console.log(session)
+
   if (!session) {
     return NextResponse.json({ msg: "unauthorized" }, { status: 401 });
   }
@@ -15,6 +16,8 @@ export async function POST(req) {
   const body = await req.json();
 
   try {
+    await connectDB();
+
     const document = new documentModel({
       ...body,
       approval_status: "Pending",

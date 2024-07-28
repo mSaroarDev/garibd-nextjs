@@ -1,3 +1,4 @@
+import { connectDB } from "@db/connectDB";
 import categoryModel from "@db/models/category";
 import { authOptions } from "@libs/authOptions";
 import { getServerSession } from "next-auth";
@@ -10,6 +11,8 @@ export async function POST(req) {
   const body = await req.json();
 
   try {
+    await connectDB();
+
     const newData = new categoryModel({
       ...body,
       user: currUser._id,

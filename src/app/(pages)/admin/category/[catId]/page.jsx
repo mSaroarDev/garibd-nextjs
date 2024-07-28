@@ -19,41 +19,41 @@ export default async function CategoryPage({ params, searchParams }) {
     <>
       <Link
         href="/admin/category"
-        className="flex items-center gap-2 button-main w-fit mb-5"
+        classNameName="flex items-center gap-2 button-main w-fit mb-5"
       >
-        <ArrowLeft className="w-4 h-4" />
+        <ArrowLeft classNameName="w-4 h-4" />
         <span>ফিরুন</span>
       </Link>
 
-      <div className="flex items-center justify-between">
+      <div classNameName="flex items-center justify-between">
         <PageHeader
           text={`অ্যাড সমূহ: ${adsByThisCategory[0]?.categoryId?.categoryName} - (${convertToBanglaNumber(adsByThisCategory[0]?.categoryId?.ads?.length)} টি বিজ্ঞাপন)`}
-          icon={<Puzzle className="w-5 h-5" />}
+          icon={<Puzzle classNameName="w-5 h-5" />}
         />
 
-        <Link href="/admin/category/create" className="button-main">
+        <Link href="/admin/category/create" classNameName="button-main">
           অ্যাড পোস্ট করুন
         </Link>
       </div>
 
-      <div className="mt-5">
-        <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-          <table class="w-full text-left rtl:text-right text-gray-500 dark:text-gray-400">
-            <thead class="text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+      <div classNameName="mt-5">
+        <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+          <table className="w-full text-left rtl:text-right text-gray-500 dark:text-gray-400">
+            <thead className="text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
               <tr>
-                <th scope="col" class="px-6 py-3">
+                <th scope="col" className="px-6 py-3">
                   গাড়ির নাম
                 </th>
-                <th scope="col" class="px-6 py-3">
+                <th scope="col" className="px-6 py-3">
                   ক্যাটেগরী
                 </th>
-                <th scope="col" class="px-6 py-3">
+                <th scope="col" className="px-6 py-3">
                   কোম্পানীর নাম
                 </th>
-                <th scope="col" class="px-6 py-3">
+                <th scope="col" className="px-6 py-3">
                   মুল্য
                 </th>
-                <th scope="col" class="px-6 py-3 text-right">
+                <th scope="col" className="px-6 py-3 text-right">
                   পদক্ষেপ
                 </th>
               </tr>
@@ -65,7 +65,7 @@ export default async function CategoryPage({ params, searchParams }) {
         </div>
       </div>
 
-      <div className="flex items-center justify-end">
+      <div classNameName="flex items-center justify-end">
         <Paggination count={parseInt(adsByThisCategory[0]?.categoryId?.ads?.length)} nextLink={`/admin/category/${catId}`} />
       </div>
     </>

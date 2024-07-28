@@ -20,7 +20,6 @@ export default function PaymentInfoForm({ icon, method, packageId }) {
       paymentMethod: method,
       amount: "",
       paidFrom: "",
-      reference: "",
     },
     onSubmit: async (values) => {
       try {

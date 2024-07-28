@@ -11,7 +11,6 @@ export async function GET(req, { params }) {
     const data = await purchasePackageModel
       .find({
         user: userId,
-        currStatus: "active",
       })
       .sort({ _id: -1 });
 

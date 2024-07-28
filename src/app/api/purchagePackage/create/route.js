@@ -36,7 +36,7 @@ export async function POST(req) {
       .find({
         "package_data.category": category && category,
         user: currUser._id,
-        currStatus: "Pending" || "Active",
+        currStatus: "Active",
       })
       .sort({ _id: -1 });
 

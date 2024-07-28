@@ -1,3 +1,4 @@
+import { connectDB } from "@db/connectDB";
 import companyModel from "@db/models/company";
 import { authOptions } from "@libs/authOptions";
 import { getServerSession } from "next-auth";
@@ -8,9 +9,9 @@ export async function POST(req) {
   const currUser = session?.user;
 
   const body = await req.json();
-  console.log(body);
 
   try {
+    await connectDB();
     const newData = new companyModel({
       ...body,
       user: currUser._id,

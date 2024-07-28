@@ -4,10 +4,13 @@ import { pipeline } from "stream";
 import { promisify } from "util";
 import { join } from "path";
 import { v4 as uuidv4 } from "uuid"; // Import the v4 function from the uuid library
+import { connectDB } from "@db/connectDB";
 const pump = promisify(pipeline);
 
 export async function POST(req, res) {
   try {
+    await connectDB();
+
     const formData = await req.formData();
     const file = formData.getAll("files")[0];
     const fileExtension = file.name.split(".").pop(); // Get file extension

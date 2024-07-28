@@ -1,3 +1,4 @@
+import { connectDB } from "@db/connectDB";
 import purchasePackageModel from "@db/models/purchasePackage";
 import { NextResponse } from "next/server";
 
@@ -5,6 +6,8 @@ export async function GET(req, { params }) {
   const { id } = params;
 
   try {
+    await connectDB();
+
     const data = await purchasePackageModel.findOne({
       _id: id,
     });

@@ -3,6 +3,7 @@ import { authOptions } from "@libs/authOptions";
 import { getServerSession } from "next-auth";
 import bcrypt from "bcrypt";
 import { NextResponse } from "next/server";
+import { connectDB } from "@db/connectDB";
 
 export async function POST(req) {
   const session = await getServerSession(authOptions);
@@ -11,6 +12,8 @@ export async function POST(req) {
   const hashedPasswrod = await bcrypt.hash(newPassword, 10);
 
   try {
+    await connectDB();
+
     const thisUser = await userModel.findOne({ email: session?.user?.email });
 
     const isValidOldPassword = await bcrypt.compare(

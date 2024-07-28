@@ -22,7 +22,7 @@ export const createPurchasePackage = async (values) => {
 export const getPurchasePackagesByUserID = async (id) => {
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/api/purchagePackage/get/${id}`,
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/purchagePackage/get/all/${id}`,
       {
         method: "GET",
         cache: "no-store",
@@ -95,6 +95,24 @@ export const getPurchagePackageInfo = async (id) => {
       `${process.env.NEXT_PUBLIC_BASE_URL}/api/purchagePackage/get/single/${id}`,
       {
         method: "GET",
+        cache: "no-store",
+      }
+    );
+    const data = await res.json();
+    return data?.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// get payments list
+export const getPurchagePackages = async (page, limit) => {
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/purchagePackage/get/all?page=${page}&limit=${limit}`,
+      {
+        method: "GET",
+        cache: "no-store",
       }
     );
     const data = await res.json();

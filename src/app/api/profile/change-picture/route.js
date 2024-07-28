@@ -3,6 +3,7 @@ import { authOptions } from "@libs/authOptions";
 import { getServerSession } from "next-auth";
 import bcrypt from "bcrypt";
 import { NextResponse } from "next/server";
+import { connectDB } from "@db/connectDB";
 
 export async function POST(req) {
   const session = await getServerSession(authOptions);
@@ -10,6 +11,8 @@ export async function POST(req) {
   const { picture } = body;
 
   try {
+    await connectDB();
+
     const newdata = await userModel.findOneAndUpdate(
       { email: session?.user?.email },
       {

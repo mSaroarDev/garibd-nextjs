@@ -1,19 +1,12 @@
 import { connectDB } from "@db/connectDB";
-import purchasePackageModel from "@db/models/purchasePackage";
+import paymentModel from "@db/models/payment";
 import { NextResponse } from "next/server";
 
-export async function GET(req, { params }) {
-  const { userId } = params;
-
+export async function GET(req) {
   try {
     await connectDB();
 
-    const data = await purchasePackageModel
-      .find({
-        user: userId,
-        currStatus: "active",
-      })
-      .sort({ _id: -1 });
+    const data = await paymentModel.countDocuments();
 
     return NextResponse.json({ msg: "success", data: data }, { status: 200 });
   } catch (error) {

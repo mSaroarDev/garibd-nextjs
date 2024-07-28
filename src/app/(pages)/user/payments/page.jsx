@@ -1,4 +1,5 @@
 import PaymentsCard from "@components/PaymentsCard";
+import { getPaymentsByUserId } from "@libs/api/payments";
 import { getAllPurchasePackagesByUserID } from "@libs/api/purchagePackage";
 import { authOptions } from "@libs/authOptions";
 import { Wallet } from "lucide-react";
@@ -10,7 +11,7 @@ export default async function PaymentsPage() {
     const currUser = session?.user;
 
     // fetch data
-    const data = await getAllPurchasePackagesByUserID(currUser?._id);
+    const data = await getPaymentsByUserId(currUser?._id);
 
   return (
     <>

@@ -37,23 +37,23 @@ export default async function CategoryPage({ params, searchParams }) {
       </div>
 
       <div className="mt-5">
-        <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-          <table class="w-full text-left rtl:text-right text-gray-500 dark:text-gray-400">
-            <thead class="text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+          <table className="w-full text-left rtl:text-right text-gray-500 dark:text-gray-400">
+            <thead className="text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
               <tr>
-                <th scope="col" class="px-6 py-3">
+                <th scope="col" className="px-6 py-3">
                   গাড়ির নাম
                 </th>
-                <th scope="col" class="px-6 py-3">
+                <th scope="col" className="px-6 py-3">
                   ক্যাটেগরী
                 </th>
-                <th scope="col" class="px-6 py-3">
+                <th scope="col" className="px-6 py-3">
                   কোম্পানীর নাম
                 </th>
-                <th scope="col" class="px-6 py-3">
+                <th scope="col" className="px-6 py-3">
                   মুল্য
                 </th>
-                <th scope="col" class="px-6 py-3 text-right">
+                <th scope="col" className="px-6 py-3 text-right">
                   পদক্ষেপ
                 </th>
               </tr>
