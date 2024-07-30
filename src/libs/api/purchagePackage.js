@@ -121,3 +121,39 @@ export const getPurchagePackages = async (page, limit) => {
     console.log(error);
   }
 };
+
+// get active monthly packages
+export const getPurchagePackagesMonthly = async (userId) => {
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/purchagePackage/all-monthly-packages?userId=${userId}`,
+      {
+        method: "GET",
+        cache: "no-store",
+      }
+    );
+    const data = await res.json();
+    return data?.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// get active monthly packages
+export const setExpire = async (userId) => {
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/purchagePackage/expire-packages?userId=${userId}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    const data = await res.json();
+    return data?.data;
+  } catch (error) {
+    console.log(error);
+  }
+};

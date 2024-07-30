@@ -15,6 +15,8 @@ export default function CreateAdForm({ categories, companies }) {
     height: "300px",
   };
 
+  const [activeTextBox, setActiveTextBox] = useState(false);
+
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
@@ -60,11 +62,11 @@ export default function CreateAdForm({ categories, companies }) {
           showSuccess("Ad Created");
           const data = await res.json();
           console.log(data);
-          // router.push(
-          //   `/user/my-ads/create-ad/upload-images/${data?.data?._id}`
-          // );
-        } else if(res.status === 406) {
-          showError("কোন প্যাকেজ একটিভ নেই")
+          router.push(
+            `/user/my-ads/create-ad/upload-images/${data?.data?._id}`
+          );
+        } else if (res.status === 406) {
+          showError("কোন প্যাকেজ একটিভ নেই");
         } else {
           showError("Ad Create Failed");
         }
@@ -190,7 +192,8 @@ export default function CreateAdForm({ categories, companies }) {
                   <option value="রিকন্ডিশন">রিকন্ডিশন</option>
                 </select>
 
-                {selectedAdType === "all-vehicles" || selectedAdType === "motorcycle" ? (
+                {selectedAdType === "all-vehicles" ||
+                selectedAdType === "motorcycle" ? (
                   <>
                     <label className="col-span-12 md:col-span-3" htmlFor="">
                       মডেল:
@@ -216,7 +219,9 @@ export default function CreateAdForm({ categories, companies }) {
                       className="w-full col-span-12 md:col-span-9"
                     />
                   </>
-                ) : ""}
+                ) : (
+                  ""
+                )}
 
                 <label
                   className="col-span-12 md:col-span-3 mt-1 md:mt-0"
@@ -225,21 +230,35 @@ export default function CreateAdForm({ categories, companies }) {
                   শর্ট ডেসক্রিপশন:
                 </label>
                 <div className="w-full col-span-12 md:col-span-9">
-                  <JoditEditor
-                    ref={editor}
-                    value={content}
-                    onBlur={(newContent) => {
-                      formik.setFieldValue("short_desc", newContent);
-                    }}
-                    config={joditConfig}
-                  />
+                  {activeTextBox ? (
+                    <>
+                      <JoditEditor
+                        ref={editor}
+                        value={content}
+                        onBlur={(newContent) => {
+                          formik.setFieldValue("short_desc", newContent);
+                        }}
+                        config={joditConfig}
+                      />{" "}
+                    </>
+                  ) : (
+                    <>
+                      <button
+                        className="button-main"
+                        onClick={() => setActiveTextBox(true)}
+                      >
+                        ডেসক্রিপশন যুক্ত করুন
+                      </button>
+                    </>
+                  )}
                 </div>
               </div>
             </div>
           )}
 
           {/* others description */}
-          {selectedAdType === "all-vehicles" || selectedAdType === "motorcycle" ? (
+          {selectedAdType === "all-vehicles" ||
+          selectedAdType === "motorcycle" ? (
             <div className="border border-borderColor  rounded-lg overflow-hidden mt-5">
               <div className="px-5 py-2 bg-slate-100 text-[17px] font-semibold">
                 অন্যান্য বিবরন
@@ -399,10 +418,13 @@ export default function CreateAdForm({ categories, companies }) {
                 </div>
               </div>
             </div>
-          ) : ""}
+          ) : (
+            ""
+          )}
 
           {/* more info */}
-          {selectedAdType === "all-vehicles" || selectedAdType === "motorcycle" ? (
+          {selectedAdType === "all-vehicles" ||
+          selectedAdType === "motorcycle" ? (
             <div className="border border-borderColor  rounded-lg overflow-hidden mt-5">
               <div className="px-5 py-2 bg-slate-100 text-[17px] font-semibold">
                 এক্সট্রা ইনফো
@@ -510,7 +532,9 @@ export default function CreateAdForm({ categories, companies }) {
                 </div>
               </div>
             </div>
-          ) : ""}
+          ) : (
+            ""
+          )}
 
           <div className="mt-5 flex items-center justify-end">
             <button

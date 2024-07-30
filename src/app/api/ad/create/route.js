@@ -89,8 +89,6 @@ export async function POST(req) {
       })
       .sort({ _id: -1 });
 
-    console.log("existThisTypePackage:", existThisTypePackage);
-
     if (existThisTypePackage?.length === 0) {
       return NextResponse.json(
         { msg: "no purchased pakages", data: "no active packages" },

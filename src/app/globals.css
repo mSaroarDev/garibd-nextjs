@@ -46,7 +46,7 @@ main {
 input,
 textarea,
 select {
-  @apply px-4 py-2 border-[1px] border-borderColor rounded-md focus:outline-0 focus:shadow-md !important;
+  @apply px-4 py-2 border-[1px] border-borderColor rounded-md focus:outline focus:outline-blue-600 !important;
 }
 .search-input {
   @apply rounded-full !important;
