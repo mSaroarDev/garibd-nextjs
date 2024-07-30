@@ -15,3 +15,22 @@ export const getAllAds = async (catId, page, limit) => {
     console.log(error);
   }
 };
+
+// crate ads
+export const createAd = async (values) => {
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/ad/create`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(values),
+      }
+    );
+    return res;
+  } catch (error) {
+    console.log(error);
+  }
+};

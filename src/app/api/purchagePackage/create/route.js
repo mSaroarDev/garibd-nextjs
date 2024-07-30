@@ -11,6 +11,8 @@ export async function POST(req) {
   const { name, price, category, type, value, duration } = packageData;
   const paid_time = new Date().toISOString();
 
+  console.log("category: ", category.length);
+
   // date function
   const getEndDate = () => {
     if (duration !== "") {
@@ -36,7 +38,7 @@ export async function POST(req) {
       .find({
         "package_data.category": category && category,
         user: currUser._id,
-        currStatus: "Active",
+        currStatus: "active",
       })
       .sort({ _id: -1 });
 
