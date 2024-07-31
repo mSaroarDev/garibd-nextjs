@@ -3,8 +3,6 @@ import { Ban, Gift, ScanEye } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import SweetAlert from "sweetalert-react";
-import "../../node_modules/sweetalert/dist/sweetalert.css";
 import { showError, showSuccess } from "@utils/showToast";
 import Spinner from "./spinner/Spinner";
 import { changStatus } from "@libs/api/users";
@@ -45,7 +43,7 @@ export default function UserListRow({ data }) {
   return (
     <>
       {loading && <Spinner />}
-      <SweetAlert
+      {/* <SweetAlert
         show={showModal ? true : false}
         title="Warning!"
         text={
@@ -54,7 +52,7 @@ export default function UserListRow({ data }) {
             : "Are you sure you want to active this user?"
         }
         onConfirm={() => changeUserStatus()}
-      />
+      /> */}
 
       <tr
         className={`border-b dark:border-gray-700 ${

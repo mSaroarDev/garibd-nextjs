@@ -1,6 +1,5 @@
 "use client";
 import { useFormik } from "formik";
-import "../../node_modules/sweetalert/dist/sweetalert.css";
 import { useState } from "react";
 import { showError, showSuccess } from "@utils/showToast";
 import { changePaymentAndPackageStatus } from "@libs/api/payments";

@@ -2,8 +2,6 @@
 import { useEffect, useState } from "react";
 import Spinner from "./spinner/Spinner";
 import { useRouter } from "next/navigation";
-import Lightbox from "react-image-lightbox";
-import "react-image-lightbox/style.css";
 
 export default function DocumentDetails({ lastDocument }) {
   const [loading, setLoading] = useState(false);
