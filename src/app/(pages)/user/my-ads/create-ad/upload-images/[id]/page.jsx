@@ -1,10 +1,11 @@
 import UploadAdImage from "@components/UploadAdImage";
 
-export default function UploadImagesPage({params}) {
-    const {id} = params;
+export default function UploadImagesPage({ params }) {
+  const { id } = params;
+
   return (
-    <>
-        <UploadAdImage Adid={id} />
-    </>
+    <div className="mb-14 lg:mb-0">
+      <UploadAdImage Adid={id} />
+    </div>
   );
 }

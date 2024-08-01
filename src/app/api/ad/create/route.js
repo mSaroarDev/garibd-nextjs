@@ -13,7 +13,7 @@ export async function POST(req) {
   const session = await getServerSession(authOptions);
   const currUser = session?.user;
   const body = await req.json();
-  console.log("body:", body);
+
   const {
     ad_type,
     ad_name,
@@ -71,10 +71,9 @@ export async function POST(req) {
     driver_type,
   };
 
-  console.log("ad_type:", ad_type);
-
   try {
     await connectDB();
+    const currUserStore = await storeModel.findOne({ user: currUser?._id });
 
     const existThisTypePackage = await purchasePackageModel
       .find({
@@ -100,12 +99,12 @@ export async function POST(req) {
     const newData = new adModel({
       ...formattedData,
       user: currUser?._id,
+      storeId: currUserStore._id,
     });
 
     const data = await newData.save();
 
     // the package credit update
-
     // if the ad type id "ad"
     if (existThisTypePackage[0].package_data.type === "Ad") {
       await purchasePackageModel.findOneAndUpdate(
@@ -151,7 +150,6 @@ export async function POST(req) {
     );
 
     // push data to targeted store ads object
-    const currUserStore = await storeModel.findOne({ user: currUser?._id });
     await storeModel.updateOne(
       { _id: currUserStore?._id },
       {

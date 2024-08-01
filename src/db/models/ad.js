@@ -58,6 +58,24 @@ const adSchema = new mongoose.Schema(
       type: String,
       required: false,
     },
+    images: {
+      type: Array,
+      required: true,
+      default: [],
+    },
+    video: {
+      type: Array,
+      required: false,
+      default: [],
+    },
+    isFeatured: {
+      type: Boolean,
+      default: false,
+    },
+    storeId: {
+      type: mongoose.Types.ObjectId,
+      ref: "Store",
+    },
     user: {
       type: mongoose.Types.ObjectId,
       ref: "User",
