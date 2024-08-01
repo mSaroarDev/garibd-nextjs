@@ -53,6 +53,25 @@ export const createAd = async (values) => {
   }
 };
 
+// edit a ad by id
+export const editAdById = async (id, values) => {
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/ad/edit-ad/${id}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(values),
+      }
+    );
+    return res;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 // image update
 export const updateAd = async (adId, values) => {
   try {

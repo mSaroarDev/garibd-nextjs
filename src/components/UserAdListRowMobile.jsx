@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 export default function UserAdListRowMobile({ data }) {
-  const { ad_name, price, status } = data;
+  const { ad_name, price, currStatus } = data;
   const router = useRouter();
 
   return (
@@ -41,12 +41,13 @@ export default function UserAdListRowMobile({ data }) {
 
               <span>{price}/- টাকা</span>
               {", "}
-              {status}
+              {currStatus}
             </p>
 
             <div className="flex items-center gap-1 mt-2">
               <Link
-                href="/"
+              onClick={(e) => e.stopPropagation()}
+                href={`/user/my-ads/edit-ad/${data?._id}`}
                 className="text-blue-600 px-2 hover:underline whitespace-nowrap"
               >
                 এডিট

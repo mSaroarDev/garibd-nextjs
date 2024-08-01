@@ -88,7 +88,7 @@ export default function UserAdListRow({ data }) {
             বিস্তারিত
           </Link>
           <Link
-            href="/"
+            href={`/user/my-ads/edit-ad/${data?._id}`}
             className="bg-blue-600 text-white hover:bg-blue-600/20 hover:text-blue-600 px-2 py-1 rounded-md mx-1 transition-all duration-300"
           >
             এডিট

@@ -90,12 +90,12 @@ export default function UploadAdImage({ Adid }) {
   // post photos
   const handleSubmit = async () => {
     setLoading(true);
-    const res = await updateAd(Adid, {images: imgUrl, video: videoUrl});
+    const res = await updateAd(Adid, { images: imgUrl, video: videoUrl });
 
     setLoading(false);
     if (res.ok) {
       showSuccess("গ্যালারী আপডেটেড");
-      router.push('/user/my-ads?page=1')
+      router.push("/user/my-ads?page=1");
     } else {
       showError("গ্যালারী আপডেট হয়নি");
     }
@@ -104,15 +104,14 @@ export default function UploadAdImage({ Adid }) {
   // get existing photos
   const [data, setData] = useState();
   const getData = async () => {
-    setLoading(true);
-    const res = await getSingleAdInfo(Adid);
-
-    setLoading(false);
-    if (res.ok) {
-      const data = await res.json();
-      setData(data.data);
-    } else {
-      console.log(res);
+    try {
+      setLoading(true);
+      const res = await getSingleAdInfo(Adid);
+      setData(res);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -121,8 +120,9 @@ export default function UploadAdImage({ Adid }) {
   }, []);
 
   useEffect(() => {
-    setImgUrl(data?.pictures || []);
-  }, [data]);
+    setImgUrl(data?.images || []);
+    setVideoUrl(data?.video || []);
+  }, [Adid, data]);
 
   return (
     <div className="p-5">
