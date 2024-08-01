@@ -24,7 +24,7 @@ export default function UploadAdImage({ Adid }) {
       if (fileSizeInKb > 1024) {
         return showError("FileSize must be less than 1 MB");
       }
-      const allowedTypes = ["image/jpeg", "image/png"];
+      const allowedTypes = ["image/jpeg", "image/png", "image/webp"];
       if (!allowedTypes.includes(image.type)) {
         return showError("Please select jpg or png image only");
       }
@@ -190,7 +190,7 @@ export default function UploadAdImage({ Adid }) {
                       id="dropzone-file"
                       type="file"
                       className="hidden"
-                      accept="image/jpeg,image/png"
+                      accept="image/jpeg,image/png,image/webp"
                       onChange={handleChange}
                     />
                   </label>

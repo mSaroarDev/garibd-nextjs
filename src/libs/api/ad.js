@@ -16,7 +16,7 @@ export const getAllAds = async (catId, page, limit) => {
   }
 };
 
-// get all ads
+// get a single ads
 export const getSingleAdInfo = async (id) => {
   try {
     const res = await fetch(
@@ -53,11 +53,48 @@ export const createAd = async (values) => {
   }
 };
 
-// crate ads
+// image update
 export const updateAd = async (adId, values) => {
   try {
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_BASE_URL}/api/ad/update-images/${adId}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(values),
+      }
+    );
+    return res;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// get all my ads
+export const getMyAds = async (userId, page, limit) => {
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/ad/my-ads/${userId}?page=${page}&limit=${limit}`,
+      {
+        method: "GET",
+        cache: "no-store",
+      }
+    );
+
+    const data = await res.json();
+    return data.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// update ad status
+export const updateAdStatus = async (adId, values) => {
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/ad/update-status/${adId}`,
       {
         method: "POST",
         headers: {

@@ -37,6 +37,7 @@ export async function POST(req) {
     fuel_type,
     documents,
     driver_type,
+    price,
   } = body;
 
   const formattedData = {
@@ -69,6 +70,7 @@ export async function POST(req) {
     fuel_type,
     documents,
     driver_type,
+    price,
   };
 
   try {

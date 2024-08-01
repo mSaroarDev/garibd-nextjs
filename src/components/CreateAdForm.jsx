@@ -52,6 +52,7 @@ export default function CreateAdForm({ categories, companies }) {
       fuel_type: "",
       documents: "",
       driver_type: "",
+      price: ""
     },
     onSubmit: async (values) => {
       setLoading(true);
@@ -61,10 +62,10 @@ export default function CreateAdForm({ categories, companies }) {
         if (res.ok) {
           showSuccess("Ad Created");
           const data = await res.json();
-          console.log(data);
           router.push(
             `/user/my-ads/create-ad/upload-images/${data?.data?._id}`
           );
+          router.refresh()
         } else if (res.status === 406) {
           showError("কোন প্যাকেজ একটিভ নেই");
         } else {
@@ -116,7 +117,7 @@ export default function CreateAdForm({ categories, companies }) {
               <div className="px-5 py-2 bg-slate-100 text-[17px] font-semibold">
                 সাধারন বিবরন
               </div>
-              <div className="grid grid-cols-12 gap-1 md:gap-2 lg:gap-5 p-5">
+              <div className="grid grid-cols-12 gap-1 md:gap-2 lg:gap-5 p-5 items-center">
                 <label className="col-span-12 md:col-span-3" htmlFor="">
                   নাম/টাইটেল:
                 </label>
@@ -128,6 +129,20 @@ export default function CreateAdForm({ categories, companies }) {
                   onChange={formik.handleChange}
                   className="w-full col-span-12 md:col-span-9"
                 />
+
+                <label className="col-span-12 md:col-span-3" htmlFor="">
+                  মুল্য (টাকায়):
+                </label>
+                <input
+                  type="text"
+                  id="price"
+                  name="price"
+                  value={formik.values.price}
+                  onChange={formik.handleChange}
+                  className="w-full col-span-9 md:col-span-3"
+                />
+
+                <div className="w-full col-span-3 md:col-span-6 ml-5 font-bold">/- টাকা</div>
 
                 <label
                   className="col-span-12 md:col-span-3 mt-1 md:mt-0"

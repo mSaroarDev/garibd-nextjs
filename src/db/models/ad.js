@@ -58,6 +58,15 @@ const adSchema = new mongoose.Schema(
       type: String,
       required: false,
     },
+    price: {
+      type: String,
+      required: true,
+    },
+    currStatus: {
+      type: String,
+      required: true,
+      default: "Not Sold",
+    },
     images: {
       type: Array,
       required: true,
