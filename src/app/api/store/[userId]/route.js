@@ -1,6 +1,7 @@
 import { connectDB } from "@db/connectDB";
 import storeModel from "@db/models/store";
 import { NextResponse } from "next/server";
+import adModel from "@db/models/ad";
 
 export async function GET(req, { params }) {
   const { userId } = params;
@@ -8,7 +9,9 @@ export async function GET(req, { params }) {
   try {
     await connectDB();
 
-    const data = await storeModel.findOne({ user: userId });
+    const data = await storeModel
+      .findOne({ user: userId })
+      .populate("store_ads");
 
     return NextResponse.json({ msg: "success", data: data }, { status: 200 });
   } catch (err) {

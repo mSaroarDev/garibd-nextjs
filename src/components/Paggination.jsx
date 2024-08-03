@@ -27,7 +27,7 @@ export default function Paggination({count, nextLink}) {
 
     return (
       <>
-        <div className="join flex items-center overflow-hidden rounded-md mt-10">
+        <div className="join flex items-center overflow-hidden rounded-md mt-0 md:mt-5">
           <Link href={`${nextLink}?page=1`} className="join-item btn border-0">
             <svg
               xmlns="http://www.w3.org/2000/svg"
