@@ -9,19 +9,18 @@ import { ListTree } from "lucide-react";
 import { getServerSession } from "next-auth";
 import Link from "next/link";
 
-export default async function StoreInfoPage({searchParams}) {
+export default async function StoreInfoPage({ searchParams }) {
   const page = searchParams.page;
   // get user id
   const session = await getServerSession(authOptions);
   const storeInfo = await getStoreInfo(session?.user?.id);
 
-  // count
-  const totalAds = storeInfo?.store_ads?.length;
-
   // total sold ads
   const allMyAds = await getStoreAds(storeInfo?._id, page, 10);
   const soldAds = allMyAds?.filter((item) => item?.currStatus === "Sold");
-  const notSoldAds = allMyAds?.filter((item) => item?.currStatus === "Not Sold");
+  const notSoldAds = allMyAds?.filter(
+    (item) => item?.currStatus === "Not Sold"
+  );
 
   return (
     <>
@@ -51,7 +50,10 @@ export default async function StoreInfoPage({searchParams}) {
                 {storeInfo && (
                   <div>
                     <p className="mt-3">
-                      মোট বিজ্ঞাপনঃ {convertToBanglaNumber(parseInt(totalAds))}{" "}
+                      মোট বিজ্ঞাপনঃ{" "}
+                      {convertToBanglaNumber(
+                        parseInt(storeInfo?.store_ads?.length)
+                      )}{" "}
                       টি
                     </p>
                     <p>
@@ -110,7 +112,7 @@ export default async function StoreInfoPage({searchParams}) {
                       </tr>
                     </thead>
                     <tbody>
-                      {allMyAds.map((item) => (
+                      {allMyAds?.map((item) => (
                         <StoreAdsListCard key={item?._id} data={item} />
                       ))}
                     </tbody>
@@ -122,9 +124,12 @@ export default async function StoreInfoPage({searchParams}) {
         )}
 
         {/* paggiantion */}
-        {allMyAds.length > 0 && (
+        {allMyAds?.length > 0 && (
           <div className="flex items-end justify-end mb-14 md:mb-4 lg:mb-0">
-            <Paggination count={25} nextLink="/user/my-store" />
+            <Paggination
+              count={parseInt(storeInfo?.store_ads?.length)}
+              nextLink="/user/my-store"
+            />
           </div>
         )}
       </div>

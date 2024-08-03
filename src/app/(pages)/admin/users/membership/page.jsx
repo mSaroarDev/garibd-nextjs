@@ -1,32 +1,19 @@
+import BackButton from "@components/BackButton";
 import CancelPlanButton from "@components/CancelPlanButton";
 import MembershipCard from "@components/MembershipCard";
 import PageHeader from "@components/PageHeader";
 import {
-  getPurchagePackagesMonthly,
-  getPurchasePackagesByUserID,
-  setExpire,
+    getPurchasePackagesByUserID
 } from "@libs/api/purchagePackage";
-import { authOptions } from "@libs/authOptions";
 import convertToBanglaNumber from "@utils/convertNumbertoBangla";
 import calculateRemainingTime from "@utils/remainingDays";
-import { Crown, Plus } from "lucide-react";
-import { getServerSession } from "next-auth";
-import Link from "next/link";
+import { Crown } from "lucide-react";
 
-export default async function MembershipPage() {
-  // session
-  const session = await getServerSession(authOptions);
-  const currUser = session?.user;
-
-  // check the monthly packages if expired
-  const existMonthlyPackages = await getPurchagePackagesMonthly(currUser?._id);
-
-  if (existMonthlyPackages) {
-    await setExpire(currUser?._id);
-  }
+export default async function MembershipPage({ searchParams }) {
+  const userId = searchParams.user;
 
   // fetch currUser purchases
-  const data = await getPurchasePackagesByUserID(currUser?._id);
+  const data = await getPurchasePackagesByUserID(userId);
 
   const motorCylePackage =
     data &&
@@ -39,19 +26,12 @@ export default async function MembershipPage() {
     data.filter((item) => item?.package_data?.category === "all-vehicles");
 
   return (
-    <div className="p-3 md:p-5 mb-20 md:mb-0">
+    <div className="mb-20 md:mb-0">
+      <BackButton />
       <div className="flex items-center justify-between">
         <div>
           <PageHeader text="মেমবারশীপ" icon={<Crown className="w-5 h-5" />} />
         </div>
-
-        <Link
-          href="/user/membership/type"
-          className="button-main flex items-center gap-2"
-        >
-          <Plus className="w-4 h-4" />
-          <span>মেমবারশীপ কিনুন</span>
-        </Link>
       </div>
 
       {/* membership cards */}

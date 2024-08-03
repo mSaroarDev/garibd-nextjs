@@ -91,10 +91,13 @@ export default function UserListRow({ data }) {
             <span>প্রোফাইল</span>
           </Link>
 
-          <button className="px-3 py-2 flex items-center gap-1 bg-lightBg rounded-md text-black">
+          <Link
+            href={`/admin/users/ads/${data?._id}`}
+            className="px-3 py-2 flex items-center gap-1 bg-lightBg rounded-md text-black"
+          >
             <Gift className="w-4 h-4" />
             <span>বিজ্ঞাপন</span>
-          </button>
+          </Link>
 
           {data?.status === "Blocked" ? (
             <>

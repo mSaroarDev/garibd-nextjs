@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import {
   ClipboardList,
   ContactRound,
@@ -6,17 +6,15 @@ import {
   LayoutPanelLeft,
   ListCollapse,
   LogOut,
-  MessagesSquare,
-  Settings,
-  Store,
-  Wallet,
+  MessagesSquare, Store,
+  Wallet
 } from "lucide-react";
 import { signOut } from "next-auth/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 export default function UserSidebarLinks() {
-  const pathname = usePathname()
+  const pathname = usePathname();
 
   return (
     <>
@@ -57,7 +55,7 @@ export default function UserSidebarLinks() {
         <span>মেমবারশিপ</span>
       </Link>
       <Link
-        href="/user/my-store"
+        href="/user/my-store?page=1"
         className={`user-sidebar-link ${
           pathname.startsWith("/user/my-store") && "user-sidebar-link-active"
         }`}
@@ -102,7 +100,7 @@ export default function UserSidebarLinks() {
         <span>সেটিংস</span>
       </Link> */}
       <button
-        onClick={()=> signOut({callbackUrl: "/sign-in"})}
+        onClick={() => signOut({ callbackUrl: "/sign-in" })}
         className={`user-sidebar-link`}
       >
         <LogOut className="w-5 h-5 text-redColor" />

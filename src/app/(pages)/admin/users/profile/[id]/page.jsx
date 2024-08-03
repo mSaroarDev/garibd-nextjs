@@ -42,7 +42,7 @@ export default async function MyProfile({ params }) {
               </Link>
 
               <Link
-                href={`/admin/users/membership/${params.id}`}
+                href={`/admin/users/membership?user=${params.id}`}
                 className="flex items-center gap-3 px-4 py-2 bg-lightBg border-b border-borderColor"
               >
                 <Tags className="w-4 h-4" />
@@ -50,7 +50,7 @@ export default async function MyProfile({ params }) {
               </Link>
 
               <Link
-                href={`/admin/users/payments/${params.id}`}
+                href={`/admin/users/payments?user=${params.id}`}
                 className="flex items-center gap-3 px-4 py-2 bg-lightBg"
               >
                 <Wallet className="w-4 h-4" />
