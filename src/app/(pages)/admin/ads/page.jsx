@@ -1,34 +1,27 @@
-import BackButton from "@components/BackButton";
 import PageHeader from "@components/PageHeader";
 import Paggination from "@components/Paggination";
 import UserAdListRow from "@components/UserAdListRow";
 import UserAdListRowMobile from "@components/UserAdListRowMobile";
-import { getMyAds } from "@libs/api/ad";
-import { getProfile } from "@libs/api/profile";
-import { allMyAdsCount } from "@libs/api/stats";
-import { authOptions } from "@libs/authOptions";
+import { getAllAd } from "@libs/api/ad";
+import { overallStatistics } from "@libs/api/stats";
 import { Gift } from "lucide-react";
-import { getServerSession } from "next-auth";
+import Link from "next/link";
 
-export default async function AdsByThisUser({ params, searchParams }) {
-  const profile = await getProfile(params.userId);
-  const userId = params.userId;
+export default async function MyAdsPage({ searchParams }) {
+    // get statistics
   const page = searchParams.page;
-  const myAds = await getMyAds(userId, page, 10);
-  const totalMyAds = await allMyAdsCount(userId);
+  const myAds = await getAllAd(page, 10);
+  const stats = await overallStatistics();
+  const { allAds } = stats;
 
   return (
-    <div className="p-5">
-      <BackButton />
+    <div>
       <div className="flex items-center justify-between mb-5">
-        <PageHeader
-          icon={<Gift />}
-          text={`${profile?.nickname}- এর বিজ্ঞাপন সমুহ`}
-        />
+        <PageHeader icon={<Gift />} text="আমার বিজ্ঞাপন সমুহ" />
 
-        {/* <Link href="/user/my-ads/create-ad" className="button-main">
+        <Link href="/admin/ads/create" className="button-main">
           নতুন বিজ্ঞাপন
-        </Link> */}
+        </Link>
       </div>
 
       <div className="hidden md:block">
@@ -72,7 +65,7 @@ export default async function AdsByThisUser({ params, searchParams }) {
       </div>
 
       <div className="flex items-center justify-end">
-        <Paggination count={parseInt(totalMyAds)} nextLink="/user/my-ads" />
+        <Paggination count={parseInt(allAds)} nextLink="/user/my-ads" />
       </div>
     </div>
   );

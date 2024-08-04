@@ -5,9 +5,16 @@ import PageHeader from "@components/PageHeader";
 import { getSingleAdInfo } from "@libs/api/ad";
 import { getAllCategories } from "@libs/api/category";
 import { getAllCompanies } from "@libs/api/company";
+import { getProfile } from "@libs/api/profile";
+import { authOptions } from "@libs/authOptions";
 import { Gift } from "lucide-react";
+import { getServerSession } from "next-auth";
 
-export default async function EditAd({params}) {
+export default async function EditAd({ params }) {
+  // fetch categories
+  const session = await getServerSession(authOptions);
+  const profile = await getProfile(session?.user?._id);
+  
   // get data
   const adData = await getSingleAdInfo(params?.adId);
 
@@ -20,7 +27,12 @@ export default async function EditAd({params}) {
       <BackButton />
       <PageHeader text="বিজ্ঞাপন এডিট করুন" icon={<Gift />} />
 
-      <EditAdForm categories={categories} companies={companies} adData={adData} />
+      <EditAdForm
+        categories={categories}
+        companies={companies}
+        adData={adData}
+        profile={profile}
+      />
     </div>
   );
 }

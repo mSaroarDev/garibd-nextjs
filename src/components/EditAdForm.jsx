@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import Spinner from "./spinner/Spinner";
 
-export default function EditAdForm({ categories, companies, adData }) {
+export default function EditAdForm({ categories, companies, adData, profile }) {
   const editor = useRef(null);
   const [content, setContent] = useState("");
   const joditConfig = {
@@ -58,6 +58,7 @@ export default function EditAdForm({ categories, companies, adData }) {
       documents: adData?.documents,
       driver_type: adData?.driver_type,
       price: adData?.price,
+      isFeatured: adData?.isFeatured
     },
     onSubmit: async (values) => {
       setLoading(true);
@@ -84,39 +85,6 @@ export default function EditAdForm({ categories, companies, adData }) {
     },
   });
 
-  // fill existing data
-  // useEffect(() => {
-  //   formik.setFieldValue({
-  //     ad_type: adData?.ad_type === "parts-and-motorcycle"
-  //     ? "motorcycle"
-  //     : adData?.ad_type === "parts-and-motorcycle"
-  //     ? "parts"
-  //     : "all-vehicles",
-  //     ad_name: adData?.ad_name,
-  //     categoryId: adData?.categoryId,
-  //     companyId: adData?.companyId,
-  //     condition: adData?.condition,
-  //     short_desc: adData?.short_desc,
-  //     model: adData?._id,
-  //     kilo_hr: adData?._id,
-  //     horse: adData?._id,
-  //     cc: adData?._id,
-  //     size: adData?._id,
-  //     weight: adData?._id,
-  //     wheel_size: adData?._id,
-  //     cylinder: adData?._id,
-  //     load_capacity: adData?._id,
-  //     mylase: adData?._id,
-  //     breaking_type: adData?._id,
-  //     air_condition: adData?.air_condition,
-  //     power_stearing: adData?.power_stearing,
-  //     fuel_type: adData?.fuel_type,
-  //     documents: adData?.documents,
-  //     driver_type: adData?.driver_type,
-  //     price: adData?.price,
-  //   });
-  // }, []);
-
   useEffect(() => {
     setSelectedAdType(
       adData?.ad_type === "parts-and-motorcycle"
@@ -133,17 +101,12 @@ export default function EditAdForm({ categories, companies, adData }) {
     <>
       {loading && <Spinner />}
       <div className="mt-5">
-        {/* <div className="border border-borderColor  rounded-lg overflow-hidden">
-                <div className="px-5 py-2 rounded-lg  bg-slate-100 text-[17px] font-semibold"></div>
-                <div className="p-5"></div>
-            </div> */}
-
         <form onSubmit={formik.handleSubmit}>
           <div className="border border-borderColor  rounded-lg overflow-hidden">
             <div className="px-5 py-2 bg-slate-100 text-[17px] font-semibold">
               বিজ্ঞাপন এর ধরন
             </div>
-            <div className="grid grid-cols-12 gap-1 md:gap-2 lg:gap-5 p-5">
+            <div className="grid grid-cols-12 gap-1 md:gap-2 lg:gap-5 p-5 items-center">
               <label htmlFor="" className="col-span-12 md:col-span-3">
                 বিজ্ঞাপন এর ধরন পছন্দ করুন:
               </label>
@@ -297,7 +260,7 @@ export default function EditAdForm({ categories, companies, adData }) {
                   শর্ট ডেসক্রিপশন:
                 </label>
                 <div className="w-full col-span-12 md:col-span-9">
-                  {adData?.short_desc ? (
+                  {content !== "" ? (
                     <>
                       <JoditEditor
                         ref={editor}
@@ -330,8 +293,8 @@ export default function EditAdForm({ categories, companies, adData }) {
               <div className="px-5 py-2 bg-slate-100 text-[17px] font-semibold">
                 অন্যান্য বিবরন
               </div>
-              <div className="grid grid-cols-12 gap-1 md:gap-2 lg:gap-5 p-5">
-                <div className="col-span-12 lg:col-span-6 gap-1 grid grid-cols-12">
+              <div className="grid grid-cols-12 gap-1 md:gap-2 lg:gap-5 p-5 items-center">
+                <div className="col-span-12 lg:col-span-6 gap-1 grid grid-cols-12 items-center">
                   <label
                     className="col-span-12 md:col-span-3 mt-1 md:mt-0"
                     htmlFor=""
@@ -348,9 +311,9 @@ export default function EditAdForm({ categories, companies, adData }) {
                   />
                 </div>
 
-                <div className="col-span-12 lg:col-span-6 gap-1 grid grid-cols-12">
+                <div className="col-span-12 lg:col-span-6 gap-1 grid grid-cols-12 items-center">
                   <label
-                    className="col-span-12 md:col-span-3 mt-1 md:mt-0"
+                    className="col-span-12 md:col-span-3 mt-1 md:mt-0 text-left md:text-right mr-0 md:mr-4"
                     htmlFor=""
                   >
                     কত সিসি:
@@ -365,7 +328,7 @@ export default function EditAdForm({ categories, companies, adData }) {
                   />
                 </div>
 
-                <div className="col-span-12 lg:col-span-6 gap-1 grid grid-cols-12">
+                <div className="col-span-12 lg:col-span-6 gap-1 grid grid-cols-12 items-center">
                   <label
                     className="col-span-12 md:col-span-3 mt-1 md:mt-0"
                     htmlFor=""
@@ -382,9 +345,9 @@ export default function EditAdForm({ categories, companies, adData }) {
                   />
                 </div>
 
-                <div className="col-span-12 lg:col-span-6 gap-1 grid grid-cols-12">
+                <div className="col-span-12 lg:col-span-6 gap-1 grid grid-cols-12 items-center">
                   <label
-                    className="col-span-12 md:col-span-3 mt-1 md:mt-0"
+                    className="col-span-12 md:col-span-3 mt-1 md:mt-0 text-left md:text-right mr-0 md:mr-4"
                     htmlFor=""
                   >
                     ওজন:
@@ -399,7 +362,7 @@ export default function EditAdForm({ categories, companies, adData }) {
                   />
                 </div>
 
-                <div className="col-span-12 lg:col-span-6 gap-1 grid grid-cols-12">
+                <div className="col-span-12 lg:col-span-6 gap-1 grid grid-cols-12 items-center">
                   <label
                     className="col-span-12 md:col-span-3 mt-1 md:mt-0"
                     htmlFor=""
@@ -416,9 +379,9 @@ export default function EditAdForm({ categories, companies, adData }) {
                   />
                 </div>
 
-                <div className="col-span-12 lg:col-span-6 gap-1 grid grid-cols-12">
+                <div className="col-span-12 lg:col-span-6 gap-1 grid grid-cols-12 items-center">
                   <label
-                    className="col-span-12 md:col-span-3 mt-1 md:mt-0"
+                    className="col-span-12 md:col-span-3 mt-1 md:mt-0 text-left md:text-right mr-0 md:mr-4"
                     htmlFor=""
                   >
                     সিলিন্ডার:
@@ -433,7 +396,7 @@ export default function EditAdForm({ categories, companies, adData }) {
                   />
                 </div>
 
-                <div className="col-span-12 lg:col-span-6 gap-1 grid grid-cols-12">
+                <div className="col-span-12 lg:col-span-6 gap-1 grid grid-cols-12 items-center">
                   <label
                     className="col-span-12 md:col-span-3 mt-1 md:mt-0"
                     htmlFor=""
@@ -450,9 +413,9 @@ export default function EditAdForm({ categories, companies, adData }) {
                   />
                 </div>
 
-                <div className="col-span-12 lg:col-span-6 gap-1 grid grid-cols-12">
+                <div className="col-span-12 lg:col-span-6 gap-1 grid grid-cols-12 items-center">
                   <label
-                    className="col-span-12 md:col-span-3 mt-1 md:mt-0"
+                    className="col-span-12 md:col-span-3 mt-1 md:mt-0 text-left md:text-right mr-0 md:mr-4"
                     htmlFor=""
                   >
                     মাইলেজ:
@@ -467,7 +430,7 @@ export default function EditAdForm({ categories, companies, adData }) {
                   />
                 </div>
 
-                <div className="col-span-12 lg:col-span-6 gap-1 grid grid-cols-12">
+                <div className="col-span-12 lg:col-span-6 gap-1 grid grid-cols-12 items-center">
                   <label
                     className="col-span-12 md:col-span-3 mt-1 md:mt-0"
                     htmlFor=""
@@ -496,8 +459,8 @@ export default function EditAdForm({ categories, companies, adData }) {
               <div className="px-5 py-2 bg-slate-100 text-[17px] font-semibold">
                 এক্সট্রা ইনফো
               </div>
-              <div className="grid grid-cols-12 gap-1 md:gap-2 lg:gap-5 p-5">
-                <div className="col-span-12 lg:col-span-6 gap-1 grid grid-cols-12">
+              <div className="grid grid-cols-12 gap-1 md:gap-2 lg:gap-5 p-5 items-center">
+                <div className="col-span-12 lg:col-span-6 gap-1 grid grid-cols-12 items-center">
                   <label
                     className="col-span-12 md:col-span-3 mt-1 md:mt-0"
                     htmlFor=""
@@ -517,9 +480,9 @@ export default function EditAdForm({ categories, companies, adData }) {
                   </select>
                 </div>
 
-                <div className="col-span-12 lg:col-span-6 gap-1 grid grid-cols-12">
+                <div className="col-span-12 lg:col-span-6 gap-1 grid grid-cols-12 items-center">
                   <label
-                    className="col-span-12 md:col-span-3 mt-1 md:mt-0"
+                    className="col-span-12 md:col-span-3 mt-1 md:mt-0 text-left md:text-right mr-0 md:mr-4"
                     htmlFor=""
                   >
                     পাওয়ার স্টিয়ারিং:
@@ -537,7 +500,7 @@ export default function EditAdForm({ categories, companies, adData }) {
                   </select>
                 </div>
 
-                <div className="col-span-12 lg:col-span-6 gap-1 grid grid-cols-12">
+                <div className="col-span-12 lg:col-span-6 gap-1 grid grid-cols-12 items-center">
                   <label
                     className="col-span-12 md:col-span-3 mt-1 md:mt-0"
                     htmlFor=""
@@ -560,9 +523,9 @@ export default function EditAdForm({ categories, companies, adData }) {
                   </select>
                 </div>
 
-                <div className="col-span-12 lg:col-span-6 gap-1 grid grid-cols-12">
+                <div className="col-span-12 lg:col-span-6 gap-1 grid grid-cols-12 items-center">
                   <label
-                    className="col-span-12 md:col-span-3 mt-1 md:mt-0"
+                    className="col-span-12 md:col-span-3 mt-1 md:mt-0 text-left md:text-right mr-0 md:mr-4"
                     htmlFor=""
                   >
                     কাগজপত্র:
@@ -576,7 +539,7 @@ export default function EditAdForm({ categories, companies, adData }) {
                   />
                 </div>
 
-                <div className="col-span-12 lg:col-span-6 gap-1 grid grid-cols-12">
+                <div className="col-span-12 lg:col-span-6 gap-1 grid grid-cols-12 items-center">
                   <label
                     className="col-span-12 md:col-span-3 mt-1 md:mt-0"
                     htmlFor=""
@@ -597,6 +560,32 @@ export default function EditAdForm({ categories, companies, adData }) {
                     <option value="অটো ড্রাইভার">অটো ড্রাইভার</option>
                   </select>
                 </div>
+              </div>
+            </div>
+          ) : (
+            ""
+          )}
+
+          {selectedAdType !== "" && profile?.role === "Admin" ? (
+            <div className="border border-borderColor  rounded-lg overflow-hidden mt-5">
+              <div className="px-5 py-2 bg-slate-100 text-[17px] font-semibold">
+                ফিচার্ড সিলেকশন
+              </div>
+              <div className="grid grid-cols-12 gap-1 md:gap-2 lg:gap-5 p-5 items-center">
+                <label htmlFor="" className="col-span-12 md:col-span-3">
+                  ফিচার্ড হিসেবে মার্ক করতে চান?
+                </label>
+                <select
+                  id="isFeatured"
+                  name="isFeatured"
+                  value={formik.values.isFeatured}
+                  onChange={formik.handleChange}
+                  className="w-fit col-span-12 md:col-span-9"
+                >
+                  <option value="">পছন্দ করুন</option>
+                  <option value={true}>হ্যা</option>
+                  <option value={false}>না</option>
+                </select>
               </div>
             </div>
           ) : (

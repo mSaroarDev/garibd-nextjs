@@ -73,7 +73,7 @@ export default function AdminSidebarLinks() {
       <Link
         href="/admin/ads?page=1"
         className={`user-sidebar-link ${
-          pathname.startsWith("/admin/my-ads") && "user-sidebar-link-active"
+          pathname.startsWith("/admin/ads") && "user-sidebar-link-active"
         }`}
       >
         <ListCollapse className="w-5 h-5 text-redColor" />

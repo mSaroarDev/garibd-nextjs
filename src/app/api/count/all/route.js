@@ -29,8 +29,11 @@ export async function GET(req) {
     });
 
     return NextResponse.json(
-      { msg: "error", data: { myads, soldAds, notSoldAds, myPayments } },
-      { status: 500 }
+      {
+        msg: "error",
+        data: { myads, soldAds, notSoldAds, myPayments },
+      },
+      { status: 200 }
     );
   } catch (err) {
     console.log(err);

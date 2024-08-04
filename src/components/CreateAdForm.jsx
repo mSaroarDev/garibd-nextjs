@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
 import Spinner from "./spinner/Spinner";
 
-export default function CreateAdForm({ categories, companies }) {
+export default function CreateAdForm({ categories, companies, profile }) {
   const editor = useRef(null);
   const [content, setContent] = useState("");
   const joditConfig = {
@@ -52,7 +52,8 @@ export default function CreateAdForm({ categories, companies }) {
       fuel_type: "",
       documents: "",
       driver_type: "",
-      price: ""
+      price: "",
+      isFeatured: false,
     },
     onSubmit: async (values) => {
       setLoading(true);
@@ -65,7 +66,7 @@ export default function CreateAdForm({ categories, companies }) {
           router.push(
             `/user/my-ads/create-ad/upload-images/${data?.data?._id}`
           );
-          router.refresh()
+          router.refresh();
         } else if (res.status === 406) {
           showError("কোন প্যাকেজ একটিভ নেই");
         } else {
@@ -83,17 +84,12 @@ export default function CreateAdForm({ categories, companies }) {
     <>
       {loading && <Spinner />}
       <div className="mt-5">
-        {/* <div className="border border-borderColor  rounded-lg overflow-hidden">
-                <div className="px-5 py-2 rounded-lg  bg-slate-100 text-[17px] font-semibold"></div>
-                <div className="p-5"></div>
-            </div> */}
-
         <form onSubmit={formik.handleSubmit}>
           <div className="border border-borderColor  rounded-lg overflow-hidden">
             <div className="px-5 py-2 bg-slate-100 text-[17px] font-semibold">
               বিজ্ঞাপন এর ধরন
             </div>
-            <div className="grid grid-cols-12 gap-1 md:gap-2 lg:gap-5 p-5">
+            <div className="grid grid-cols-12 gap-1 md:gap-2 lg:gap-5 p-5 items-center">
               <label htmlFor="" className="col-span-12 md:col-span-3">
                 বিজ্ঞাপন এর ধরন পছন্দ করুন:
               </label>
@@ -142,7 +138,9 @@ export default function CreateAdForm({ categories, companies }) {
                   className="w-full col-span-9 md:col-span-3"
                 />
 
-                <div className="w-full col-span-3 md:col-span-6 ml-5 font-bold">/- টাকা</div>
+                <div className="w-full col-span-3 md:col-span-6 ml-5 font-bold">
+                  /- টাকা
+                </div>
 
                 <label
                   className="col-span-12 md:col-span-3 mt-1 md:mt-0"
@@ -278,8 +276,8 @@ export default function CreateAdForm({ categories, companies }) {
               <div className="px-5 py-2 bg-slate-100 text-[17px] font-semibold">
                 অন্যান্য বিবরন
               </div>
-              <div className="grid grid-cols-12 gap-1 md:gap-2 lg:gap-5 p-5">
-                <div className="col-span-12 lg:col-span-6 gap-1 grid grid-cols-12">
+              <div className="grid grid-cols-12 gap-1 md:gap-2 lg:gap-5 p-5 items-center">
+                <div className="col-span-12 lg:col-span-6 gap-1 grid grid-cols-12 items-center">
                   <label
                     className="col-span-12 md:col-span-3 mt-1 md:mt-0"
                     htmlFor=""
@@ -296,9 +294,9 @@ export default function CreateAdForm({ categories, companies }) {
                   />
                 </div>
 
-                <div className="col-span-12 lg:col-span-6 gap-1 grid grid-cols-12">
+                <div className="col-span-12 lg:col-span-6 gap-1 grid grid-cols-12 items-center">
                   <label
-                    className="col-span-12 md:col-span-3 mt-1 md:mt-0"
+                    className="col-span-12 md:col-span-3 mt-1 md:mt-0 text-left md:text-right mr-0 md:mr-4"
                     htmlFor=""
                   >
                     কত সিসি:
@@ -313,7 +311,7 @@ export default function CreateAdForm({ categories, companies }) {
                   />
                 </div>
 
-                <div className="col-span-12 lg:col-span-6 gap-1 grid grid-cols-12">
+                <div className="col-span-12 lg:col-span-6 gap-1 grid grid-cols-12 items-center">
                   <label
                     className="col-span-12 md:col-span-3 mt-1 md:mt-0"
                     htmlFor=""
@@ -330,9 +328,9 @@ export default function CreateAdForm({ categories, companies }) {
                   />
                 </div>
 
-                <div className="col-span-12 lg:col-span-6 gap-1 grid grid-cols-12">
+                <div className="col-span-12 lg:col-span-6 gap-1 grid grid-cols-12 items-center">
                   <label
-                    className="col-span-12 md:col-span-3 mt-1 md:mt-0"
+                    className="col-span-12 md:col-span-3 mt-1 md:mt-0 text-left md:text-right mr-0 md:mr-4"
                     htmlFor=""
                   >
                     ওজন:
@@ -347,7 +345,7 @@ export default function CreateAdForm({ categories, companies }) {
                   />
                 </div>
 
-                <div className="col-span-12 lg:col-span-6 gap-1 grid grid-cols-12">
+                <div className="col-span-12 lg:col-span-6 gap-1 grid grid-cols-12 items-center">
                   <label
                     className="col-span-12 md:col-span-3 mt-1 md:mt-0"
                     htmlFor=""
@@ -364,9 +362,9 @@ export default function CreateAdForm({ categories, companies }) {
                   />
                 </div>
 
-                <div className="col-span-12 lg:col-span-6 gap-1 grid grid-cols-12">
+                <div className="col-span-12 lg:col-span-6 gap-1 grid grid-cols-12 items-center">
                   <label
-                    className="col-span-12 md:col-span-3 mt-1 md:mt-0"
+                    className="col-span-12 md:col-span-3 mt-1 md:mt-0 text-left md:text-right mr-0 md:mr-4"
                     htmlFor=""
                   >
                     সিলিন্ডার:
@@ -381,7 +379,7 @@ export default function CreateAdForm({ categories, companies }) {
                   />
                 </div>
 
-                <div className="col-span-12 lg:col-span-6 gap-1 grid grid-cols-12">
+                <div className="col-span-12 lg:col-span-6 gap-1 grid grid-cols-12 items-center">
                   <label
                     className="col-span-12 md:col-span-3 mt-1 md:mt-0"
                     htmlFor=""
@@ -398,9 +396,9 @@ export default function CreateAdForm({ categories, companies }) {
                   />
                 </div>
 
-                <div className="col-span-12 lg:col-span-6 gap-1 grid grid-cols-12">
+                <div className="col-span-12 lg:col-span-6 gap-1 grid grid-cols-12 items-center">
                   <label
-                    className="col-span-12 md:col-span-3 mt-1 md:mt-0"
+                    className="col-span-12 md:col-span-3 mt-1 md:mt-0 text-left md:text-right mr-0 md:mr-4"
                     htmlFor=""
                   >
                     মাইলেজ:
@@ -415,7 +413,7 @@ export default function CreateAdForm({ categories, companies }) {
                   />
                 </div>
 
-                <div className="col-span-12 lg:col-span-6 gap-1 grid grid-cols-12">
+                <div className="col-span-12 lg:col-span-6 gap-1 grid grid-cols-12 items-center">
                   <label
                     className="col-span-12 md:col-span-3 mt-1 md:mt-0"
                     htmlFor=""
@@ -444,8 +442,8 @@ export default function CreateAdForm({ categories, companies }) {
               <div className="px-5 py-2 bg-slate-100 text-[17px] font-semibold">
                 এক্সট্রা ইনফো
               </div>
-              <div className="grid grid-cols-12 gap-1 md:gap-2 lg:gap-5 p-5">
-                <div className="col-span-12 lg:col-span-6 gap-1 grid grid-cols-12">
+              <div className="grid grid-cols-12 gap-1 md:gap-2 lg:gap-5 p-5 items-center">
+                <div className="col-span-12 lg:col-span-6 gap-1 grid grid-cols-12 items-center">
                   <label
                     className="col-span-12 md:col-span-3 mt-1 md:mt-0"
                     htmlFor=""
@@ -465,9 +463,9 @@ export default function CreateAdForm({ categories, companies }) {
                   </select>
                 </div>
 
-                <div className="col-span-12 lg:col-span-6 gap-1 grid grid-cols-12">
+                <div className="col-span-12 lg:col-span-6 gap-1 grid grid-cols-12 items-center">
                   <label
-                    className="col-span-12 md:col-span-3 mt-1 md:mt-0"
+                    className="col-span-12 md:col-span-3 mt-1 md:mt-0 text-left md:text-right mr-0 md:mr-4"
                     htmlFor=""
                   >
                     পাওয়ার স্টিয়ারিং:
@@ -485,7 +483,7 @@ export default function CreateAdForm({ categories, companies }) {
                   </select>
                 </div>
 
-                <div className="col-span-12 lg:col-span-6 gap-1 grid grid-cols-12">
+                <div className="col-span-12 lg:col-span-6 gap-1 grid grid-cols-12 items-center">
                   <label
                     className="col-span-12 md:col-span-3 mt-1 md:mt-0"
                     htmlFor=""
@@ -508,9 +506,9 @@ export default function CreateAdForm({ categories, companies }) {
                   </select>
                 </div>
 
-                <div className="col-span-12 lg:col-span-6 gap-1 grid grid-cols-12">
+                <div className="col-span-12 lg:col-span-6 gap-1 grid grid-cols-12 items-center">
                   <label
-                    className="col-span-12 md:col-span-3 mt-1 md:mt-0"
+                    className="col-span-12 md:col-span-3 mt-1 md:mt-0 text-left md:text-right mr-0 md:mr-4"
                     htmlFor=""
                   >
                     কাগজপত্র:
@@ -524,7 +522,7 @@ export default function CreateAdForm({ categories, companies }) {
                   />
                 </div>
 
-                <div className="col-span-12 lg:col-span-6 gap-1 grid grid-cols-12">
+                <div className="col-span-12 lg:col-span-6 gap-1 grid grid-cols-12 items-center">
                   <label
                     className="col-span-12 md:col-span-3 mt-1 md:mt-0"
                     htmlFor=""
@@ -545,6 +543,32 @@ export default function CreateAdForm({ categories, companies }) {
                     <option value="অটো ড্রাইভার">অটো ড্রাইভার</option>
                   </select>
                 </div>
+              </div>
+            </div>
+          ) : (
+            ""
+          )}
+
+          {selectedAdType !== "" && profile?.role === "Admin" ? (
+            <div className="border border-borderColor  rounded-lg overflow-hidden mt-5">
+              <div className="px-5 py-2 bg-slate-100 text-[17px] font-semibold">
+                ফিচার্ড সিলেকশন
+              </div>
+              <div className="grid grid-cols-12 gap-1 md:gap-2 lg:gap-5 p-5 items-center">
+                <label htmlFor="" className="col-span-12 md:col-span-3">
+                  ফিচার্ড হিসেবে মার্ক করতে চান?
+                </label>
+                <select
+                  id="isFeatured"
+                  name="isFeatured"
+                  value={formik.values.isFeatured}
+                  onChange={formik.handleChange}
+                  className="w-fit col-span-12 md:col-span-9"
+                >
+                  <option value="">পছন্দ করুন</option>
+                  <option value={true}>হ্যা</option>
+                  <option value={false}>না</option>
+                </select>
               </div>
             </div>
           ) : (

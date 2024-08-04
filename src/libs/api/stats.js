@@ -1,3 +1,21 @@
+// overall counts
+export const overallStatistics = async () => {
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/count/overall`,
+      {
+        method: "GET",
+        cache: "no-store",
+      }
+    );
+
+    const data = await res.json();
+    return data.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 // user dashboard statistics
 export const userStatistics = async (userId) => {
   try {
