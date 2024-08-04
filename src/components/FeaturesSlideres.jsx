@@ -16,7 +16,7 @@ const divStyle = {
   padding: "30px",
   justifyContent: 'center',
   backgroundSize: 'cover',
-  height: '400px',
+  height: '550px',
   fontSize: "25px",
   zIndex: '1'
 }

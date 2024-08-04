@@ -1,5 +1,11 @@
 import adModel from "@db/models/ad";
+import categoryModel from "@db/models/category";
+import companyModel from "@db/models/company";
+import documentModel from "@db/models/documets";
+import paymentModel from "@db/models/payment";
 import purchasePackageModel from "@db/models/purchasePackage";
+import storeModel from "@db/models/store";
+import userModel from "@db/models/users";
 import { NextResponse } from "next/server";
 
 export async function GET(req) {
@@ -8,18 +14,63 @@ export async function GET(req) {
     const allAds = await adModel.countDocuments();
 
     // sold ads
-    const soldAds = await adModel.countDocuments();
+    const soldAds = await adModel.countDocuments({
+      currStatus: "Sold",
+    });
 
     // not sold ads
-    const notSoldAds = await adModel.countDocuments();
+    const notSoldAds = await adModel.countDocuments({
+      currStatus: "Not Sold",
+    });
 
-    // my payments
-    const myPayments = await purchasePackageModel.countDocuments();
+    // all users
+    const allUsers = await userModel.countDocuments();
+
+    // category
+    const categories = await categoryModel.countDocuments();
+
+    // conpanies
+    const companies = await companyModel.countDocuments();
+
+    // membership
+    const membership = await purchasePackageModel.countDocuments({
+      currStatus: "active",
+    });
+
+    // stores
+    const store = await storeModel.countDocuments();
+
+    // new payment
+    const newPayments = await paymentModel.countDocuments({
+      "payment_info?.status": "pending",
+    });
+
+    // accepted payment
+    const allPayments = await paymentModel.countDocuments({
+      "payment_info?.status": "Accepted",
+    });
+
+    // accepted payment
+    const newDocuments = await documentModel.countDocuments({
+      approval_status: "Pending",
+    });
 
     return NextResponse.json(
       {
         msg: "error",
-        data: { soldAds, notSoldAds, myPayments, allAds },
+        data: {
+          soldAds,
+          notSoldAds,
+          allAds,
+          categories,
+          companies,
+          membership,
+          store,
+          newPayments,
+          allPayments,
+          newDocuments,
+          allUsers,
+        },
       },
       { status: 200 }
     );
