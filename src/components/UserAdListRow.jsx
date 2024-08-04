@@ -4,10 +4,14 @@ import { showError, showSuccess } from "@utils/showToast";
 import { useFormik } from "formik";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Spinner from "./spinner/Spinner";
+import { getProfile } from "@libs/api/profile";
+import { useSession } from "next-auth/react";
 
 export default function UserAdListRow({ data }) {
+  const session = useSession();
+
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const { ad_name, condition, price, currStatus } = data;
@@ -87,12 +91,21 @@ export default function UserAdListRow({ data }) {
           >
             বিস্তারিত
           </Link>
-          <Link
+          {session && session?.data?.user?.role === "Admin" ? (
+            <Link
+            href={`/admin/ads/edit/${data?._id}`}
+            className="bg-blue-600 text-white hover:bg-blue-600/20 hover:text-blue-600 px-2 py-1 rounded-md mx-1 transition-all duration-300"
+          >
+            এডিট
+          </Link>
+          ) : (
+            <Link
             href={`/user/my-ads/edit-ad/${data?._id}`}
             className="bg-blue-600 text-white hover:bg-blue-600/20 hover:text-blue-600 px-2 py-1 rounded-md mx-1 transition-all duration-300"
           >
             এডিট
           </Link>
+          )}
           <button
             onClick={() =>
               document.getElementById(`change_status_${data?._id}`).showModal()

@@ -27,7 +27,7 @@ export default async function VerifyDocumentPage() {
 
   if (lastDocument?.approval_status === "Rejected") {
     return (
-      <div className='p-3 lg:p-5'>
+      <div className='p-3 lg:p-5 pb-14'>
         <div className="w-full flex flex-col items-center justify-center shadow-md rounded-xl border border-borderColor p-10">
           <img
             src="/not-accepted.png"
@@ -66,7 +66,7 @@ export default async function VerifyDocumentPage() {
   // Default case when approval_status is not "Pending", "Rejected", or "Verified"
   return (
     <div className='p-3 lg:p-5'>
-      <div className="w-full flex flex-col items-center justify-center shadow-md rounded-xl border border-borderColor p-10">
+      <div className="w-full flex flex-col items-center justify-center shadow-md rounded-xl border border-borderColor p-10 mb-14 md:mb-5">
         <img
           src="/not-found.avif"
           alt="Not Found"

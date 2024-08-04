@@ -6,6 +6,7 @@ import { useState } from "react";
 import { showError, showSuccess } from "@utils/showToast";
 import Spinner from "./spinner/Spinner";
 import { changStatus } from "@libs/api/users";
+import Swal from "sweetalert2";
 
 export default function UserListRow({ data }) {
   const [loading, setLoading] = useState(false);
@@ -39,20 +40,31 @@ export default function UserListRow({ data }) {
       setShowModal(false);
     }
   };
+  // Are you sure you want to ${data?.status === "Active" ? "Block The User" : "Re-Activate The user"}
+  // user ban modal
+  const modal = () =>
+    Swal.fire({
+      title: "Warning!",
+      icon: "info",
+      html: `
+    Are you sure you want to ${
+      data?.status === "Active" ? "Block The User" : "Re-Activate The user"
+    }
+  `,
+      showCancelButton: true,
+      confirmButtonText: "Confirm",
+      denyButtonText: `Cancel`,
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        changeUserStatus();
+        router.refresh();
+      } 
+    });
 
   return (
     <>
       {loading && <Spinner />}
-      {/* <SweetAlert
-        show={showModal ? true : false}
-        title="Warning!"
-        text={
-          data?.status === "Active"
-            ? "Are you sure you want to ban this user?"
-            : "Are you sure you want to active this user?"
-        }
-        onConfirm={() => changeUserStatus()}
-      /> */}
 
       <tr
         className={`border-b dark:border-gray-700 ${
@@ -82,10 +94,10 @@ export default function UserListRow({ data }) {
         <td className="px-6 py-4">{data?.profile?.address}</td>
         <td className="px-6 py-4">{data?.mobile}</td>
         <td className="px-6 py-4">{data?.mobile}</td>
-        <td className="px-6 py-4 flex items-center justify-end gap-2">
+        <td className="px-6 py-4 flex items-center justify-end gap-2 font-semibold">
           <Link
             href={`/admin/users/profile/${data?._id}`}
-            className="px-3 py-2 flex items-center gap-1 bg-lightBg rounded-md text-black"
+            className="px-3 py-1 flex items-center gap-1 bg-lightBg rounded-md text-black"
           >
             <ScanEye className="w-4 h-4" />
             <span>প্রোফাইল</span>
@@ -93,7 +105,7 @@ export default function UserListRow({ data }) {
 
           <Link
             href={`/admin/users/ads/${data?._id}`}
-            className="px-3 py-2 flex items-center gap-1 bg-lightBg rounded-md text-black"
+            className="px-3 py-1 flex items-center gap-1 bg-lightBg rounded-md text-black"
           >
             <Gift className="w-4 h-4" />
             <span>বিজ্ঞাপন</span>
@@ -102,8 +114,8 @@ export default function UserListRow({ data }) {
           {data?.status === "Blocked" ? (
             <>
               <button
-                onClick={() => setShowModal(true)}
-                className="px-3 py-2 flex items-center gap-1 bg-red-600/10 rounded-md text-black"
+                onClick={() => modal()}
+                className="px-3 py-1 flex items-center gap-1 bg-red-600/10 rounded-md text-black"
               >
                 <Ban className="w-4 h-4" />
                 <span>অ্যাক্টিভ</span>
@@ -112,8 +124,8 @@ export default function UserListRow({ data }) {
           ) : (
             <>
               <button
-                onClick={() => setShowModal(true)}
-                className="px-3 py-2 flex items-center gap-1 bg-red-600/10 rounded-md text-black"
+                onClick={() => modal()}
+                className="px-3 py-1 flex items-center gap-1 bg-red-600/10 rounded-md text-black"
               >
                 <Ban className="w-4 h-4" />
                 <span>ব্যান</span>

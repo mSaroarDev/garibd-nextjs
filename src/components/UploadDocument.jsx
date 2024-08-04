@@ -101,7 +101,7 @@ export default function UploadDocument({ lastDocument }) {
             <div className="w-full p-3 border border-borderColor rounded-xl">
               <div
                 onClick={handleNidFrontClick}
-                className="w-full h-[150px] mb-1 border border-borderColor border-dashed rounded-lg hover:shadow-md cursor-pointer"
+                className={`w-full h-[150px] mb-1 border border-borderColor border-dashed rounded-lg hover:shadow-md cursor-pointer ${lastDocument?.approval_status === "Verified" && "pointer-events-none"}`}
               >
                 <img
                   src={(nidFront && nidFront) || "/image-placeholder.png"}
@@ -113,7 +113,7 @@ export default function UploadDocument({ lastDocument }) {
 
               <div
                 onClick={handleNidBackClick}
-                className="w-full h-[150px] mb-1 border border-borderColor border-dashed rounded-lg hover:shadow-md cursor-pointer"
+                className={`w-full h-[150px] mb-1 border border-borderColor border-dashed rounded-lg hover:shadow-md cursor-pointer ${lastDocument?.approval_status === "Verified" && "pointer-events-none"}`}
               >
                 <img
                   src={(nidBack && nidBack) || "/image-placeholder.png"}
@@ -128,7 +128,7 @@ export default function UploadDocument({ lastDocument }) {
             <div className="w-full p-3 border border-borderColor rounded-xl">
               <div
                 onClick={handleElectricityClick}
-                className="w-full h-[300px] mb-1 border border-borderColor border-dashed rounded-lg hover:shadow-md cursor-pointer"
+                className={`w-full h-[300px] mb-1 border border-borderColor border-dashed rounded-lg hover:shadow-md cursor-pointer ${lastDocument?.approval_status === "Verified" && "pointer-events-none"}`}
               >
                 <img
                   src={
@@ -144,12 +144,15 @@ export default function UploadDocument({ lastDocument }) {
           </div>
         </div>
 
-        <button
+        {lastDocument?.approval_status !== "Verified" && (
+          <button
           onClick={handleSubmit}
           className="button-main mt-5 w-full lg:max-w-[150px] mb-24 lg:mb-10"
         >
           সাবমিট করুন
         </button>
+        )}
+        
       </div>
 
       <input

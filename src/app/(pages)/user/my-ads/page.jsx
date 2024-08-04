@@ -3,6 +3,7 @@ import Paggination from "@components/Paggination";
 import UserAdListRow from "@components/UserAdListRow";
 import UserAdListRowMobile from "@components/UserAdListRowMobile";
 import { getMyAds } from "@libs/api/ad";
+import { getProfile } from "@libs/api/profile";
 import { allMyAdsCount } from "@libs/api/stats";
 import { authOptions } from "@libs/authOptions";
 import { Gift } from "lucide-react";
@@ -11,6 +12,7 @@ import Link from "next/link";
 
 export default async function MyAdsPage({ searchParams }) {
   const session = await getServerSession(authOptions);
+  const profile = await getProfile(session?.user?.id);
   const page = searchParams.page;
   const myAds = await getMyAds(session?.user?.id, page, 10);
   const totalMyAds = await allMyAdsCount(session?.user?.id);
@@ -52,7 +54,7 @@ export default async function MyAdsPage({ searchParams }) {
             </thead>
             <tbody>
               {myAds.map((item) => (
-                <UserAdListRow key={item?._id} data={item} />
+                <UserAdListRow key={item?._id} data={item} profile={profile} />
               ))}
             </tbody>
           </table>

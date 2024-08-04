@@ -67,3 +67,23 @@ export const createDocuments = async (values) => {
     console.log(error);
   }
 };
+
+// new documents
+export const adminReview = async (id, values) => {
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/documents/admin-review?id=${id}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(values),
+      }
+    );
+
+    return res;
+  } catch (error) {
+    console.log(error);
+  }
+};
