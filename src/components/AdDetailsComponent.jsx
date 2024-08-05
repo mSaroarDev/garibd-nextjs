@@ -1,21 +1,21 @@
 "use client";
-
-import { Heart, Share2, Youtube } from "lucide-react";
+import { ArrowRight, Heart, Map, MapPinned, Share2, Store, Youtube } from "lucide-react";
 import { useState } from "react";
 import { Slide } from "react-slideshow-image";
 import EditAdForm from "./EditAdForm";
 import AdDetailsForm from "./AdDetailsForm";
 import formatTimeAgo from "@utils/convert_date";
 import Image from "next/image";
+import AdDetails from "./AdDetails";
 
 export default function AdsDetailsComponent({ adDetails }) {
   const media = [...adDetails?.images, adDetails.video[0]];
   const isImage = (item) => {
-    return item.match(/\.(jpeg|jpg|gif|png|webp)$/i);
+    return item?.match(/\.(jpeg|jpg|gif|png|webp)$/i);
   };
 
   const isVideo = (item) => {
-    return item.match(/\.(mp4|webm|ogg)$/i);
+    return item?.match(/\.(mp4|webm|ogg)$/i);
   };
 
   // set the clicked image to the slider
@@ -29,10 +29,27 @@ export default function AdsDetailsComponent({ adDetails }) {
     <div className="bg-body">
       <div className="grid grid-cols-12 gap-5 p-5">
         <div className="col-span-12 lg:col-span-8">
-          <div className="bg-white p-5 rounded border border-borderColor">
-            <h1 className="text-xl font-bold">{adDetails?.ad_name}</h1>
+          <div className="bg-white p-7 rounded border border-borderColor">
+            <h1 className="text-3xl font-bold">{adDetails?.ad_name}</h1>
+            <div className="flex items-center gap-3 mt-2">
+              <div className="flex items-center gap-5">
+                <Image
+                  src={adDetails?.user?.image}
+                  width={20}
+                  height={20}
+                  alt={adDetails?.ad_name}
+                  className="rounded-full"
+                />
+                <h2 className="text-base font-bold">
+                  {adDetails?.user?.nickname}
+                </h2>
+              </div>
 
-            <div className="images-box w-full h-[350px] mt-3 rounded-md overflow-hidden">
+              <p>{"Rajshahi, Bangladesh"}</p>
+              <p>{formatTimeAgo(adDetails?.createdAt)}</p>
+            </div>
+
+            <div className="images-box w-full h-[350px] mt-5 rounded-md overflow-hidden">
               {isImage(selectedImage) && (
                 <img
                   src={selectedImage}
@@ -89,10 +106,24 @@ export default function AdsDetailsComponent({ adDetails }) {
 
           {/* ad details */}
           <div className="bg-white p-5 rounded border border-borderColor my-5">
-            <h2 className="text-base font-bold">বিজ্ঞাপন বিস্তারিত</h2>
+            <h2 className="text-base font-bold mb-2">লোকেশন</h2>
+            <hr />
+
+            <div className="flex items-center gap-2 mt-5">
+              <Map className='w-4 h-4' />
+              <span className="font-medium">{"Mirpur 10, Dhaka"}</span>
+            </div>
+
+           
+          </div>
+
+          {/* ad details */}
+          <div className="bg-white p-5 rounded border border-borderColor my-5">
+            <h2 className="text-base font-bold mb-2">বিজ্ঞাপন বিস্তারিত</h2>
+            <hr />
 
             <div className="mt-3">
-              <AdDetailsForm adData={adDetails} />
+              <AdDetails adData={adDetails} />
             </div>
           </div>
         </div>
@@ -115,6 +146,31 @@ export default function AdsDetailsComponent({ adDetails }) {
               </div>
             </div>
           </div>
+
+          {/* store information */}
+          {adDetails?.storeId !== "" && (
+            <div className="bg-white p-5 rounded border border-borderColor my-5">
+              <div className="flex items-start gap-5">
+                <Store className="w-5 h-5" />
+                <div>
+                  <h2 className="text-base font-bold flex items-center gap-2">
+                    <span>{adDetails?.storeId?.store_name}</span>
+                    <img
+                      src="/verified1.png"
+                      alt="Verified"
+                      className="w-5 h-5"
+                    />
+                  </h2>
+                  <p>{adDetails?.storeId?.store_address}</p>
+                </div>
+              </div>
+
+              <button className="border border-black px-4 py-2 rounded-md n w-full mt-5 flex items-center justify-center gap-2 font-medium">
+                <span>সকল বিজ্ঞাপন</span>
+                <ArrowRight className="w-4 h-4" />
+              </button>
+            </div>
+          )}
 
           {/* contact seller */}
           <div className="bg-white p-5 rounded border border-borderColor my-5">

@@ -1,10 +1,12 @@
 import AdListRow from "@components/AdListRow";
+import BackButton from "@components/BackButton";
 import PageHeader from "@components/PageHeader";
 import Paggination from "@components/Paggination";
+import UserAdListRow from "@components/UserAdListRow";
 import { getAllAds } from "@libs/api/ad";
-import { getSingleCategory } from "@libs/api/category";
+import { adsByThisCategory } from "@libs/api/stats";
 import convertToBanglaNumber from "@utils/convertNumbertoBangla";
-import { ArrowLeft, Puzzle } from "lucide-react";
+import { Puzzle } from "lucide-react";
 import Link from "next/link";
 
 export default async function CategoryPage({ params, searchParams }) {
@@ -13,30 +15,26 @@ export default async function CategoryPage({ params, searchParams }) {
   const page = searchParams.page;
 
   // data
-  const adsByThisCategory = await getAllAds(catId, page, 10);
+  const allAdsByThisCategory = await getAllAds(catId, page, 10);
+  const allAdsByThisCategoryCount = await adsByThisCategory(catId);
+  
 
   return (
     <>
-      <Link
-        href="/admin/category"
-        classNameName="flex items-center gap-2 button-main w-fit mb-5"
-      >
-        <ArrowLeft classNameName="w-4 h-4" />
-        <span>ফিরুন</span>
-      </Link>
+     <BackButton />
 
-      <div classNameName="flex items-center justify-between">
+      <div className="flex items-center justify-between">
         <PageHeader
-          text={`অ্যাড সমূহ: ${adsByThisCategory[0]?.categoryId?.categoryName} - (${convertToBanglaNumber(adsByThisCategory[0]?.categoryId?.ads?.length)} টি বিজ্ঞাপন)`}
-          icon={<Puzzle classNameName="w-5 h-5" />}
+          text={`অ্যাড সমূহ: (${convertToBanglaNumber(allAdsByThisCategoryCount)} টি বিজ্ঞাপন)`}
+          icon={<Puzzle className="w-5 h-5" />}
         />
 
-        <Link href="/admin/category/create" classNameName="button-main">
+        <Link href="/admin/category/create" className="button-main">
           অ্যাড পোস্ট করুন
         </Link>
       </div>
 
-      <div classNameName="mt-5">
+      <div className="mt-5">
         <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
           <table className="w-full text-left rtl:text-right text-gray-500 dark:text-gray-400">
             <thead className="text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -59,14 +57,14 @@ export default async function CategoryPage({ params, searchParams }) {
               </tr>
             </thead>
             <tbody>
-              {adsByThisCategory?.map((item)=> <AdListRow key={item?._id} data={item} />)}
+              {allAdsByThisCategory?.map((item)=> <UserAdListRow key={item?._id} data={item} />)}
             </tbody>
           </table>
         </div>
       </div>
 
-      <div classNameName="flex items-center justify-end">
-        <Paggination count={parseInt(adsByThisCategory[0]?.categoryId?.ads?.length)} nextLink={`/admin/category/${catId}`} />
+      <div className="flex items-center justify-end">
+        <Paggination count={parseInt(allAdsByThisCategory[0]?.categoryId?.ads?.length)} nextLink={`/admin/category/${catId}`} />
       </div>
     </>
   );

@@ -13,8 +13,6 @@ export async function POST(req, { params }) {
   const {
     ad_type,
     ad_name,
-    categoryId,
-    companyId,
     condition,
     short_desc,
     model,
@@ -45,8 +43,6 @@ export async function POST(req, { params }) {
         ? "parts-and-motorcycle"
         : "all-vehicles",
     ad_name,
-    categoryId,
-    companyId,
     condition,
     short_desc,
     model,
@@ -73,7 +69,34 @@ export async function POST(req, { params }) {
 
   try {
     await connectDB();
-    const data = await adModel.findByIdAndUpdate({ _id: adId }, formattedData);
+    const data = await adModel.findByIdAndUpdate(
+      { _id: adId },
+      {
+        $set: {
+          ad_name,
+          condition,
+          short_desc,
+          model,
+          kilo_hr,
+          "others_info.horse": horse,
+          "others_info.cc": cc,
+          "others_info.size": size,
+          "others_info.weight": weight,
+          "others_info.wheel_size": wheel_size,
+          "others_info.cylinder": cylinder,
+          "others_info.load_capacity": load_capacity,
+          " others_info.mylase": mylase,
+          "others_info.breaking_type": breaking_type,
+          air_condition,
+          power_stearing,
+          fuel_type,
+          documents,
+          driver_type,
+          price,
+          isFeatured,
+        },
+      }
+    );
 
     return NextResponse.json({ msg: "success", data: data }, { status: 200 });
   } catch (error) {

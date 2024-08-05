@@ -1,11 +1,15 @@
+import AdminAdImage from "@components/AdminAdImage";
 import CategoryCard from "@components/CategoryCard";
 import Slideshow from "@components/FeaturesSlideres";
 import Footer from "@components/Footer";
 import HomeMobileNav from "@components/HomeMobileNav";
 import Navbar from "@components/Navbar";
+import NavCategory from "@components/NavCategory";
+import { featuredAds } from "@libs/api/ad";
 import { getAllCategories } from "@libs/api/category";
 import { getAllCompanies } from "@libs/api/company";
 import { BookmarkCheck } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 
 export default async function Home() {
@@ -13,25 +17,20 @@ export default async function Home() {
   const categories = await getAllCategories();
   const companies = await getAllCompanies();
 
+  // featured ad
+  const featuredAdsArray = await featuredAds();
+
   return (
     <>
       <Navbar />
+      <NavCategory />
 
-      {/* <section>
-        <main className="grid grid-cols-12 gap-3">
-          <div className="col-span-12 md:col-span-3 hidden md:block">
-            <AllCategories />
-          </div>
-          <div className="col-span-12 md:col-span-9">
-            <Slideshow />
-          </div>
-        </main>
-      </section> */}
+      <AdminAdImage />
 
       <section>
         <div className="grid grid-cols-12 gap-3">
           <div className="col-span-12">
-            <Slideshow />
+            <Slideshow featuredAdsArray={featuredAdsArray} />
           </div>
         </div>
       </section>
@@ -156,7 +155,6 @@ export default async function Home() {
       {/* total stats end */}
 
       <HomeMobileNav />
-
       <Footer />
     </>
   );

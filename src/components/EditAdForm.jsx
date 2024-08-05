@@ -37,8 +37,6 @@ export default function EditAdForm({ categories, companies, adData, profile }) {
           ? "parts"
           : "all-vehicles",
       ad_name: adData?.ad_name,
-      categoryId: adData?.categoryId,
-      companyId: adData?.companyId,
       condition: adData?.condition,
       short_desc: adData?.short_desc,
       model: adData?.model,

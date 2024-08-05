@@ -87,8 +87,8 @@ export default function AdDetailsForm({ categories, companies, adData }) {
 
   useEffect(() => {
     formik.setValues({
-      companyId: adData.companyId._id,
-      categoryId: adData.categoryId._id,
+      // companyId: adData.companyId._id,
+      // categoryId: adData.categoryId._id,
       ad_name: adData.ad_name,
       ad_type: adData.ad_type,
       condition: adData.condition,

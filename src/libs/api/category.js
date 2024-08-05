@@ -5,6 +5,7 @@ export const createCategory = async (values) => {
       `${process.env.NEXT_PUBLIC_BASE_URL}/api/category/create`,
       {
         method: "POST",
+        cache: "no-store",
         headers: {
           "Content-Type": "application/json",
         },

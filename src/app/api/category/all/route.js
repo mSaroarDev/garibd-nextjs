@@ -3,6 +3,7 @@ import categoryModel from "@db/models/category";
 import { NextResponse } from "next/server";
 import adModel from "@db/models/ad";
 
+export const revalidate = 0;
 export async function GET() {
   try {
     await connectDB();

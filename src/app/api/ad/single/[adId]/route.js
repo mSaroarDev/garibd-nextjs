@@ -4,6 +4,7 @@ import { NextResponse } from "next/server";
 import categoryModel from "@db/models/category";
 import companyModel from "@db/models/company";
 import userModel from "@db/models/users";
+import storeModel from "@db/models/store";
 
 export async function GET(req, { params }) {
   const { adId } = params;
@@ -13,7 +14,7 @@ export async function GET(req, { params }) {
 
     const data = await adModel
       .findOne({ _id: adId })
-      .populate("categoryId companyId user");
+      .populate("categoryId companyId user storeId");
 
     return NextResponse.json({ msg: "success", data: data }, { status: 200 });
   } catch (error) {

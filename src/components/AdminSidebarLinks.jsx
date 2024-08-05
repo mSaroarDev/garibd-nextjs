@@ -23,7 +23,7 @@ export default function AdminSidebarLinks() {
     <>
       <Link
         href="/admin/dashboard"
-        className={`user-sidebar-link mt-7 ${
+        className={`user-sidebar-link mt-3 ${
           pathname.startsWith("/admin/dashboard") && "user-sidebar-link-active"
         }`}
       >

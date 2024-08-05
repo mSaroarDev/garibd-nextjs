@@ -62,7 +62,7 @@ export default function UserAdListRow({ data }) {
             {ad_name}
           </span>{" "}
           <br />
-          <p className="flex items-center gap-2 mt-2">
+          <p className="flex items-center gap-2 mt-1">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"

@@ -5,7 +5,6 @@ import convertToBanglaNumber from "@utils/convertNumbertoBangla";
 export default async function AdminDashboardPage() {
   // get statistics
   const stats = await overallStatistics();
-  console.log("stats:", );
   
   const {
     soldAds,
@@ -22,12 +21,12 @@ export default async function AdminDashboardPage() {
 
   return (
     <>
-      <div className="flex items-center justify-between p-7">
+      <div className="flex items-center justify-between mb-5 px-5">
         <div className="text-[22px] font-bold">Welcome, Mr. Saroar Jahan</div>
       </div>
 
       {/* main content */}
-      <div className="grid grid-cols-12 gap-4  px-7">
+      <div className="grid grid-cols-12 gap-4 px-5">
         <StatCard
           count={convertToBanglaNumber(parseInt(allAds))}
           text="মোট বিজ্ঞাপন"

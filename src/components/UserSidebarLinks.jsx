@@ -20,7 +20,7 @@ export default function UserSidebarLinks() {
     <>
       <Link
         href="/user/dashboard"
-        className={`user-sidebar-link mt-7 ${
+        className={`user-sidebar-link mt-3 ${
           pathname.startsWith("/user/dashboard") && "user-sidebar-link-active"
         }`}
       >

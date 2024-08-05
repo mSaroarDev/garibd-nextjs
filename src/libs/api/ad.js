@@ -163,3 +163,21 @@ export const getStoreAds = async (store, page, limit) => {
     console.log(error);
   }
 };
+
+// get featured ads
+export const featuredAds = async () => {
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/ad/featured`,
+      {
+        method: "GET",
+        cache: "no-store",
+      }
+    );
+
+    const data = await res.json();
+    return data.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
