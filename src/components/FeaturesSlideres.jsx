@@ -24,7 +24,6 @@ const divStyle = {
 };
 
 const Slideshow = ({ featuredAdsArray }) => {
-  console.log(featuredAdsArray);
 
   return (
     <div className="slide-container">

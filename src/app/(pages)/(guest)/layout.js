@@ -12,7 +12,6 @@ export default function layout({ children }) {
       <AdminAdImage />
       {children}
       <HomeMobileNav />
-      <Footer />
     </>
   );
 }
