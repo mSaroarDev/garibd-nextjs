@@ -27,7 +27,7 @@ export default function AdsDetailsComponent({ adDetails }) {
 
   return (
     <div className="bg-body">
-      <div className="grid grid-cols-12 gap-5 p-5">
+      <div className="grid grid-cols-12 gap-3">
         <div className="col-span-12 lg:col-span-8">
           <div className="bg-white p-7 rounded border border-borderColor">
             <h1 className="text-3xl font-bold">{adDetails?.ad_name}</h1>

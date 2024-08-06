@@ -6,9 +6,9 @@ export default function AdCard({ data }) {
     <>
       <Link
         href={`/ad/details/${data?._id}?title=${data?.ad_name}&category=${data?.caegoryId?.categoryName}&company=${data?.companyId?.companyName}`}
-        className="col-span-12 md:col-span-6 lg:col-span-4 border border-borderColor bg-white rounded-lg p-2"
+        className="col-span-12 md:col-span-6 lg:col-span-4 border border-borderColor bg-white rounded-md p-2"
       >
-        <div className="h-[150px] w-full border border-borderColor rounded-md overflow-hidden">
+        <div className="h-[150px] w-full border border-borderColor overflow-hidden">
           <img
             src={data?.images[0]}
             alt={data?.ad_name}
@@ -20,7 +20,6 @@ export default function AdCard({ data }) {
           <p className="font-bold text-base">৳ {data?.price}/- টাকা</p>
           <div className="flex items-center justify-between text-sm mt-1 -mb-1">
             <p>{formatTimeAgo(data?.createdAt)}</p>
-            <p>{`1 day ago`}</p>
           </div>
         </div>
       </Link>
