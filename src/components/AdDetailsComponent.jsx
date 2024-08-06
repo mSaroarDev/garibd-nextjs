@@ -1,12 +1,10 @@
 "use client";
-import { ArrowRight, Heart, Map, MapPinned, Share2, Store, Youtube } from "lucide-react";
+import { ArrowRight, Heart, Map, Share2, Store, Youtube } from "lucide-react";
 import { useState } from "react";
-import { Slide } from "react-slideshow-image";
-import EditAdForm from "./EditAdForm";
-import AdDetailsForm from "./AdDetailsForm";
 import formatTimeAgo from "@utils/convert_date";
 import Image from "next/image";
 import AdDetails from "./AdDetails";
+import Link from "next/link";
 
 export default function AdsDetailsComponent({ adDetails }) {
   const media = [...adDetails?.images, adDetails.video[0]];
@@ -148,7 +146,7 @@ export default function AdsDetailsComponent({ adDetails }) {
           </div>
 
           {/* store information */}
-          {adDetails?.storeId !== "" && (
+          {adDetails && adDetails?.storeId !== "" && (
             <div className="bg-white p-5 rounded border border-borderColor my-5">
               <div className="flex items-start gap-5">
                 <Store className="w-5 h-5" />
@@ -165,10 +163,10 @@ export default function AdsDetailsComponent({ adDetails }) {
                 </div>
               </div>
 
-              <button className="border border-black px-4 py-2 rounded-md n w-full mt-5 flex items-center justify-center gap-2 font-medium">
+              <Link href={`/store/${adDetails?.storeId?._id}?page=1`} className="border border-black px-4 py-2 rounded-md n w-full mt-5 flex items-center justify-center gap-2 font-medium">
                 <span>সকল বিজ্ঞাপন</span>
                 <ArrowRight className="w-4 h-4" />
-              </button>
+              </Link>
             </div>
           )}
 

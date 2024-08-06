@@ -10,10 +10,16 @@ export async function GET(req, { params }) {
   const storeId = searchParams.get("store");
   const page = searchParams.get("page");
   const limit = searchParams.get("limit");
+  const currStatus = searchParams.get("status");
 
   try {
+    const query = { storeId };
+    if (currStatus) {
+      query.currStatus = currStatus;
+    }
+
     const data = await adModel
-      .find({ storeId })
+      .find(query)
       .skip((page - 1) * limit)
       .limit(limit)
       .populate("categoryId companyId storeId user")

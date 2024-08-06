@@ -2,7 +2,6 @@ import adModel from "@db/models/ad";
 import categoryModel from "@db/models/category";
 import companyModel from "@db/models/company";
 import documentModel from "@db/models/documets";
-import paymentModel from "@db/models/payment";
 import purchasePackageModel from "@db/models/purchasePackage";
 import storeModel from "@db/models/store";
 import userModel from "@db/models/users";
@@ -41,13 +40,13 @@ export async function GET(req) {
     const store = await storeModel.countDocuments();
 
     // new payment
-    const newPayments = await paymentModel.countDocuments({
-      "payment_info?.status": "pending",
+    const newPayments = await purchasePackageModel.countDocuments({
+      "payment_info.status": "pending",
     });
 
     // accepted payment
-    const allPayments = await paymentModel.countDocuments({
-      "payment_info?.status": "Accepted",
+    const allPayments = await purchasePackageModel.countDocuments({
+      "payment_info.status": "Accepted",
     });
 
     // accepted payment

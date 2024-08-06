@@ -107,10 +107,41 @@ export const allMyAdsCount = async (userId) => {
 };
 
 //  get ads count by this category
-export const adsByThisCategory = async (catId) => {
+export const adsByThisCategory = async (catId, status) => {
+  // Create URLSearchParams instance to build the query string
+  const queryParams = new URLSearchParams({
+    id: catId,
+    status,
+  });
+
+  // Append status to queryParams if it's provided
+  if (status !== undefined && status !== null) {
+    queryParams.append("status", status);
+  }
+
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/api/count/ads/by-category?id=${catId}`,
+      `${
+        process.env.NEXT_PUBLIC_BASE_URL
+      }/api/count/ads/by-category?${queryParams.toString()}`,
+      {
+        method: "GET",
+        cache: "no-store",
+      }
+    );
+
+    const data = await res.json();
+    return data.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+//  get ads count by this category
+export const adsByThisStore = async (storeId, status) => {
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/count/ads/by-store?id=${storeId}&status=${status}`,
       {
         method: "GET",
         cache: "no-store",

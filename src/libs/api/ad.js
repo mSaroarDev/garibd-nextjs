@@ -146,21 +146,42 @@ export const updateAdStatus = async (adId, values) => {
   }
 };
 
-// get all ads by store
-export const getStoreAds = async (store, page, limit) => {
+// get store ads by store id
+export const getStoreAds = async (store, page = 1, limit = 10, status) => {
   try {
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/api/ad/by-store?store=${store}&page=${page}&limit=${limit}`,
-      {
-        method: "GET",
-        cache: "no-store",
-      }
-    );
+    // Create URLSearchParams instance to build the query string
+    const queryParams = new URLSearchParams({
+      store,
+      page,
+      limit,
+    });
 
+    // Append status to queryParams if it's provided
+    if (status !== undefined && status !== null) {
+      queryParams.append("status", status);
+    }
+
+    // Construct the URL with query parameters
+    const url = `${
+      process.env.NEXT_PUBLIC_BASE_URL
+    }/api/ad/by-store?${queryParams.toString()}`;
+
+    // Fetch the data from the API
+    const res = await fetch(url, {
+      method: "GET",
+      cache: "no-store",
+    });
+
+    // Check if the response is okay
+    if (!res.ok) {
+      throw new Error(`Error: ${res.statusText}`);
+    }
+
+    // Parse and return the JSON data
     const data = await res.json();
     return data.data;
   } catch (error) {
-    console.log(error);
+    console.error("Error fetching store ads:", error);
   }
 };
 

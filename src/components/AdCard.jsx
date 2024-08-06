@@ -6,7 +6,7 @@ export default function AdCard({ data }) {
     <>
       <Link
         href={`/ad/details/${data?._id}?title=${data?.ad_name}&category=${data?.caegoryId?.categoryName}&company=${data?.companyId?.companyName}`}
-        className="col-span-12 md:col-span-6 lg:col-span-4 border border-borderColor bg-white rounded-md p-2"
+        className="col-span-12 md:col-span-6 lg:col-span-4 w-full md:max-w-[260px] border border-borderColor bg-white rounded-md p-2"
       >
         <div className="h-[150px] w-full border border-borderColor overflow-hidden">
           <img
