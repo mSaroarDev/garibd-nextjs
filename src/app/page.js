@@ -3,14 +3,12 @@ import Footer from "@components/Footer";
 import HomeMobileNav from "@components/HomeMobileNav";
 import Navbar from "@components/Navbar";
 import NavCategory from "@components/NavCategory";
+import ViewByCategories from "@components/ViewByCategories";
+import ViewByCompany from "@components/ViewByCompany";
 import { BookmarkCheck } from "lucide-react";
 import Link from "next/link";
 
 export default async function Home() {
-  //fetch categories
-  // const categories = await getAllCategories();
-  // const companies = await getAllCompanies();
-
   // featured ad
   // const featuredAdsArray = await featuredAds();
 
@@ -39,13 +37,7 @@ export default async function Home() {
             </h1>
           </div>
 
-          {/* main content */}
-          {/* <div className="grid grid-cols-12 gap-2 md:gap-5">
-            {categories &&
-              categories.map((item) => (
-                <CategoryCard key={item?._id} data={item} />
-              ))}
-          </div> */}
+          <ViewByCategories />
         </main>
       </section>
       {/* premium featured ads section end */}
@@ -60,13 +52,8 @@ export default async function Home() {
             </h1>
           </div>
 
+          <ViewByCompany />
           {/* main content */}
-          <div className="grid grid-cols-12 gap-2 md:gap-5">
-            {/* {companies &&
-              companies.map((item) => (
-                <CategoryCard key={item?._id} data={item} />
-              ))} */}
-          </div>
         </main>
       </section>
       {/* brows by company */}

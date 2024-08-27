@@ -1,10 +1,10 @@
 "use client";
-import Link from "next/link";
-import { useState } from "react";
-import { signIn } from "next-auth/react";
 import { showError, showSuccess } from "@utils/showToast";
-import LoadingButton from "./LoadingButton";
+import { signIn } from "next-auth/react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
+import LoadingButton from "./LoadingButton";
 
 export default function SignInForm() {
   // utils
@@ -30,7 +30,7 @@ export default function SignInForm() {
       setLoading(false);
       if (res.ok) {
         showSuccess("Loggin Success");
-        router.push("/user/dashboard")
+        window.location.replace("/user/dashboard")
       } else {
         showError("Invalid Credentials");
       }
