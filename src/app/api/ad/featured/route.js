@@ -1,10 +1,11 @@
+import { connectDB } from "@db/connectDB";
 import adModel from "@db/models/ad";
 import { NextResponse } from "next/server";
-import categoryModel from "@db/models/category";
-import companyModel from "@db/models/company";
 
 export async function GET(req) {
   try {
+    await connectDB();
+
     const data = await adModel
       .find({
         isFeatured: true,

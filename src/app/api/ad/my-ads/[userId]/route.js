@@ -1,9 +1,6 @@
+import { connectDB } from "@db/connectDB";
 import adModel from "@db/models/ad";
 import { NextResponse } from "next/server";
-import categoryModel from "@db/models/category";
-import companyModel from "@db/models/company";
-import storeModel from "@db/models/store";
-import userModel from "@db/models/users";
 
 export async function GET(req, { params }) {
   const { userId } = params;
@@ -12,6 +9,8 @@ export async function GET(req, { params }) {
   const limit = searchParams.get("limit");
 
   try {
+    await connectDB();
+
     const data = await adModel
       .find({ user: userId })
       .skip((page - 1) * limit)

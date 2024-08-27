@@ -2,7 +2,6 @@ import { connectDB } from "@db/connectDB";
 import purchasePackageModel from "@db/models/purchasePackage";
 import userModel from "@db/models/users";
 import { authOptions } from "@libs/authOptions";
-import convertDateAndTime from "@utils/convertDateAndTime";
 import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
 
@@ -10,8 +9,6 @@ export async function POST(req) {
   const packageData = await req.json();
   const { name, price, category, type, value, duration } = packageData;
   const paid_time = new Date().toISOString();
-
-  console.log("category: ", category.length);
 
   // date function
   const getEndDate = () => {

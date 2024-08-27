@@ -7,6 +7,8 @@ export async function GET(req) {
   const userId = searchParams.get("userId");
 
   try {
+    await connectDB();
+
     // get my ads
     const myads = await adModel.countDocuments({ user: userId });
 

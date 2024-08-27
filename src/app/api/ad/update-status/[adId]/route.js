@@ -1,3 +1,4 @@
+import { connectDB } from "@db/connectDB";
 import adModel from "@db/models/ad";
 import { NextResponse } from "next/server";
 
@@ -7,6 +8,8 @@ export async function POST(req, { params }) {
   console.log("status", status);
 
   try {
+    await connectDB();
+
     const data = await adModel.findByIdAndUpdate(
       { _id: adId },
       {

@@ -1,9 +1,6 @@
+import { connectDB } from "@db/connectDB";
 import adModel from "@db/models/ad";
 import { NextResponse } from "next/server";
-import categoryModel from "@db/models/category";
-import companyModel from "@db/models/company";
-import storeModel from "@db/models/store";
-import userModel from "@db/models/users";
 
 export async function GET(req, { params }) {
   const { searchParams } = new URL(req.url);
@@ -13,6 +10,8 @@ export async function GET(req, { params }) {
   const currStatus = searchParams.get("status");
 
   try {
+    await connectDB();
+
     const query = { storeId };
     if (currStatus) {
       query.currStatus = currStatus;
