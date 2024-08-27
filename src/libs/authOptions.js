@@ -1,8 +1,8 @@
+import { connectDB } from "@db/connectDB";
+import userModel from "@db/models/users";
+import bcrypt from "bcrypt";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
-import bcrypt from "bcrypt";
-import userModel from "@db/models/users";
-import { connectDB } from "@db/connectDB";
 
 export const authOptions = {
   site: process.env.NEXTAUTH_URL,
@@ -111,6 +111,8 @@ export const authOptions = {
     },
 
     async session({ session }) {
+      await connectDB();
+
       const mongodbUser = await userModel.findOne({
         email: session.user?.email,
       });
