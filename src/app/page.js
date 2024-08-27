@@ -1,24 +1,18 @@
 import AdminAdImage from "@components/AdminAdImage";
-import CategoryCard from "@components/CategoryCard";
-import Slideshow from "@components/FeaturesSlideres";
 import Footer from "@components/Footer";
 import HomeMobileNav from "@components/HomeMobileNav";
 import Navbar from "@components/Navbar";
 import NavCategory from "@components/NavCategory";
-import { featuredAds } from "@libs/api/ad";
-import { getAllCategories } from "@libs/api/category";
-import { getAllCompanies } from "@libs/api/company";
 import { BookmarkCheck } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
 
 export default async function Home() {
   //fetch categories
-  const categories = await getAllCategories();
-  const companies = await getAllCompanies();
+  // const categories = await getAllCategories();
+  // const companies = await getAllCompanies();
 
   // featured ad
-  const featuredAdsArray = await featuredAds();
+  // const featuredAdsArray = await featuredAds();
 
   return (
     <>
@@ -30,7 +24,7 @@ export default async function Home() {
       <section>
         <div className="grid grid-cols-12 gap-3">
           <div className="col-span-12">
-            <Slideshow featuredAdsArray={featuredAdsArray} />
+            {/* <Slideshow featuredAdsArray={featuredAdsArray} /> */}
           </div>
         </div>
       </section>
@@ -46,12 +40,12 @@ export default async function Home() {
           </div>
 
           {/* main content */}
-          <div className="grid grid-cols-12 gap-2 md:gap-5">
+          {/* <div className="grid grid-cols-12 gap-2 md:gap-5">
             {categories &&
               categories.map((item) => (
                 <CategoryCard key={item?._id} data={item} />
               ))}
-          </div>
+          </div> */}
         </main>
       </section>
       {/* premium featured ads section end */}
@@ -68,10 +62,10 @@ export default async function Home() {
 
           {/* main content */}
           <div className="grid grid-cols-12 gap-2 md:gap-5">
-            {companies &&
+            {/* {companies &&
               companies.map((item) => (
                 <CategoryCard key={item?._id} data={item} />
-              ))}
+              ))} */}
           </div>
         </main>
       </section>
