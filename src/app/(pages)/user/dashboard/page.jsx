@@ -5,12 +5,12 @@ import convertToBanglaNumber from "@utils/convertNumbertoBangla";
 import { getServerSession } from "next-auth";
 
 export default async function UserDashboardPage() {
-  // const session = await getServerSession(authOptions);
-  // const currUser = session?.user;
+  const session = await getServerSession(authOptions);
+  const currUser = session?.user;
 
-  // // get statistics
-  // const stats = await userStatistics(currUser?._id);
-  // const { myads, soldAds, notSoldAds, myPayments } = stats;
+  // get statistics
+  const stats = await userStatistics(currUser?._id);
+  const { myads, soldAds, notSoldAds, myPayments } = stats;
 
   return (
     <>
@@ -19,7 +19,7 @@ export default async function UserDashboardPage() {
       </div>
 
       {/* main content */}
-      {/* <div className="grid grid-cols-12 gap-4  px-7">
+      <div className="grid grid-cols-12 gap-4  px-7">
         <StatCard
           count={convertToBanglaNumber(parseInt(myads))}
           text="আমার বিজ্ঞাপন সমূহ"
@@ -44,7 +44,7 @@ export default async function UserDashboardPage() {
           count={convertToBanglaNumber(parseInt(myads))}
           text="নোটিফিকেশন"
         />
-      </div> */}
+      </div>
     </>
   );
 }
