@@ -1,3 +1,4 @@
+import { connectDB } from "@db/connectDB";
 import adModel from "@db/models/ad";
 import categoryModel from "@db/models/category";
 import companyModel from "@db/models/company";

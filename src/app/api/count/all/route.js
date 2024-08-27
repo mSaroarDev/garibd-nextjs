@@ -1,3 +1,4 @@
+import { connectDB } from "@db/connectDB";
 import adModel from "@db/models/ad";
 import purchasePackageModel from "@db/models/purchasePackage";
 import { NextResponse } from "next/server";
