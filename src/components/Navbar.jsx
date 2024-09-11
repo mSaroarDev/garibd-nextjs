@@ -1,11 +1,6 @@
 "use client";
-import SearchBar from "./SearchBar";
-import NavCategory from "./NavCategory";
-import { Plus } from "lucide-react";
-import { useEffect, useState } from "react";
 import Link from "next/link";
-import { useSession } from "next-auth/react";
-import { getProfile } from "@libs/api/profile";
+import { useEffect, useState } from "react";
 
 export default function Navbar() {
   // fixing menu
@@ -31,25 +26,69 @@ export default function Navbar() {
 
   return (
     <>
-      <nav id="navbar" className={`bg-body px-5 md:px-10 py-3 text-[16px] w-full transition-all duration-300 ${
+      <nav id="navbar" className={`bg-body px-3 md:px-5 py-3 text-[16px] w-full transition-all duration-300 ${
           scrolled ? "navbar-scrolled shadow-md" : ""
         }`}>
-        <div className="grid grid-cols-12 gap-6 md:gap-4 items-center justify-center">
-          <div className="col-span-4 md:col-span-3 flex items-center justify-start">
-            <Link href='/'><img src="/logo.svg" className="w-[120px]" /></Link>
+        <div class="headerTop">
+          <div class="logo">
+            <Link href="/">
+              <img src="/logo transparent.png" alt="" />
+            </Link>
           </div>
-          <div className="col-span-8 md:col-span-6 flex items-center justify-center">
-            <SearchBar />
+          
+          <div class="headerTopNav hidden lg:block">
+            <ul>
+              <li class="nav1">
+                <Link href="/">হোম</Link>
+              </li>
+              <li class="nav2">
+                <Link href="/explore-ads">সকল বিজ্ঞাপন</Link>
+              </li>
+              <li class="nav3">
+                <Link href="/packages">প্যাকেজ সমূহ</Link>
+              </li>
+              <li class="nav4">
+                <Link href="/stores">স্টোর সমূহ</Link>
+              </li>
+              <li class="nav5">
+                <Link href="/public-posts">পাবলিক পোষ্ট</Link>
+              </li>
+              <li class="nav5">
+                <Link href="/services">সার্ভিস সমূহ</Link>
+              </li>
+            </ul>
           </div>
-          <div className="hidden md:block col-span-3">
-            <div className="w-full flex items-center justify-end gap-5">
-              <Link href='/explore-ads' className="font-semibold underline">সকল বিজ্ঞাপন সমূহ</Link>
-              <Link href='/sign-in' className="hidden lg:block bg-brandColor text-white px-5 py-2 rounded-lg">বিজ্ঞাপন দিন</Link>
-              <Link href='/sign-in' className="block lg:hidden bg-brandColor text-white px-5 py-2 rounded-full">
-                <Plus className="w-5 h-5" />
+
+          <div class="lang_IconSec hidden lg:flex">
+            <div class="language">
+              <select name="" id="">
+                <option class="eng" value="">
+                  English
+                </option>
+                <option class="ben" value="">
+                  বাংলা
+                </option>
+              </select>
+            </div>
+
+            <div class="liveChat hidden lg:flex">
+              <a class="topicon flex" href="#">
+                <img src="/chat black.png" alt="" />
+              </a>
+            </div>
+            <div class="account hidden lg:flex">
+              <Link href="/sign-in" class="topicon flex">
+                {" "}
+                <img src="/user2 black.png" alt="" />
               </Link>
-            </div> 
+            </div>
           </div>
+
+          <Link href="/create-ads" id="" class="postAds">
+            <img src="/catagory/animation/add-1--unscreen.gif" alt="" />
+            <p className="hidden md:block">বিজ্ঞাপন পোষ্ট করুন</p>
+            <p className="block md:hidden">বিজ্ঞাপন দিন</p>
+          </Link>
         </div>
       </nav>
     </>

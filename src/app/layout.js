@@ -1,9 +1,8 @@
-import { Hind_Siliguri } from "next/font/google";
-import "./globals.css";
-import { Toaster } from "react-hot-toast";
-import AuthProvider from "@providers/AuthProvider";
-import MobileNav from "@components/MobileNav";
 import Toploader from "@components/Toploader";
+import AuthProvider from "@providers/AuthProvider";
+import { Hind_Siliguri } from "next/font/google";
+import { Toaster } from "react-hot-toast";
+import "./globals.css";
 
 const Font_Hind_Siliguri = Hind_Siliguri({
   subsets: ["latin"],
@@ -20,6 +19,12 @@ export const revalidate = 0;
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head>
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        />
+      </head>
       <body className={Font_Hind_Siliguri.className}>
         <Toploader />
         <Toaster />

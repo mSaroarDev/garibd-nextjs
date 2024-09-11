@@ -116,6 +116,7 @@ export const authOptions = {
       const mongodbUser = await userModel.findOne({
         email: session.user?.email,
       });
+      session.user._id = mongodbUser._id.toString();
       session.user.id = mongodbUser._id.toString();
 
       session.user = { ...session.user, ...mongodbUser._doc };

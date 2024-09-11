@@ -4,7 +4,6 @@ import categoryModel from "@db/models/category";
 import companyModel from "@db/models/company";
 import purchasePackageModel from "@db/models/purchasePackage";
 import storeModel from "@db/models/store";
-import userModel from "@db/models/users";
 import { authOptions } from "@libs/authOptions";
 import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";

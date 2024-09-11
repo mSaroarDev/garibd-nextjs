@@ -53,7 +53,7 @@ export default async function MyAdsPage({ searchParams }) {
               </tr>
             </thead>
             <tbody>
-              {myAds.map((item) => (
+              {myAds?.map((item) => (
                 <UserAdListRow key={item?._id} data={item} profile={profile} />
               ))}
             </tbody>
@@ -62,7 +62,7 @@ export default async function MyAdsPage({ searchParams }) {
       </div>
 
       <div className="block md:hidden">
-        {myAds.map((item) => (
+        {myAds?.map((item) => (
           <UserAdListRowMobile key={item?._id} data={item} />
         ))}
       </div>

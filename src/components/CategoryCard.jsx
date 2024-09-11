@@ -6,16 +6,18 @@ export default function CategoryCard({ data }) {
     <>
       <Link
         href={`/category/${data?._id}?category_name=${data?.categoryName}`}
-        className="col-span-4 lg:col-span-3 flex flex-col md:flex-row items-center justify-center md:justify-start bg-lightBg hover:bg-white px-5 py-4 gap-4 rounded-md"
+        className="cat1 truck col-span-6 md:col-span-3 lg:col-span-2 px-5 py-2"
       >
-        <img src={data?.categoryIcon || data?.companyIcon} alt="" className="w-14 md:ml-5" />
-        <div>
-          <h3 className="md:text-[17px] font-semibold text-center md:text-left">
-            {data?.categoryName || data?.companyName}
-          </h3>
-          <p className="text-xs md:text-sm text-center md:text-left">
-            {data?.ads?.length} টি অ্যাড
-          </p>
+        <div className="catImg">
+          <img src={data?.categoryIcon} alt="" />
+        </div>
+        <div className="adTitle_adCount">
+          <div className="adTitle">
+            <h4>{data?.categoryName}</h4>
+          </div>
+          <div className="adCount">
+            <h6>{data?.ads?.length} এডস</h6>
+          </div>
         </div>
       </Link>
     </>

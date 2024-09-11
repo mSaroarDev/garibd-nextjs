@@ -1,0 +1,306 @@
+@import url("https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap");
+
+:root {
+  /* --primaryColor: #3de9f9de; */
+  --primaryColor: #98eeb57a;
+  --bgColor: #efefef;
+  --textColor: #292929;
+}
+
+select {
+  padding: 0px 5px;
+  width: 90px;
+  background-color: transparent;
+  outline: none;
+  font-weight: 500;
+  font-size: 1rem;
+}
+ul {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+  color: #292929;
+}
+
+/* --------------Header Css Start----------- */
+header {
+  height: 460px;
+  font-weight: 500;
+  background-color: rgb(213, 213, 213);
+}
+.headerTop {
+  height: 60px;
+  width: 100%;
+  background-color: var(--bgColor);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+/* ----Logo Section------ */
+.headerTop .logo a {
+  width: 160px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.headerTop .logo img {
+  height: 40px;
+}
+/*----Nav Section------ */
+.headerTopNav ul {
+  height: 35px;
+  width: 650px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.headerTopNav .nav1 {
+  width: 50px;
+  height: 100%;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.headerTopNav .nav2 {
+  width: 115px;
+  height: 100%;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.headerTopNav .nav3 {
+  width: 100px;
+  height: 100%;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.headerTopNav .nav4 {
+  width: 90px;
+  height: 100%;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.headerTopNav .nav5 {
+  width: 120px;
+  height: 100%;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.nav1:hover,
+.nav2:hover,
+.nav3:hover,
+.nav4:hover,
+.nav5:hover {
+  background-color: var(--primaryColor);
+}
+/* ---Language & Icon Section----- */
+.lang_IconSec {
+  height: 60px;
+  width: 170px;
+  align-items: center;
+  justify-content: space-between;
+}
+.liveChat,
+.account,
+.topicon {
+  height: 60px;
+  width: 30px;
+  align-items: center;
+  justify-content: center;
+}
+.liveChat,
+.account,
+img {
+  height: 25px;
+}
+.liveChat,
+.account,
+img:hover {
+  height: 22px;
+  transition: 0.2s;
+}
+/* ---Post Ads Section--- */
+.postAds {
+  height: 45px;
+  width: fit-content;
+  padding: 8px 20px;
+  border: 2px solid var(--textColor);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  cursor: pointer;
+  gap: 12px;
+}
+
+.postAds img {
+  height: 40px;
+}
+
+.postAds:hover {
+  border: 3px solid var(--textColor);
+  background-color: var(--primaryColor);
+}
+
+/* -------Header Bottom/Hero----- */
+
+.headerBtm {
+  position: relative;
+  height: 400px;
+  background-image: url("/hero img.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.headerSearch {
+  height: 60px;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid #dfdfdf;
+  color: #dfdfdf;
+  border-radius: 10px;
+}
+.location {
+  height: 100%;
+  width: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  border-right: 1px solid #dedede;
+  cursor: default;
+}
+.search {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.search input {
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  color: #dedede;
+  padding-left: 20px;
+}
+.search input::placeholder {
+  color: #989898;
+}
+.search i {
+  height: 60px;
+  width: 60px;
+  background-color: #dfdfdf;
+  color: var(--textColor);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  font-size: 1.5rem;
+}
+
+.headerBtm .heroSlidericon,
+.fa-angle-left .fa-angle-right {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  font-size: 2rem;
+}
+.fa-angle-left,
+.fa-angle-right {
+  height: 60px;
+  width: 30px;
+  background-color: #e4e4e4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.fa-angle-left:hover,
+.fa-angle-right:hover {
+  background-color: var(--primaryColor);
+  color: white;
+  font-size: 1.9rem;
+}
+
+/* ================================================== */
+/* ================================================== */
+/* ================================================== */
+/* ================================================== */
+
+.catagorySection {
+  height: 800px;
+  width: 95%;
+  margin: auto;
+}
+
+h1 {
+  height: 100px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: underline;
+}
+
+.catagories {
+ 
+}
+
+.cat1 {
+  height: 150px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  cursor: pointer;
+
+  /* From https://css.glass */
+  background: var(--bgColor);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgb(255, 255, 255);
+  backdrop-filter: blur(11px);
+  -webkit-backdrop-filter: blur(11px);
+  border: 1px solid rgb(234, 234, 234);
+}
+
+.catagories .catImg {
+  width: 80px;
+}
+.catagories img {
+  height: 70px;
+}
+
+.cat1:hover {
+  background-color: var(--primaryColor);
+  transition: 0.3s;
+  border: 1px solid var(--primaryColor);
+  box-shadow: 0px 1px 1px 0px #848484;
+}
+.adTitle_adCount {
+  height: 100%;
+  width: 140px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 18px;
+}

@@ -11,7 +11,9 @@ import { getServerSession } from "next-auth";
 export default async function CreateAd() { 
   // fetch categories
   const session = await getServerSession(authOptions);
+  
   const profile = await getProfile(session?.user?._id);
+  console.log("profile", profile);
   const categories = await getAllCategories();
   const companies = await getAllCompanies();
 
